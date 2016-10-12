@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{% block body %}
+
+    
+<div id="in-container" class="general-box"> 
+
+<div class="container">
+<div class="row space">
+
+    <div class="col-xs-12 in-breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="index.html">首頁</a></li>
+          <li class="active">提示</li>
+        </ol>
+    </div><!--in-breadcrumb-->
+    
+    
+    <div id="content" class="in-content col-md-12">
+        
+    	<h2 class= "page-header"><i class="fa fa-info" aria-hidden="true"></i> 網站提示 </h2>
+        {%block info%}
+        {%endblock%}
+    </div>
+</div><!--/row space-->
+</div>
+</div>
+
+    
+{% endblock %}

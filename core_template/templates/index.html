@@ -1,0 +1,159 @@
+{% extends "base.html"%}
+{% block body %}
+
+        
+	<div id="mainbanner" class="index-banner">
+    
+        <div class="swiper-container swiper-mainbanner">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><a href="#"><img src="static/images/banner01.jpg"></a></div>
+                <div class="swiper-slide"><a href="#"><img src="static/images/banner02.jpg"></a></div>
+                <div class="swiper-slide"><a href="#"><img src="static/images/banner03.jpg"></a></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="mainbanner-prev swiper-btn-prev"><i class="fa fa-angle-left"></i></div>
+            <div class="mainbanner-next swiper-btn-next"><i class="fa fa-angle-right"></i></div>
+        </div>
+    
+    </div><!--/mainbanner-->
+    
+    
+    
+    
+    <div id="content" class="index-content">
+    
+        <section id="index-probox" class="container-fluid">
+            <div class="row">
+                
+                <div id="index-probox-in" class="col-md-4 col-xs-12">
+                    <div class="index-probox-img scale-img">
+                        <a href="proinfo-show.html">
+                        <img src="static/images/pro01.jpg">
+                        </a>
+                    </div>
+                </div><!--/index-probox-in-->
+                
+                <div id="index-probox-in" class="col-md-4 col-xs-12">
+                    <div class="index-probox-img scale-img">
+                        <a href="proinfo-show.html">
+                        <img src="static/images/pro02.jpg">
+                        </a>
+                    </div>
+                </div><!--/index-probox-in-->
+                
+                <div id="index-probox-in" class="col-md-4 col-xs-12">
+                    <div class="index-probox-img scale-img">
+                        <a href="proinfo-show.html">
+                        <img src="static/images/pro03.jpg">
+                        </a>
+                    </div>
+                </div><!--/index-probox-in-->
+                
+            </div>
+        </section><!--/index-probox-->
+        
+        
+        <section id="index-data" class="container-fluid space">
+        	<div class="row">
+            	<div id="index-data-in" class="col-sm-3">
+                	<big id="target">0</big>會員數
+                </div>
+            	<div id="index-data-in" class="col-sm-3">
+                	<big id="target02">0</big>項課程
+                </div>
+            	<div id="index-data-in" class="col-sm-3">
+                	<big id="target03">0</big>個活動
+                </div>
+            	<div id="index-data-in" class="col-sm-3">
+                	<big id="target04">0</big>個企業
+                </div>
+            </div>
+        
+        </section><!--/index-data-->
+        
+        
+        
+    
+    </div><!--/content-->
+
+
+
+<script>
+  var decimal_places = 0;
+  var decimal_factor = decimal_places === 0 ? 1 : decimal_places * 10;
+
+  $('#target').animateNumber(
+    {
+      number: 10800 * decimal_factor,
+
+      numberStep: function(now, tween) {
+        var floored_number = Math.floor(now) / decimal_factor,
+            target = $(tween.elem);
+        if (decimal_places > 0) {
+          floored_number = floored_number.toFixed(decimal_places);
+        }
+
+        target.text(floored_number);
+      }
+    },
+    1000
+  )
+  
+  $('#target02').animateNumber(
+    {
+      number: 7000 * decimal_factor,
+
+      numberStep: function(now, tween) {
+        var floored_number = Math.floor(now) / decimal_factor,
+            target = $(tween.elem);
+        if (decimal_places > 1) {
+          floored_number = floored_number.toFixed(decimal_places);
+        }
+
+        target.text(floored_number);
+      }
+    },
+    1000
+  )
+  
+  $('#target03').animateNumber(
+    {
+      number: 5800 * decimal_factor,
+
+      numberStep: function(now, tween) {
+        var floored_number = Math.floor(now) / decimal_factor,
+            target = $(tween.elem);
+        if (decimal_places > 0) {
+          floored_number = floored_number.toFixed(decimal_places);
+        }
+
+        target.text(floored_number);
+      }
+    },
+    1000
+  )
+  
+  $('#target04').animateNumber(
+    {
+      number: 6600 * decimal_factor,
+
+      numberStep: function(now, tween) {
+        var floored_number = Math.floor(now) / decimal_factor,
+            target = $(tween.elem);
+        if (decimal_places > 0) {
+          floored_number = floored_number.toFixed(decimal_places);
+        }
+
+        target.text(floored_number);
+      }
+    },
+    1000
+  )
+</script>
+
+
+
+{% endblock %}
+
+
+
