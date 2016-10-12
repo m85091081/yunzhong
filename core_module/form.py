@@ -3,7 +3,6 @@ from wtforms import StringField, BooleanField,PasswordField, RadioField , Intege
 from wtforms.fields.html5 import DateField
 from wtforms.validators import Length  , EqualTo  
 from wtforms.validators import DataRequired as Required
-
 class registerForm(FlaskForm):
     email = StringField('註冊 Email：',validators=[Required()])
     password = PasswordField('密碼：', validators=[Required(),EqualTo('confirm', message='Passwords must match') ])
@@ -25,4 +24,5 @@ class registerForm(FlaskForm):
 class loginForm(FlaskForm):
     email = StringField('Email：',validators=[Required()],render_kw={"placeholder": "Email"})
     password = PasswordField('密碼：', validators=[Required()],render_kw={"placeholder": "密碼"})
+
 

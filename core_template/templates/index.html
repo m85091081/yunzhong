@@ -84,7 +84,7 @@
 
   $('#target').animateNumber(
     {
-      number: 10800 * decimal_factor,
+        number: {{allmem}} * decimal_factor,
 
       numberStep: function(now, tween) {
         var floored_number = Math.floor(now) / decimal_factor,
@@ -135,7 +135,7 @@
   
   $('#target04').animateNumber(
     {
-      number: 6600 * decimal_factor,
+        number: {{company}} * decimal_factor,
 
       numberStep: function(now, tween) {
         var floored_number = Math.floor(now) / decimal_factor,

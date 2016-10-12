@@ -15,7 +15,16 @@ class User:
             return True
         else:
             return False
+    def count(val):
+        if val is "all" :
+            user = db['Users']
+            return user.count()
+        elif val is "company":
+            user = db['Users']
+            return user.find({'companyid': {'$ne': None}}).count()
 
+
+            
     def usercheck(email):
         user = db['Users']
         usern = user.find_one({"email": email})

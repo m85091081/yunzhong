@@ -5,12 +5,15 @@ from core import app
 import os, logging
 from conf import setting
 from core.index import main
-from core.user import auth , register 
+from core.user import auth , register, users
+from core_module.form import loginForm
 # muMDAU_app setting
 app.secret_key = setting.yourkey
 app.register_blueprint(main)
 app.register_blueprint(auth, url_prefix="/login")
+app.register_blueprint(users, url_prefix="/users")
 app.register_blueprint(register, url_prefix="/register")
+
 # Main function of MDAUServer
 if __name__ == '__main__':
     # log writeing

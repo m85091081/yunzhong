@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import flask_login
-from flask_login import LoginManager
+from flask_login import LoginManager , login_required
 from core import app
 from flask import render_template , session, redirect, url_for, request, Blueprint , flash
 import hashlib
@@ -10,6 +10,9 @@ from core_module.form import registerForm , loginForm
 class User():
     def __init__(self, username):
         self.username = username
+    def email(self):
+        myname = dbUser.usercheck(self.username)['email']
+        return str(myname)
     def name(self):
         myname = dbUser.usercheck(self.username)['name']
         return str(myname)
@@ -26,7 +29,15 @@ lm = LoginManager()
 lm.init_app(app)
 register = Blueprint('register', __name__, template_folder='../core_template/templates')
 auth = Blueprint('auth', __name__ , template_folder='../core_template/templates')
+auth = Blueprint('auth', __name__ , template_folder='../core_template/templates')
+users = Blueprint('users', __name__ , template_folder='../core_template/templates')
+lm.login_view = "main.index"
 
+@users.route('/info',methods=['GET','POST'])
+@login_required
+def info():
+    loginform = loginForm()
+    return render_template('member-info.html',**locals())
 @lm.user_loader
 def user_loader(email):
     if dbUser.usercheck(email) == False:
