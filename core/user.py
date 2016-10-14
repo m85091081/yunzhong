@@ -16,6 +16,9 @@ class User():
     def name(self):
         myname = dbUser.usercheck(self.username)['name']
         return str(myname)
+    def info(self):
+        myname = dbUser.usercheck(self.username)
+        return myname
     def is_authenticated(self):
         return True
     def is_active(self):
@@ -37,6 +40,7 @@ lm.login_view = "main.index"
 @login_required
 def info():
     loginform = loginForm()
+    form = registerForm()
     return render_template('member-info.html',**locals())
 @lm.user_loader
 def user_loader(email):

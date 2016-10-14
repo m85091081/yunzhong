@@ -5,6 +5,35 @@ client = MongoClient(setting.mongohost)
 db = client['Yunzhong']
 class InitDB:
     user = db['Users']
+class Product:
+    def count(val):
+        prod = db['Product']
+        return prod.find({'url': str(val)}).count()
+
+    def getdata(url):
+        prod = db['Product']
+        produ = prod.find_one({"url": url})
+        return produ
+    
+    def init(url,title,pic,timedict,place,link,classify,holderlist,about,prodata,payment,orderdict):
+        prod = db['Product']
+        prod.create_index("url", unique=True)
+        raw = { "url":str(url),
+                "title":str(title),
+                "pic":str(pic),
+                "timedict":timedict,
+                "place":place,
+                "link":str(link),
+                "classify":classify,
+                "holderlist":holderlist,
+                "about":str(about),
+                "prodata":prodata, ##相關資料
+                "payment":payment, ##布林
+                "orderdict":orderdict
+                }
+        print(prod.insert_one(raw).inserted_id)
+        return True
+
 
 class User:
     def login(email,password):

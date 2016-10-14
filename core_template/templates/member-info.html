@@ -39,46 +39,31 @@
                   </div>
                   <div class="form-group">
                     <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 姓名：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" placeholder="" value="王大明">
+                    <div class="col-lg-10 col-sm-9 member-info-word">
+                        {{ current_user.info()['name'] }}
+
                     </div>
                   </div>
                   <div class="form-group birth">
                     <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 生日：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        <select class="form-control">
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                        </select> 年
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>12</option>
-                        </select> 月
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>12</option>
-                        </select> 日
+                    <div class="col-lg-10 col-sm-9 member-info-word">
+                        {% set birthday = current_user.info()['birthday']|string %}
+                        {{ birthday.split(' ')[0] }}
+                    
                     </div>
                   </div>
                   <div class="form-group country">
                     <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 國籍：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        <label class="checkbox-inline checkbox-inline-xs">
-                          <input name="inlineRadioOptions1" type="radio" id="" value="" checked> 本國
-                        </label>
-                        <label class="checkbox-inline checkbox-inline-xs">
-                          <input type="radio" name="inlineRadioOptions1" id="" value=""> 陸生
-                        </label>
-                        <label class="checkbox-inline">
-                          <input type="radio" name="inlineRadioOptions1" id="" value=""> 外籍生
-                        </label>
-                        <select class="form-control">
-                          <option>日本</option>
-                          <option>韓國</option>
-                        </select>
+                    <div class="col-lg-10 col-sm-9 member-info-word">
+                        {% if 'taiwan' in current_user.info()['country'] %}
+                        臺灣
+                        {% elif 'china' in current_user.info()['country'] %}
+                        陸生
+                        {% elif 'japan' in current_user.info()['country'] %}
+                        日本
+                        {% elif 'korea' in current_user.info()['country'] %}
+                        韓國
+                        {% endif %}
                     </div>
                   </div>
                   <div class="form-group">
