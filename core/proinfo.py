@@ -118,7 +118,6 @@ def addcart():
         response = make_response(redirect(url_for('proinfo.showinfo',url=str(x).rsplit('-',1)[0])))
 
     for x in request.form:
-        print(int(str(x).rsplit('-',1)[1]))
         if int(request.form[x]) <= int(Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('much')):
             if num is None :
                 num = 0
