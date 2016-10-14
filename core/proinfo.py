@@ -10,26 +10,49 @@ def porinfo():
         loginform = loginForm()
         return render_template('proinfo.html',**locals())
 
+@proinfo.route('/bill', methods=['GET', 'POST'])
+def porbill():
+    if request.method == 'POST':
+        loop1 = [1]
+        buydict = request.cookies.get('buydict')
+        allmoney = 0
+        if buydict is None :
+            buyinfo = []
+        else:
+            buydict = ast.literal_eval(buydict)
+            buyinfo = []
+            for x in buydict:
+                title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
+                price = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('cost')
+                much = buydict.get(x)
+                tempinfo = [title,price,much]
+                buyinfo.append(tempinfo)
+                allmoney = allmoney + (price*much)
+            loginform = loginForm()
+            pform = productForm()
+        return render_template('proinfo-shop03.html',**locals())
+
 @proinfo.route('/checkit', methods=['GET', 'POST'])
 def checkit():
-    loop1 = [1]
-    buydict = request.cookies.get('buydict')
-    allmoney = 0
-    if buydict is None :
-        buyinfo = []
-    else:
-        buydict = ast.literal_eval(buydict)
-        buyinfo = []
-        for x in buydict:
-            title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
-            price = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('cost')
-            much = buydict.get(x)
-            tempinfo = [title,price,much]
-            buyinfo.append(tempinfo)
-            allmoney = allmoney + (price*much)
-    loginform = loginForm()
-    pform = productForm()
-    return render_template('proinfo-shop02.html',**locals())
+    if request.method == 'POST':
+        loop1 = [1]
+        buydict = request.cookies.get('buydict')
+        allmoney = 0
+        if buydict is None :
+            buyinfo = []
+        else:
+            buydict = ast.literal_eval(buydict)
+            buyinfo = []
+            for x in buydict:
+                title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
+                price = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('cost')
+                much = buydict.get(x)
+                tempinfo = [title,price,much]
+                buyinfo.append(tempinfo)
+                allmoney = allmoney + (price*much)
+            loginform = loginForm()
+            pform = productForm()
+        return render_template('proinfo-shop02.html',**locals())
 
 @proinfo.route('/checked', methods=['GET', 'POST'])
 def shop1():

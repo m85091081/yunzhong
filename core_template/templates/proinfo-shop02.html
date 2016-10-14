@@ -63,7 +63,7 @@
 </ul>
                        
                        <div class="alert alert-info" role="alert"><strong>貼心提醒：</strong>請於20分鐘內填寫完成並送出訂單，逾期將釋放名額給其他報名者，您則需要重新報名。</div>
-                       <form role="form" ng-init="">
+                       <form method="POST" action="/proinfo/bill" ng-init="">
                       {{ pform.csrf_token }}
     <p class="h4">票卷資訊確認</p>
             <hr>
