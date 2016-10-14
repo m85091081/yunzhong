@@ -9,6 +9,11 @@ def porinfo():
     loginform = loginForm()
     return render_template('proinfo.html',**locals())
 
+@proinfo.route('/checked', methods=['GET', 'POST'])
+def shop1():
+    loginform = loginForm()
+    return render_template('proinfo-shop01.html',**locals())
+
 @proinfo.route('/show/<url>', methods=['GET', 'POST'])
 def showinfo(url):
     loginform = loginForm()
