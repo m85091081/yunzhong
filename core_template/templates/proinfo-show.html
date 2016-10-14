@@ -99,7 +99,7 @@
 {%if data.payment %} 
               <section id="proinfo-form" class="proinfo-form">                 
                  <h3>票券購買</h3>
-                 <form class="form-horizontal">
+                 <form action='/proinfo/addcart' method='POST' class="form-horizontal">
                      <div class="table-responsive"> 
                        <table class="ticket-list-table table table-striped">
   <thead>
@@ -118,8 +118,8 @@
         <td class="ticket-price text-center"> NT$ {{x.get('cost')}} </td>
         {%if not x.get('much') == 0%}
       <td class="ticket-status text-center">
-      <select class="form-control ticket-amount-option ng-pristine ng-valid ng-hide" ng-init="ticket.count=0" ng-show="!ticket.isDisabled" ng-model="ticket.count" ng-options="amount for amount in getTicketAmount(ticket)">
-          <option value="0">0</option>
+          <select name="{{data.url}}-{{x.get('id')}}" class="form-control ticket-amount-option ng-pristine ng-valid ng-hide" ng-init="ticket.count=0" ng-show="!ticket.isDisabled" ng-model="ticket.count" ng-options="amount for amount in getTicketAmount(ticket)">
+
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

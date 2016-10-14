@@ -25,4 +25,3 @@ class loginForm(FlaskForm):
     email = StringField('Email：',validators=[Required()],render_kw={"placeholder": "Email"})
     password = PasswordField('密碼：', validators=[Required()],render_kw={"placeholder": "密碼"})
 
-
