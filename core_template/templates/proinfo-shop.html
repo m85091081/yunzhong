@@ -12,7 +12,7 @@
 
     <div class="col-xs-12 in-breadcrumb">
         <ol class="breadcrumb">
-          <li><a href="index.html">首頁</a></li>
+          <li><a href="/">首頁</a></li>
           <li>購物車</li>
           <li class="active">票卷確認購買</li>
         </ol>
@@ -29,11 +29,11 @@
                 
                  <div class="proinfo-content">
                  
-                 <h3>加入購物車</h3>
+                 <h3>加入購物車</h3> 
                   <div class="ng-scope">
                        
                        
-                    <form>
+                    <form action='/proinfo/checked'  method='GET'>
                          <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
@@ -56,17 +56,27 @@
                     </tr>
                  {%endfor -%}
                     <tr>
-                       <td colspan="4" align="right">訂單總計</td>
+                       <td colspan="1" align="right"> 
+                       </td>
+                       <td colspan="3" align="right">訂單總計</td>
                        <td class="ticket-price text-center">NT$ {{allmoney}}</td>
                     </tr>
             </tbody>
         </table>
+                         {%if request.cookies.get('num') %}
+                       <a href="/proinfo/clear" style="color:#999">清空購物車</a> 
+                     {% endif %}
                       </div>
                          <div class="row" ng-init="va.checkUserProfile()"></div>
+                         {%if request.cookies.get('num') %}
+                    {% if current_user.is_authenticated %}
                          <div class="proinfo-form-btn" style="margin:5% auto"><input type="submit" class="btn btn-warning" value="確認結帳"></div> 
+                     {%else%}
+                         <div class="proinfo-form-btn" style="margin:5% auto"><input  class="btn" disabled='True' value="請登入/或是註冊會員結帳"></div> 
+                     {%endif%}
+                     {% endif %}
                        </form>
                        <div class="proinfo-form-btn visible-xs"><a class="btn btn-default btn-lg btn-block" target="_self" href="#">返回活動頁</a></div> 
-                       
                        
                        <ul class="list-unstyled APCSS_stepBox">
         <li class="">

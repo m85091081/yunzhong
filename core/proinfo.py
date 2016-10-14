@@ -4,6 +4,11 @@ from core_module.dbmongo import User,Product
 from core_module.form import loginForm
 import ast
 
+@proinfo.route('/', methods=['GET', 'POST'])
+def porinfo():
+    loginform = loginForm()
+    return render_template('proinfo.html',**locals())
+
 @proinfo.route('/show/<url>', methods=['GET', 'POST'])
 def showinfo(url):
     loginform = loginForm()
@@ -11,6 +16,14 @@ def showinfo(url):
     if Product.count(str(url)) == 0 :
         return render_template('404.html',**locals())
     return render_template('proinfo-show.html',**locals())
+
+@proinfo.route('/clear', methods=['GET', 'POST'])
+def delclr():
+    response = make_response(redirect(url_for('main.index')))
+    response.set_cookie('num','',expires=0)
+    response.set_cookie('buydict','',expires=0)
+    return response
+
 
 @proinfo.route('/shop', methods=['GET', 'POST'])
 def shop():
