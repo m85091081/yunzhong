@@ -6,9 +6,8 @@ import ast
 
 @proinfo.route('/', methods=['GET', 'POST'])
 def porinfo():
-    if request.method == 'POST':
-        loginform = loginForm()
-        return render_template('proinfo.html',**locals())
+    loginform = loginForm()
+    return render_template('proinfo.html',**locals())
 
 @proinfo.route('/bill', methods=['GET', 'POST'])
 def porbill():
