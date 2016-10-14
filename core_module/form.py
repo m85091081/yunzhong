@@ -25,3 +25,7 @@ class loginForm(FlaskForm):
     email = StringField('Email：',validators=[Required()],render_kw={"placeholder": "Email"})
     password = PasswordField('密碼：', validators=[Required()],render_kw={"placeholder": "密碼"})
 
+class productForm(FlaskForm):
+    email = StringField('Email：',validators=[Required()],render_kw={"placeholder": "Email"})
+    name = StringField('Name：',validators=[Required()],render_kw={"placeholder": "姓名"})
+    phone = StringField('Email：',validators=[Required()],render_kw={"placeholder": "電話"})

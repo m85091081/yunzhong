@@ -62,23 +62,33 @@
                        <div class="text-primary">
     <strong>貼心提醒：</strong>請確認報名項目並輸入驗證碼後，繼續報名。我們將在下一步開始為您暫時保留名額，建議您儘速完成本步驟，以確保您的報名權益。
 </div>
-                       <form>
+                       <form method='POST' action='/proinfo/checkit'>
                          <div class="table-responsive">
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>票劵名稱</th>
-                    <th width="100">票價</th>
-                    <th width="100">張數</th>
-                    <th width="100">小計</th>
+                    <th  class="text-center" valign="center">NO.</th>
+                    <th >票劵名稱</th>
+                    <th width="229">票價</th>
+                    <th width="50">張數</th>
+                    <th width="229">小計</th>
                 </tr>
             </thead>
             <tbody>
+                {% for x in buyinfo -%}
                     <tr>
-                        <td>NASA-一場人類冒險</td>
-                        <td class="ticket-price text-center">NT$ 2200</td>
-                        <td class="center">1</td>
-                        <td class="ticket-price text-center">NT$ 2200</td>
+                        <td width="64" align="center">{{loop.index}}.</td>
+                        <td width="419" valign="middle">{{x[0]}}</td>
+                        <td valign="middle" class="ticket-price text-center">NT$ {{x[1]}}</td>
+                        <td valign="middle" class="center">{{x[2]}}</td>
+                        <td valign="middle" class="ticket-price text-center">NT$ {{x[1] * x[2]}}</td>
+                    </tr>
+                 {%endfor -%}
+                    <tr>
+                       <td colspan="1" align="right"> 
+                       </td>
+                       <td colspan="3" align="right">訂單總計</td>
+                       <td class="ticket-price text-center">NT$ {{allmoney}}</td>
                     </tr>
             </tbody>
         </table>

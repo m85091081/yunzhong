@@ -1,16 +1,53 @@
 from flask import make_response, request, render_template, Blueprint, url_for, redirect, session
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
 from core_module.dbmongo import User,Product
-from core_module.form import loginForm
+from core_module.form import loginForm , productForm
 import ast
 
 @proinfo.route('/', methods=['GET', 'POST'])
 def porinfo():
+    if request.method == 'POST':
+        loginform = loginForm()
+        return render_template('proinfo.html',**locals())
+
+@proinfo.route('/checkit', methods=['GET', 'POST'])
+def checkit():
+    loop1 = [1]
+    buydict = request.cookies.get('buydict')
+    allmoney = 0
+    if buydict is None :
+        buyinfo = []
+    else:
+        buydict = ast.literal_eval(buydict)
+        buyinfo = []
+        for x in buydict:
+            title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
+            price = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('cost')
+            much = buydict.get(x)
+            tempinfo = [title,price,much]
+            buyinfo.append(tempinfo)
+            allmoney = allmoney + (price*much)
     loginform = loginForm()
-    return render_template('proinfo.html',**locals())
+    pform = productForm()
+    return render_template('proinfo-shop02.html',**locals())
 
 @proinfo.route('/checked', methods=['GET', 'POST'])
 def shop1():
+    loop1 = [1]
+    buydict = request.cookies.get('buydict')
+    allmoney = 0
+    if buydict is None :
+        buyinfo = []
+    else:
+        buydict = ast.literal_eval(buydict)
+        buyinfo = []
+        for x in buydict:
+            title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
+            price = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('cost')
+            much = buydict.get(x)
+            tempinfo = [title,price,much]
+            buyinfo.append(tempinfo)
+            allmoney = allmoney + (price*much)
     loginform = loginForm()
     return render_template('proinfo-shop01.html',**locals())
 
