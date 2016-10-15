@@ -18,7 +18,7 @@ def porbill():
         if buydict is None :
             buyinfo = []
         else:
-            buydict = ast.literal_eval(buydict)
+            buydict = ast.literal_eval(str(buydict))
             buyinfo = []
             for x in buydict:
                 title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
@@ -40,7 +40,7 @@ def checkit():
         if buydict is None :
             buyinfo = []
         else:
-            buydict = ast.literal_eval(buydict)
+            buydict = ast.literal_eval(str(buydict))
             buyinfo = []
             for x in buydict:
                 title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
@@ -61,7 +61,7 @@ def shop1():
     if buydict is None :
         buyinfo = []
     else:
-        buydict = ast.literal_eval(buydict)
+        buydict = ast.literal_eval(str(buydict))
         buyinfo = []
         for x in buydict:
             title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
@@ -97,7 +97,7 @@ def shop():
     if buydict is None :
         buyinfo = []
     else:
-        buydict = ast.literal_eval(buydict)
+        buydict = ast.literal_eval(str(buydict))
         buyinfo = []
         for x in buydict:
             title = Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('name')
@@ -123,12 +123,14 @@ def addcart():
                 num = 0
             if buydict is None:
                 buydict = str({})
-            buydict = ast.literal_eval(buydict)
+            buydict = ast.literal_eval(str(buydict))
             num = str(int(num)+int(request.form[x]))
             if buydict.get(x) == None:
                 buydict[x]=0
             buydict[x] = int(buydict.get(x)) + int(request.form[x])
+            buydict = dict( (x,y) for x,y in buydict.items() if y!=0)
 
     response.set_cookie('num',num)
+    print(buydict)
     response.set_cookie('buydict',str(buydict))
     return response

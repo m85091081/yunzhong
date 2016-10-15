@@ -120,26 +120,12 @@
       <td class="ticket-status text-center">
           <select name="{{data.url}}-{{x.get('id')}}" class="form-control ticket-amount-option ng-pristine ng-valid ng-hide" ng-init="ticket.count=0" ng-show="!ticket.isDisabled" ng-model="ticket.count" ng-options="amount for amount in getTicketAmount(ticket)">
 
+          <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
-          <option value="16">16</option>
-          <option value="17">17</option>
-          <option value="18">18</option>
-          <option value="19">19</option>
-          <option value="20">20</option>
         </select>
         </td>
         {%else%}
