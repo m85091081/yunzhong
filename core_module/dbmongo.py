@@ -9,7 +9,9 @@ class Product:
     def count(val):
         prod = db['Product']
         return prod.find({'url': str(val)}).count()
-
+    def countall():
+        prod = db['Product']
+        return prod.find()
     def getdata(url):
         prod = db['Product']
         produ = prod.find_one({"url": url})

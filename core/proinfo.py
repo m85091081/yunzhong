@@ -3,11 +3,20 @@ proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/temp
 classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 from core_module.dbmongo import User,Product
 from core_module.form import loginForm , productForm
+from flask_paginate import Pagination
 import ast
 
 @classrom.route('/', methods=['GET', 'POST'])
 def porinfo():
     loginform = loginForm()
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    allpd = Product.countall()
+    page = request.args.get('page', type=int, default=1)
+    pagepd = Product.countall().limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('proinfo.html',**locals())
 
 @proinfo.route('/bill', methods=['GET', 'POST'])

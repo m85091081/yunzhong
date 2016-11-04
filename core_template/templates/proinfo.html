@@ -1,275 +1,92 @@
 {% extends "base.html"%}
 {% block body %}
-    
+
 <div id="in-container" class="proinfo-box"> 
 
-<div class="container">
-<div class="row space">
+    <div class="container">
+        <div class="row space">
 
-    <div class="col-xs-12 in-breadcrumb">
-        <ol class="breadcrumb">
-          <li><a href="/">首頁</a></li>
-          <li class="active">培訓課程</li>
-        </ol>
-    </div><!--in-breadcrumb-->
+            <div class="col-xs-12 in-breadcrumb">
+                <ol class="breadcrumb">
+                    <li><a href="/">首頁</a></li>
+                    <li class="active">培訓課程</li>
+                </ol>
+            </div><!--in-breadcrumb-->
 
-    <div id="content" class="in-content col-xs-12">
-        
-        <div class="row">
-            
-            <div class="col-xs-12">
-            <div class="filter-box">
-            	
-                <div id="proinfo-nav" class="row">
-                	<div class="col-md-6 col-sm-5 col-xs-12">
-                      <ul class="nav navbar-nav">
-                        <li><a href="#"><i class="fa fa-cubes" aria-hidden="true"></i> <span>基礎課程</span></a></li>
-                        <li><a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i> <span>進階課程</span></a></li>
-                        <li><a href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i> <span>選修課程</span></a></li>
-                        <li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i> <span>課程提案</span></a></li>
-                      </ul>
-                    </div>
-                	<div class="col-md-6 col-sm-7 col-xs-12">
-                        <form class="form-inline">
-                          
-                          <div class="form-group">
-                	        <select name="select" class="form-control">
-                              <option>全部活動查詢</option>
-                	          <option>最新活動</option>
-                	          <option>免費活動</option>
-                	          <option>付費活動</option>
-                	          <option>已額滿活動</option>
-                	          <option>尚未額滿活動</option>
-              	          </select>
-                	        <input class="form-control" placeholder="找課程">
-                	        <button type="submit" class="btn btn-default" onClick="search-com.html"><i class="fa fa-search"></i></button>
-              	      </div>
-                        </form>
-                    
+            <div id="content" class="in-content col-xs-12">
+
+                <div class="row">
+
+                    <div class="col-xs-12">
+                        <div class="filter-box">
+
+                            <div id="proinfo-nav" class="row">
+                                <div class="col-md-6 col-sm-5 col-xs-12">
+                                    <ul class="nav navbar-nav">
+                                        <li><a href="#"><i class="fa fa-cubes" aria-hidden="true"></i> <span>基礎課程</span></a></li>
+                                        <li><a href="#"><i class="fa fa-line-chart" aria-hidden="true"></i> <span>進階課程</span></a></li>
+                                        <li><a href="#"><i class="fa fa-check-square-o" aria-hidden="true"></i> <span>選修課程</span></a></li>
+                                        <li><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i> <span>課程提案</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 col-sm-7 col-xs-12">
+                                    <form class="form-inline">
+
+                                        <div class="form-group">
+                                            <select name="select" class="form-control">
+                                                <option>全部活動查詢</option>
+                                                <option>最新活動</option>
+                                                <option>免費活動</option>
+                                                <option>付費活動</option>
+                                                <option>已額滿活動</option>
+                                                <option>尚未額滿活動</option>
+                                            </select>
+                                            <input class="form-control" placeholder="找課程">
+                                            <button type="submit" class="btn btn-default" onClick="search-com.html"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div><!--/filter-box-->
                     </div>
                 </div>
-              </div><!--/filter-box-->
-            </div>
-            </div>
-                        
-            <div id="proclass-list">
-            <div class="row">
-            	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro01.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講，更有新北市針對青年票選出的政策建議方案的對話回應，邀請你來見證一場由青年訴說、討論所引領而出的改變!</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default">熱銷中</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->
-            	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro02.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#" class="active"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default btn-over">已完售</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->
-            	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro03.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講，更有新北市針對青年票選出的政策建議方案的對話回應，邀請你來見證一場由青年訴說、討論所引領而出的改變!</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default btn-buy">已購買</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->           	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro01.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default">熱銷中</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->
-            	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro02.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講，更有新北市針對青年票選出的政策建議方案的對話回應，邀請你來見證一場由青年訴說、討論所引領而出的改變!</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default">熱銷中</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->
-            	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro03.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">這是一個一生中一定要看的展覽!! ●NASA首次到台灣展示的大型物件 ●超過300個真實上過太空的設備 ●親眼見證NASA的人類太空冒險 ●感受到太空人真正的感覺與體驗 絕不能錯過本次特展.....</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default">熱銷中</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->           	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro01.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講，更有新北市針對青年票選出的政策建議方案的對話回應，邀請你來見證一場由青年訴說、討論所引領</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default">熱銷中</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->
-            	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images/pro02.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講，更有新北市針對青年票選出的政策建議方案的對話回應，邀請你來見證一場由青年訴說、討論所引領</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default">熱銷中</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->
-            	
-                <div class="col-md-4 col-sm-6 col-xs-6 procol">
-                    <div class="proinfo-img scale-img">
-                        <a href="/proinfo/show/nasa-in-taiwan">
-                        <img src="/static/images//pro03.jpg">
-                        </a>
-                    </div>
-                    <div class="proinfo-text">
-                        <h3><a href="/proinfo/show/nasa-in-taiwan">新北青年高峰會｜0713競爭力論壇</a></h3>
-                        <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
-                        <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講，更有新北市針對青年票選出的政策建議方案的對話回應，邀請你來見證一場由青年訴說、討論所引領</p>
-                    <div class="proinfo-btn row">
-                    	<div class=" col-sm-6 col-xs-12">
-                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
-                        </div>
-                    	<div class=" col-sm-6 col-xs-12">
-                    	<button type="submit" class="btn btn-default">熱銷中</button>
-                        </div>
-                    </div>
-                    </div>
-                </div><!--/procol-->
 
-                    
-                
-             </div>
-             </div><!--/proclass-list-->
-             
-             <div class="pagination">
-              <ul class="pagination">
-                <li>
-                  <a href="#" aria-label="Previous">上一頁</a>
-                </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                  <a href="#" aria-label="Next">下一頁</a>
-                </li>
-              </ul>
-             </div><!--pagination-->
-           
+                <div id="proclass-list">
+                    <div class="row">
+                        {% for pd in pagepd %}
+                        <div class="col-md-4 col-sm-6 col-xs-6 procol">
+                            <div class="proinfo-img scale-img">
+                                <a href="/proinfo/show/{{pd.get('url')}}">
+                                    <img src="{{pd.get('pic')}}">
+                                </a>
+                            </div>
+                            <div class="proinfo-text">
+                                <h3><a href="/proinfo/show/{{pd.get('url')}}">{{pd.get('title')}}<a></h3>
+                                <p class="proinfo-date">2016-07-13(三) 09:40~17:00</p>
+                                <p class="proinfo-des">知名主持人兼文史旅行家謝哲青、文章感人至深的暢銷作家小野，這裡有精彩的專家演講，更有新北市針對青年票選出的政策建議方案的對話回應，邀請你來見證一場由青年訴說、討論所引領而出的改變!</p>
+                                <div class="proinfo-btn row">
+                                    <div class=" col-sm-6 col-xs-12">
+                                        <p><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 168 人喜歡</a></p>
+                                    </div>
+                                    <div class=" col-sm-6 col-xs-12">
+                                        <button type="submit" class="btn btn-default">熱銷中</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--/procol-->
+                        {%endfor%}
+
+                    </div>
+                </div>
+                <div class="pagination">
+                        {{ pagin.links }}
+                </div>
+            </div><!--/row space-->
+
         </div>
-        
-    </div><!--/row space-->
-    
-</div>
-</div>
+    </div>
 
-    
 
-{% endblock %}
+
+    {% endblock %}
