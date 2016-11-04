@@ -1,0 +1,14 @@
+{
+  "name": "Sing",
+  "version": "2.0.1",
+  "description": "Sing Dashboard App",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-sass": "2.1.1",
+    "gulp-rename": "1.2.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

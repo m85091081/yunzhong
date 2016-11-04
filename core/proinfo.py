@@ -1,10 +1,11 @@
 from flask import make_response, request, render_template, Blueprint, url_for, redirect, session
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
+classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 from core_module.dbmongo import User,Product
 from core_module.form import loginForm , productForm
 import ast
 
-@proinfo.route('/', methods=['GET', 'POST'])
+@classrom.route('/', methods=['GET', 'POST'])
 def porinfo():
     loginform = loginForm()
     return render_template('proinfo.html',**locals())
@@ -73,7 +74,7 @@ def shop1():
     loginform = loginForm()
     return render_template('proinfo-shop01.html',**locals())
 
-@proinfo.route('/show/<url>', methods=['GET', 'POST'])
+@classrom.route('/show/<url>', methods=['GET', 'POST'])
 def showinfo(url):
     loginform = loginForm()
     data = Product.getdata(url)
@@ -88,6 +89,11 @@ def delclr():
     response.set_cookie('buydict','',expires=0)
     return response
 
+@classrom.route('/submit',methods=['GET','POST'])
+def submitpro():
+    loginform = loginForm()
+    if request.method == 'GET':
+        return render_template('proinfo-submit.html' , **locals())
 
 @proinfo.route('/shop', methods=['GET', 'POST'])
 def shop():
@@ -115,7 +121,7 @@ def addcart():
     num = request.cookies.get('num')
     buydict = request.cookies.get('buydict')
     for x in request.form:
-        response = make_response(redirect(url_for('proinfo.showinfo',url=str(x).rsplit('-',1)[0])))
+        response = make_response(redirect(url_for('classrom.showinfo',url=str(x).rsplit('-',1)[0])))
 
     for x in request.form:
         if int(request.form[x]) <= int(Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('much')):

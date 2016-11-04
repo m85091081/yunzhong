@@ -1,0 +1,221 @@
+{% extends "base.html"%}
+{% block body %}
+    
+<div id="in-container" class="proinfo-show-box"> 
+
+<div class="container">
+
+	<div id="mainbanner" class="in-banner">
+        <img src="{{data.pic}}">
+    </div><!--/mainbanner-->
+
+
+<div class="row space">
+
+    <div class="col-xs-12 in-breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="/">首頁</a></li>
+          <li><a href="proinfo.html">培訓課程</a></li>
+          <li class="active">{{data.title}}</li>
+        </ol>
+    </div><!--in-breadcrumb-->
+
+    <div id="content" class="in-content col-xs-12">
+        
+        
+        <div class="row">
+            <div id="proinfo-show" class="col-xs-12 pro-show">
+                
+                <div class="proinfo-info">
+                    <div class="row">
+                    <div class="col-lg-2 col-lg-push-10 col-md-3 col-md-push-9 col-xs-12 proinfo-info-share"><img src="/static/images/fb.png"></div>
+                    <div class="col-lg-10 col-lg-pull-2 col-md-9 col-md-pull-3 col-xs-12 proinfo-info-title"><h1>{{data.title}}</h1></div>
+                    </div>                    
+                    
+                    <ul class="row proinfo-info-box">                    
+                        <li class="col-lg-6 col-xs-12"><i class="material-icons">date_range</i> 活動日期：{{data.timedict.get('start')}} ~ {{data.timedict.get('end')}}</li>
+
+                        <li class="col-lg-6 col-xs-12"><i class="material-icons">place</i> 活動地點：<a href="#" target="_blank">{{data.place}}</a></li>
+                        <li class="col-lg-6 col-xs-12"><i class="material-icons">link</i> 相關連結：<a href="#" target="_blank">{{data.link}}</a></li>
+                        <li class="col-lg-6 col-xs-12 proinfo-info-class"><i class="material-icons">view_week</i> 活動分類： <a href="#">{{data.classify}}</a></li>
+                        <li class="col-lg-6 col-xs-12"><i class="material-icons">stars</i> 主辦單位：<a href="#" target="_blank">{{data.holderlist[0]}}</a></li>
+                    
+                    </ul>
+                    
+                    <ul id="navbar-fixed" class="row proinfo-info-btn navigation">
+                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#map" class="btn btn-info"><i class="fa fa-map-marker" aria-hidden="true"></i> 檢視地圖</a></li>
+                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#stor-company" class="btn btn-info"><i class="fa fa-phone" aria-hidden="true"></i> 聯絡主辦單位</a></li>
+                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#download-info" class="btn btn-info"><i class="fa fa-cloud-download" aria-hidden="true"></i> 相關資料下載</a></li>
+                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#" class="btn btn-info"><i class="fa fa-star" aria-hidden="true"></i> 活動收藏</a></li>                    
+                        <li class="col-lg-2 col-lg-offset-2 col-sm-3 col-xs-12 proinfo-info-btnR"><a href="#proinfo-form" class="btn btn-warning"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 票卷購買</a></li>
+                    </ul>   
+                                     
+                 </div><!--/proinfo-info-->
+                 
+                 <hr>
+                 
+                 <div class="proinfo-content">
+                 
+                 <h3>活動介紹</h3>
+                 {{data.about|safe}}
+                 </div><!--/proinfo-content-->
+
+
+                <hr>
+              <section id="map">
+                 <h3><i class="fa fa-map-marker" aria-hidden="true"></i> 活動位置</h3>
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.441770798516!2d121.4565573500161!3d25.01907768390079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a81a9eb2b05d%3A0xf56a11cfabf27ffd!2zMjIw5paw5YyX5biC5p2_5qmL5Y2A5Lit5q2j6LevMjE25be3OTjomZ8!5e0!3m2!1szh-TW!2stw!4v1469515004681" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </section>
+              
+              <section id="stor-company">
+                <div class="row">
+                 <div class="col-sm-8">
+                 <h3>主辦單位資訊 :</h3>
+                 <dl class="dl-horizontal">
+                   <dt>主辦機關單位名稱 :</dt>
+                   <dd>{{data.holderlist[0]}}</dd>
+                   <dt>聯絡電話 :</dt>
+                   <dd><a href="tel:{{data.holderlist[1]}}">{{data.holderlist[1]}}</a></dd>
+                   <dt>活動負責窗口 :</dt>
+                   <dd>{{data.holderlist[2]}}</dd>
+                 </dl>
+                 </div>
+                 
+                 <div class="col-sm-2 col-sm-offset-2 logo-cp">
+                   <img src="/static/images/logo07.gif">
+                 </div>
+                </div>
+              </section>
+              
+              <section id="download-info">
+                 <h3>相關資料下載 :</h3>
+                 <ul class="list-inline">
+                     <!--                <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> 活動詳細說明</a></li>
+                     <li><a href="#"><i class="fa fa-file-word-o" aria-hidden="true"></i> 活動詳細說明</a></li>
+                     <li><a href="#"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> 活動詳細說明</a></li>
+                     -->
+                     </ul>
+              </section>
+{%if data.payment %} 
+              <section id="proinfo-form" class="proinfo-form">                 
+                 <h3>票券購買</h3>
+                 <form action='/proinfo/addcart' method='POST' class="form-horizontal">
+                     <div class="table-responsive"> 
+                       <table class="ticket-list-table table table-striped">
+  <thead>
+    <tr>
+      <th class="ticket-list-title">票券名稱</th>
+      <th class="ticket-list-title"></th>
+      <th class="ticket-list-title text-center">票價</th>
+      <th class="ticket-list-title text-center">張數</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for x in data.orderdict%}
+    <tr>
+        <td class="ticket-name"> {{x.get('name')}} </td>
+        <td class="ticket-more-info" ><a href="{{x.get('info')}}">更多資訊</a></td>
+        <td class="ticket-price text-center"> NT$ {{x.get('cost')}} </td>
+        {%if not x.get('much') == 0%}
+      <td class="ticket-status text-center">
+          <select name="{{data.url}}-{{x.get('id')}}" class="form-control ticket-amount-option ng-pristine ng-valid ng-hide" ng-init="ticket.count=0" ng-show="!ticket.isDisabled" ng-model="ticket.count" ng-options="amount for amount in getTicketAmount(ticket)">
+
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        </td>
+        {%else%}
+      <td class="ticket-status text-center">票卷已空</td>
+        {%endif%}
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+                     </div>
+                     <div class="proinfo-form-btn"><input type="submit" class="btn btn-warning" value="加入購物車"></div> 
+                 </form>
+{%else%}
+                 </section><!--/proinfo-form-->
+                 <section id="proinfo-form2" class="proinfo-form"> 
+                   <h3>報名參加</h3>
+                    <form class="form-horizontal">
+            
+            	<div class="row">
+                <div class="col-md-6 col-xs-12">
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 姓名：</label>
+                    <div class="col-sm-9">
+                      <input type="" class="form-control" id="" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 電話：</label>
+                    <div class="col-sm-9">
+                      <input type="" class="form-control" id="" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> E-mail：</label>
+                    <div class="col-sm-9">
+                      <input type="" class="form-control" id="" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 col-xs-12 control-label proinfo-form-title"><span class="red">*</span> 報名項目：</label>
+                    <div class="col-sm-9">
+                        <select class="form-control">
+                          <option>『NASA-一場人類冒險』特展 台灣站</option>
+                          <option>『NASA-一場人類冒險』特展 台灣站</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+
+                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 繳費金額：</label>
+                    <div class="col-sm-9 select-inline">
+                        <input type="" class="form-control" id="" placeholder="">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 帳號末五碼：</label>
+                    <div class="col-sm-9">
+                      <input type="" class="form-control" id="" placeholder="">
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-md-6 col-xs-12">
+                  <div class="form-group">
+                    <label for="" class="col-sm-3 control-label proinfo-form-title">其他事項：</label>
+                    <div class="col-sm-9">
+                      <textarea class="form-control"></textarea>
+                    </div>
+                  </div>
+                 </div>
+                 <div class="col-xs-12 proinfo-form-btn"><input type="submit" class="btn btn-warning" value="免費申請報名"></div> 
+                 </div>
+                </form>
+                 
+                 </section>
+                 {%endif%}          
+                 
+             </div><!--/proinfo-show-->
+
+            </div>
+
+
+           
+    </div>
+        
+</div><!--/row space-->
+    
+</div>
+</div>
+
+    
+
+{% endblock %}
+

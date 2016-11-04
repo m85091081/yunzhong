@@ -15,10 +15,11 @@ class Product:
         produ = prod.find_one({"url": url})
         return produ
     
-    def init(url,title,pic,timedict,place,link,classify,holderlist,about,prodata,payment,orderdict):
+    def init(url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,payment,orderdict):
         prod = db['Product']
         prod.create_index("url", unique=True)
-        raw = { "url":str(url),
+        raw = { "activity": bool(activity),
+                "url":str(url),
                 "title":str(title),
                 "pic":str(pic),
                 "timedict":timedict,

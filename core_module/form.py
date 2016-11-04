@@ -3,6 +3,9 @@ from wtforms import StringField, BooleanField,PasswordField, RadioField , Intege
 from wtforms.fields.html5 import DateField
 from wtforms.validators import Length  , EqualTo  
 from wtforms.validators import DataRequired as Required
+class submitclassinfo(FlaskForm):
+    name = StringField('',[Required()],render_kw={"placeholder": "請輸入活動名稱"})
+    
 class registerForm(FlaskForm):
     email = StringField('註冊 Email：',validators=[Required()])
     password = PasswordField('密碼：', validators=[Required(),EqualTo('confirm', message='Passwords must match') ])
