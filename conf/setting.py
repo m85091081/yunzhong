@@ -10,8 +10,8 @@
 host = '0.0.0.0'
 port = 8080
 
-# Github Setting
-gitpath = 'https://github.com/0mu-Project/blog.git'
+FB_APP_ID = ''
+FB_APP_SEC = ''
 
 # Debug Mode , 0 = off , 1 = on
 debug = 1
