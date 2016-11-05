@@ -23,7 +23,22 @@ class registerForm(FlaskForm):
     lineid = StringField('')
     fbid = StringField('')
     accept_tos = BooleanField('我已詳閱', validators=[Required()])
-
+class registerFormgen(FlaskForm):
+    email = StringField('註冊 Email：',validators=[Required()])
+    password = PasswordField('密碼：', validators=[Required(),EqualTo('confirm', message='Passwords must match') ])
+    confirm = PasswordField('確認密碼：')
+    name = StringField('姓名：',validators=[Required()])
+    birthday  = DateField('生日：', format='%Y-%m-%d',validators=[Required()])
+    country = RadioField('',choices=[('taiwan','本國'),('china','陸生'),('japan','日本'),('korea','韓國')],validators=[Required()])
+    phone = IntegerField('',validators=[Required()])
+    postnum = IntegerField('',validators=[Required()],render_kw={"placeholder": "郵遞區號"})
+    address = StringField('',validators=[Required()],render_kw={"placeholder": "地址欄"})
+    lineid = StringField('')
+    fbid = StringField('')
+    industry = SelectField('', choices=[('construction','營建工程業'),('Wholesale','批發及零售業'),('transport','運輸及倉儲業'),('manufacturing','製造業'),('mining','礦業及土石採取業')])
+    companyname = StringField('',validators=[Required()])
+    jobtitle = StringField('',validators=[Required()])
+    accept_tos = BooleanField('我已詳閱', validators=[Required()])
 class loginForm(FlaskForm):
     email = StringField('Email：',validators=[Required()],render_kw={"placeholder": "Email"})
     password = PasswordField('密碼：', validators=[Required()],render_kw={"placeholder": "密碼"})

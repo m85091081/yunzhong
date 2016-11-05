@@ -82,5 +82,26 @@ class User:
                 "date": datetime.datetime.utcnow()}
         print(user.insert_one(raw).inserted_id)
         return True
+    
+    def addgen(email, password, name , birthday, country, phone, postnum, address, industry, companyname, jobtitle, lineid, fbid):
+        user = db['Users']
+        user.create_index("email", unique=True)
+        raw = {"email": email,
+                "password": password,
+                "name": name,
+                "birthday": datetime.datetime.combine(birthday, datetime.datetime.min.time()),
+                "country" : country,
+                "phone" : phone,
+                "postnum" : postnum,
+                "address" : address,
+                "industry": industry,
+                "companyname": companyname,
+                "jobtitle": jobtitle,
+                "lineid":lineid,
+                "fbid":fbid,
+                "date": datetime.datetime.utcnow()}
+        print(user.insert_one(raw).inserted_id)
+        return True
+    
 
 
