@@ -79,6 +79,11 @@
 
 
 <script>
+{%if fbreg %}
+$(document).ready(function(){
+$('#model-signup').modal('show');
+})
+{%endif%}
   var decimal_places = 0;
   var decimal_factor = decimal_places === 0 ? 1 : decimal_places * 10;
 

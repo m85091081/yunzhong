@@ -10,8 +10,8 @@
 host = '0.0.0.0'
 port = 8080
 
-FB_APP_ID = ''
-FB_APP_SEC = ''
+FB_APP_ID = '1439472146066464'
+FB_APP_SEC = '8ca478beed7230dc37da5169261acf80'
 
 # Debug Mode , 0 = off , 1 = on
 debug = 1

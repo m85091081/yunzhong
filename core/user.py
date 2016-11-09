@@ -2,8 +2,10 @@
 import flask_login
 from flask_login import LoginManager , login_required
 from core import app
-from flask import render_template , session, redirect, url_for, request, Blueprint , flash
+from flask import make_response,render_template , session, redirect, url_for, request, Blueprint , flash
 import hashlib
+import time
+from core_module import facebook
 from core_module.dbmongo import User as dbUser
 from core_module.form import registerForm , loginForm ,registerFormgen
 
@@ -91,6 +93,24 @@ def reg_gen():
     return render_template('member-general.html',**locals())
 
 
+@app.route('/fb')
+def fblogin():
+    code = request.args.get('code',False)
+    if code :
+        Res=facebook.getToken(request.base_url,code)
+        if Res[0]:
+            fbuid = facebook.getUID(Res[1])
+            if dbUser.count(fbuid) is not 0 :
+                return '他媽你註冊過了噢'
+            else:
+                resp = make_response(redirect(url_for('main.index')))
+                resp.set_cookie(key='fbreg', value='1', expires=time.time()+2)
+                resp.set_cookie(key='fbToken',value=Res[1],max_age=int(Res[2]),secure=False)
+                return resp
+
+    else:
+        fburl = facebook.genGetCodeURL(request.base_url)
+        return redirect(fburl, code=301)
 
 
 @app.route('/logout')

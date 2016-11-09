@@ -54,9 +54,11 @@ class User:
         elif val is "company":
             user = db['Users']
             return user.find({'companyid': {'$ne': None}}).count()
-
-
+        else:
+            user = db['Users']
+            return user.find({'fbid': val}).count()
             
+
     def usercheck(email):
         user = db['Users']
         usern = user.find_one({"email": email})
@@ -65,6 +67,7 @@ class User:
     def add(email, password, name ,birthday , country , phone , postnum , address , education , grade , school ,major,lineid, fbid):
         user = db['Users']
         user.create_index("email", unique=True)
+        user.create_index("fbid", unique=True)
         raw = {"email": email,
                 "password": password,
                 "name": name,
@@ -86,6 +89,7 @@ class User:
     def addgen(email, password, name , birthday, country, phone, postnum, address, industry, companyname, jobtitle, lineid, fbid):
         user = db['Users']
         user.create_index("email", unique=True)
+        user.create_index("fbid", unique=True)
         raw = {"email": email,
                 "password": password,
                 "name": name,

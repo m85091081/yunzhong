@@ -55,7 +55,7 @@
                                     {% if current_user.is_authenticated %}
                                     <div class="proinfo-form-btn" style="margin:5% auto"><input type="submit" class="btn btn-warning" value="確認結帳"></div> 
                                     {%else%}
-                                    <div class="proinfo-form-btn" style="margin:5% auto"><input  class="btn" disabled='True' value="請登入/或是註冊會員結帳"></div> 
+                                    <div class="proinfo-form-btn" style="margin:5% auto"><input id="nologin" class="btn btn-warning" value="請點此登入，在進行結帳"></div> 
                                     {%endif%}
 
                                     {% endif %}
@@ -101,5 +101,10 @@
     </div>
 </div>
 
+<script>
+document.getElementById("nologin").onclick=function(){
+ $('#model-login').modal('show');
+}
+</script>
 
 {% endblock %}

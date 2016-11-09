@@ -11,6 +11,7 @@ main = Blueprint('main', __name__ , template_folder='../core_template/templates'
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+    fbreg = request.cookies.get('fbreg') 
     loginform = loginForm()
     allmem = User.count('all')
     company = User.count('company')
