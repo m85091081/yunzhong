@@ -1,5 +1,10 @@
 {% extends "base.html"%}
 {% block body %}
+<style>
+.init{
+    padding: 0px 0px 0px 0px;
+}
+</style>
 <div id="in-container" class="proinfo-box"> 
     <div class="container">
         <div class="row" style="margin-top: 20px">
@@ -11,41 +16,92 @@
                 </ol>
             </div><!--in-breadcrumb-->
         </div>
-        <div class="col-xs-12 col-md-12 col-sm-12" style="padding:0px 0px 0px 0px">
+        <div class="col-xs-12 col-md-12 col-sm-12 init">
             <h1 class="page-header">
                 <i class="fa fa-picture-o" aria-hidden="true"></i>
                 封面上傳
             </h1>
-                <img src="/static/images/upload-background.png">
+            <img src="/static/images/upload-background.png">
             <h1 class="page-header"></h1>
 
+            <h1 class="page-header">
+                <i class="fa fa-th-large" aria-hidden="true"></i>
+                課程資訊
+            </h1>
             <input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
 
-            <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px 0px 0px 0px;">
-                <ul class="row proinfo-info-box">                    
-                    <li class="col-lg-6 col-xs-12">
-                        <i class="material-icons">date_range</i> 
-                            活動日期：
-                    </li>
-                    <li class="col-lg-6 col-xs-12">
-                        <i class="material-icons">place</i> 
-                            活動地點：
-                        <a href="#" target="_blank">
-                        </a>
-                    </li>
-                    <li class="col-lg-6 col-xs-12">
-                        <i class="material-icons">link</i>
+            <div class="col-xs-12 col-sm-12 col-md-12 init" >
+                <div class="col-xs-6 col-sm-6 col-md-6 init" style="margin-bottom:20px">
+                    <label class="col-lg-2 col-sm-12 control-label init">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        活動日期：
+                    </label>
+                    <div class="col-lg-8 col-sm-12 init">
+                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 init" style="margin-bottom:20px">
+                    <label class="col-lg-2 col-sm-12 control-label init">
+                        <i class="fa fa-map-marker" aria-hidden="true" style="padding:2.68px"></i>
+                        活動地點：
+                    </label>
+                    <div class="col-lg-10 col-sm-12 init">
+                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 init" style="margin-bottom:20px">
+                    <label class="col-lg-2 col-sm-12 control-label init">
+                        <i class="fa fa-link" aria-hidden="true"></i>
                         相關連結：
-                        <a href="#" target="_blank"></a>
-                    </li>
-                    <li class="col-lg-6 col-xs-12">
-                        <i class="material-icons">stars</i>
+                    </label>
+                    <div class="col-lg-8 col-sm-12 init">
+                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 init" style="margin-bottom:20px">
+                    <label class="col-lg-2 col-sm-12 control-label init">
+                        <i class="fa fa-star" aria-hidden="true"></i>
                         主辦單位：
-                        <a href="#" target="_blank"></a>
-                    </li>
-                </ul>
+                    </label>
+                    <div class="col-lg-10 col-sm-12 init" style="margin-bottom:20px">
+                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+                    </div>
+                </div>
+                <h1 class="page-header">
+                    <i class="fa fa-th-list" aria-hidden="true"></i>
+                    課程簡介
+                </h1>
+                <textarea class="form-control" rows="10" style="margin-bottom:20px;"></textarea>
             </div>
+            <!--<ul class="row proinfo-info-box" style="padding: 0px 0px 0px 0px;">                    
+                <li class="col-lg-6 col-xs-12" style="padding:0px 0px 0px 0px;">
+                <div class="col-lg-3 col-sm-3">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                活動日期：
+                </div>
+                <div class="col-lg-9 col-sm-9">
+                <input type="text" class="form-control" placeholder="格式：2016/11/12">
+                </div>
+                </li>
+                <li class="col-lg-6 col-xs-12">
+                <i class="material-icons">place</i> 
+                活動地點：
+                <a href="#" target="_blank">
+                </a>
+                </li>
+                <li class="col-lg-6 col-xs-12">
+                <i class="material-icons">link</i>
+                相關連結：
+                <a href="#" target="_blank"></a>
+                </li>
+                <li class="col-lg-6 col-xs-12">
+                <i class="material-icons">stars</i>
+                主辦單位：
+                <a href="#" target="_blank"></a>
+                </li>
+                </ul>-->
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
