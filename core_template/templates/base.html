@@ -48,7 +48,7 @@ $(function() {
 		var headerHeight = 1;
 	}else{
 		var headerHeight = $('header').height();
-	}
+    }
 	
 	// 使用affixfunction,固定導航條
 	$('header').affix({
@@ -235,12 +235,13 @@ $(function() {
             {% if not current_user.is_authenticated %}
 			<div id="login-xs-box" class="visible-xs">
 				<div id="login-xs">
-					<form>
+					<form method="POST" action="../login/">
+                      {{ loginform.csrf_token }}
 					  <div class="form-group">
-						<i class="fa fa-user"></i><input type="text" class="form-control enter-input" id="" placeholder="帳號">
+                          <i class="fa fa-user"></i>{{loginform.email(class_="enter-input form-control")}}
 					  </div>
 					  <div class="form-group">
-						<i class="fa fa-key"></i><input type="text" class="form-control enter-input" id="" placeholder="密碼">
+                          <i class="fa fa-key"></i>{{loginform.password(class_="enter-input form-control")}}
 					  </div>
 					  <div class="checkbox">
 						<label>
@@ -248,7 +249,7 @@ $(function() {
 						</label>
 					  </div>
 					  <div class="form-group">
-						  <button type="submit" class="btn btn-default cancel">取消</button>
+						  <input type="button" onclick="javascript:location.href='/fb'" class="btn btn-info" value="FB 登錄"></input>
 						  <button type="submit" class="btn btn-default">登入</button>
 					  </div>
 					  <div class="form-group"><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a> <a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></div>
@@ -356,7 +357,7 @@ $(function() {
                         </label>
                       </div>
                       <div class="form-group">
-                          <input type = "button" onclick="javascript:location.href='/fb'" class="btn btn-default cancel" value="FB 登入"></input>
+                          <input type = "button" onclick="javascript:location.href='/fb'" class="btn btn-info" value="FB 登入"></input>
 						  <button type="submit" class="btn btn-default">登入</button>
                       </div>
                       <div class="form-group text-right"><a href="#" id="model-forgotpw-btn" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a> <a href="#" id="model-signup-btn" data-toggle="modal" data-target="#model-signup">免費加入會員</a></div>

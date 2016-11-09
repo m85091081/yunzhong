@@ -2,7 +2,7 @@
 {% block body %}
 <div id="in-container" class="proinfo-box"> 
     <div class="container">
-        <div class="row space">
+        <div class="row" style="margin-top: 20px">
             <div class="col-xs-12 in-breadcrumb">
                 <ol class="breadcrumb">
                     <li><a href="/">首頁</a></li>
@@ -10,91 +10,42 @@
                     <li class="active">課程提案</li>
                 </ol>
             </div><!--in-breadcrumb-->
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12" style="padding:0px 0px 0px 0px">
+            <h1 class="page-header">
+                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                封面上傳
+            </h1>
+                <img src="/static/images/upload-background.png">
+            <h1 class="page-header"></h1>
 
-            <div id="content" class="in-content col-xs-12">
-                <div class="row">
-                    <!--<div class="input-group input-group-lg">-->
-                    <!--<span class="input-group-addon" id="sizing-addon1"></span>-->
-                    <input type="text" class="form-control"  placeholder="課程名稱" style="font-size:25px;height:70px;margin-bottom:30px;">
-                    <h2 class="page-header">
-                        <i class="fa fa-image" aria-hidden="true"></i>
-                        封面上傳
-                    </h2>
-                    <div class="col-xs-12 col-md-12 col-sm-12" style="padding: 0px 0px 0px 0px;">
-                        <img src="/static/images/upload-background.png" class="img-rounded" alt="click here to upload image" style="height:300px;width:100%">
-                        <small>點擊此處上傳封面圖片</small>
+            <input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
 
-                        <!--<i class="fa fa-cloud-upload fa-5x" aria-hidden="true" style="line-height:300px;width:100%"></i>-->
-                    </div>
-
-                    <div class="col-xs-12 col-md-12 col-sm-12" style="padding:0px 0px 0px 0px">
-                        <h2 class="page-header">
-                            <i class="fa fa-th-large" aria-hidden="true"></i>
-                            課程資訊
-                        </h2>
-                        <div class="col-md-3 col-sm-3 col-xs-3">
-                            <form class="form-horizontal" method="POST">
-                                <div class="form-group">
-                                    <label for="" class="control-label"><span class="red">*</span>開始日期:</label>
-
-                                    <!--<div class="col-lg-2 col-sm-3 control-label">
-                                        </div>-->
-                                </div>
-                            </form>
-                            <form class="form-horizontal" method="POST">
-                                <div class="form-group">
-                                    <label for="" class="control-label"><span class="red">*</span>時間：</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="control-label"><span class="red">*</span>結束日期：</label>
-                                </div>
-                                <div class="form-group">
-                                    <label for="" class="control-label"><span class="red">*</span></label>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="col-md-12 col-xs-12 col-sm-12" style="padding: 0px 0px 0px 0px">
-                            <h2 class="page-header">
-                                <i class="fa fa-list" aria-hidden="true"></i>
-                                課程簡介
-                            </h2>
-                        </div>
-
-                    </div>
-                    <!--<div class="col-md-12 col-sm-12 col-xs-12" style="padding:2em 0em 0em 0em;">
-                        <div class="col-md-3 col-sm-3 col-xs-3" style="padding:0px 0px 0px 0px;">
-                        <input type="text" class="form-control" style="border-radius:4px 0px 0px 4px;" placeholder="開始日期" aria-describedby="basic-addon1">
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-3" style="padding:0px 0px 0px 0px;">
-                        <div class="input-group form-inline">
-                        <input type="text" class="form-control" style="border-left-width: 0px; border-radius:0px;" placeholder="時間" aria-describedby="basic-addon1">
-                        <span class="input-group-addon" id="basic-addon1" style="border-radius:0px; border-right-width: 0px; padding-right:0px;"></span>
-                        </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-3" style="padding:0px 0px 0px 0px;">
-                        <div class="input-group form-inline">
-                        <span class="input-group-addon" id="basic-addon1" style="border-left-width: 0px; border-radius:0px; padding-left:0px;">></span>
-                        <input type="text" class="form-control" style="border-radius:0px;" placeholder="結束日期" aria-describedby="basic-addon1">
-                        </div>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-3" style="padding:0px 0px 0px 0px;">
-                        <input type="text" class="form-control" style="border-left-width: 0px; border-radius:0px 4px 4px 0px;" placeholder="時間" aria-describedby="basic-addon1">
-                        </div>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12" style="padding:2em 0em 0em 0em;">
-                        /<div class="panel panel-default" style="border-radius:4px 4px 0px 0px;">
-                        <div class="panel-heading" style="padding-top:7px; padding-bottom:7px; background-image:none;">課程簡介</div>
-                        <div class="panel-body"style="padding:0px;">
-                        <textarea class="form-control" style="border-width:0;" rows="15"></textarea>
-                        </div>
-                        </div>
-                        </div>-->
-                    </div>
-                </div>
+            <div class="col-xs-12 col-sm-12 col-md-12" style="padding: 0px 0px 0px 0px;">
+                <ul class="row proinfo-info-box">                    
+                    <li class="col-lg-6 col-xs-12">
+                        <i class="material-icons">date_range</i> 
+                            活動日期：
+                    </li>
+                    <li class="col-lg-6 col-xs-12">
+                        <i class="material-icons">place</i> 
+                            活動地點：
+                        <a href="#" target="_blank">
+                        </a>
+                    </li>
+                    <li class="col-lg-6 col-xs-12">
+                        <i class="material-icons">link</i>
+                        相關連結：
+                        <a href="#" target="_blank"></a>
+                    </li>
+                    <li class="col-lg-6 col-xs-12">
+                        <i class="material-icons">stars</i>
+                        主辦單位：
+                        <a href="#" target="_blank"></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-
-
-    {% endblock %}
+</div>
+{% endblock %}
