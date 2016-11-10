@@ -7,12 +7,11 @@ import json
 FB_BASE='https://www.facebook.com/dialog/oauth'
 
 ## Reference: https://developers.facebook.com/docs/facebook-login/permissions
-FB_SCOPE='public_profile'
+FB_SCOPE='public_profile,email'
 
 def genGetCodeURL(RedirectURL):
     return FB_BASE+'?client_id='+FB_APP_ID+\
-            '&scope='+parse.quote_plus(FB_SCOPE)+\
-            '&redirect_uri='+parse.quote_plus(RedirectURL)
+            '&scope=public_profile,email&redirect_uri='+parse.quote_plus(RedirectURL)
 
 def getToken(RedirectURL,code):
     conn = http.client.HTTPSConnection("graph.facebook.com")
@@ -36,7 +35,7 @@ def getToken(RedirectURL,code):
 
 def getInfo(Token):
     conn = http.client.HTTPSConnection("graph.facebook.com")
-    request='/me?access_token='+Token
+    request='/v2.8/me?fields=email,name,gender,locale&access_token='+Token
     conn.request("GET", request)
     resault = conn.getresponse()
 
@@ -59,6 +58,7 @@ def getName(Token):
     try:
         JSONdata = getInfo(Token)
         data=json.loads(JSONdata)
+        print(data)
         return data['name']
     
     except:

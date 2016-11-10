@@ -58,21 +58,26 @@ def login():
         if user and dbUser.login(loginform.email.data,loginform.password.data):
             user_obj = User(user['email'])
             flask_login.login_user(user_obj)
-            flash("Logged in successfully!", category='success')
             return redirect(request.args.get("next") or url_for('main.index'))
-        return '帳號或是密碼錯誤'
+        return render_template('login_err.html',loginform = loginform)
+    else:
+        return render_template('login_err.html',loginform = loginform)
+
 
 
 @register.route('/student',methods=['GET','POST'])
 def reg_stu():
     form = registerForm()
     loginform = loginForm()
+    fbtoken = request.cookies.get('fbToken')
+    if fbtoken:
+        fbname = facebook.getName(fbtoken)
+
     if request.method== 'POST' and not form.validate_on_submit():
         for field_name, field_errors in form.errors.items():
             print(field_errors)
             print(field_name)
         return render_template('reg_err.html',**locals())
-    
     elif form.validate_on_submit():
         dbUser.add(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.education.data,form.grade.data,form.school.data,form.major.data,form.lineid.data,form.fbid.data)
         return render_template('reg_info.html',**locals())
@@ -95,8 +100,9 @@ def reg_gen():
 
 @app.route('/fb')
 def fblogin():
+    print('jjj')
     code = request.args.get('code',False)
-    if code :
+    if code:
         Res=facebook.getToken(request.base_url,code)
         if Res[0]:
             fbuid = facebook.getUID(Res[1])
@@ -107,7 +113,6 @@ def fblogin():
                 resp.set_cookie(key='fbreg', value='1', expires=time.time()+2)
                 resp.set_cookie(key='fbToken',value=Res[1],max_age=int(Res[2]),secure=False)
                 return resp
-
     else:
         fburl = facebook.genGetCodeURL(request.base_url)
         return redirect(fburl, code=301)
