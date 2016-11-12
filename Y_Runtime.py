@@ -7,8 +7,10 @@ from conf import setting
 from core.index import main
 from core.proinfo import proinfo,classrom
 from core.user import auth , register, users
+from core.admin import admbp
 from core_module.form import loginForm
 # muMDAU_app setting
+app.register_blueprint(admbp, url_prefix="/admin")
 app.secret_key = setting.yourkey
 app.register_blueprint(main)
 app.register_blueprint(proinfo, url_prefix="/proinfo")
