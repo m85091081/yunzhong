@@ -1,6 +1,7 @@
 import datetime
-import conf.setting as setting 
+import conf.setting as setting
 from pymongo import MongoClient
+
 client = MongoClient(setting.mongohost)
 db = client['Yunzhong']
 class InitDB:
@@ -107,5 +108,24 @@ class User:
         print(user.insert_one(raw).inserted_id)
         return True
     
+class Pictures:
+    def savepicture(content,mime,sha1):
+        picture = db['pictures']
+        picture.create_index("sha1",unique=True)
+        raw = {
+                "content": content,
+                "mime":mime,
+                "time":datetime.datetime.utcnow(),
+                "sha1":sha1,
+                }
+        try:
+            print(picture.insert_one(raw).inserted_id)
+        except:
+            pass
+        return sha1
 
+
+    def getpicture(sha1):
+        picture = db['pictures']
+        return picture.find_one({'sha1':sha1})
 
