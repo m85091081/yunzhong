@@ -1,9 +1,11 @@
-from flask import make_response, request, render_template, Blueprint, url_for, redirect, session
+from flask import make_response, Response, request, render_template, Blueprint, url_for, redirect, session
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
 classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
-from core_module.dbmongo import User,Product
+from core_module.dbmongo import User,Product,Pictures
 from core_module.form import loginForm , productForm
+from core_module.pictures import uploadpicture
 from flask_paginate import Pagination
+from core import app
 import ast
 
 @classrom.route('/', methods=['GET', 'POST'])
@@ -149,3 +151,37 @@ def addcart():
     print(buydict)
     response.set_cookie('buydict',str(buydict))
     return response
+
+
+@app.route('/picture/f/<sha1>',methods=['GET'])
+def serve_picture(sha1):
+    try:
+        f = Pictures.getpicture(sha1)
+        if f is None:
+            raise IOError()
+        if request.headers.get('If-modified-Since') == f['time'].ctime():
+            return Response(status=304)
+        resp = Response(f['content'], mimetype='image/' + f['mime'])
+        resp.headers['Last-Modified'] = f['time'].ctime()
+        return resp
+    except IOError:
+        loginform = loginForm()
+        return render_template('404.html',**locals()), 404
+@app.route('/ckupload',methods=['POST'])
+def ckupload():
+    url = ''
+    callback = request.args.get("CKEditorFuncNum")
+    if request.method == 'POST' and 'upload' in request.files:
+        f = request.files['upload']
+        sha1 = uploadpicture(f)
+        url = url_for('serve_picture',sha1=str(sha1))
+        res = """
+
+        <script type="text/javascript">
+          window.parent.CKEDITOR.tools.callFunction(%s, '%s');
+        </script>
+
+        """ % (callback, url)
+        resp = make_response(res)
+        resp.headers["Content-Type"]="text/html"
+        return resp

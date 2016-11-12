@@ -71,7 +71,7 @@
                     <i class="fa fa-th-list" aria-hidden="true"></i>
                     課程簡介
                 </h1>
-                <textarea class="form-control" rows="10" style="margin-bottom:20px;"></textarea>
+                <textarea class="form-control" name='content' id='editor' rows="10" style="margin-bottom:20px;"></textarea>
             </div>
             <!--<ul class="row proinfo-info-box" style="padding: 0px 0px 0px 0px;">                    
                 <li class="col-lg-6 col-xs-12" style="padding:0px 0px 0px 0px;">
@@ -104,4 +104,10 @@
     </div>
 </div>
 </div>
+<script src="{{ url_for('static', filename='js/ckeditor/ckeditor.js') }}"></script>
+<script>
+	CKEDITOR.replace('editor',{
+		filebrowserImageUploadUrl: '/ckupload',
+});
+</script>
 {% endblock %}
