@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # muMDAU_app main / first page 
 from core import app, socketio
-from threading import Thread
 from flask import request, render_template, Blueprint, url_for, redirect, session
 from core_module.dbmongo import User
 from core_module.form import loginForm
