@@ -31,7 +31,7 @@
     <!-- need this .js class to initiate slimscroll -->
     <div class="js-sidebar-content">
         <header class="logo hidden-xs">
-            <a href="index.html">sing</a>
+			<a href="index.html">yunzhong</a>
         </header>
         <!-- seems like lots of recent admin template have this feature of user info in the sidebar.
              looks good, so adding it and enhancing with notifications -->
@@ -53,8 +53,7 @@
         </div>
         <!-- main notification links are placed inside of .sidebar-nav -->
         <ul class="sidebar-nav">
-            <li class="active">
-                <!-- an example of nested submenu. basic bootstrap collapse component -->
+		<!--			<li class="active">
                 <a href="#sidebar-dashboard" data-toggle="collapse" data-parent="#sidebar">
                     <span class="icon">
                         <i class="fa fa-desktop"></i>
@@ -66,194 +65,92 @@
                     <li class="active"><a href="index.html">Dashboard</a></li>
                     <li><a href="widgets.html">Widgets</a></li>
                 </ul>
-            </li>
-            <li>
-                <a href="inbox.html">
+		</li> -->
+            <li class="active">
+                <a href="/">
                     <span class="icon">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fa fa-home"></i>
                     </span>
-                    Email
-                    <span class="label label-danger">
+                    網站資訊
+					<!--                    <span class="label label-danger">
                         9
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="charts.html">
-                    <span class="icon">
-                        <i class="glyphicon glyphicon-stats"></i>
-                    </span>
-                    Charts
-                </a>
-            </li>
-            <li>
-                <a href="profile.html">
-                    <span class="icon">
-                        <i class="glyphicon glyphicon-user"></i>
-                    </span>
-                    Profile
-                    <sup class="text-warning fw-semi-bold">
-                        new
-                    </sup>
+					</span> -->
                 </a>
             </li>
         </ul>
         <!-- every .sidebar-nav may have a title -->
-        <h5 class="sidebar-nav-title">Template <a class="action-link" href="#"><i class="glyphicon glyphicon-refresh"></i></a></h5>
+        <h5 class="sidebar-nav-title">課程管理 <a class="action-link" href="#"></a></h5>
         <ul class="sidebar-nav">
-            <li>
-                <!-- an example of nested submenu. basic bootstrap collapse component -->
-                <a class="collapsed" href="#sidebar-forms" data-toggle="collapse" data-parent="#sidebar">
+            <li >
+                <a href="/">
                     <span class="icon">
-                        <i class="glyphicon glyphicon-align-right"></i>
+                        <i class="fa fa-user"></i>
                     </span>
-                    Forms
-                    <i class="toggle fa fa-angle-down"></i>
+					現有課程管理
                 </a>
-                <ul id="sidebar-forms" class="collapse">
-                    <li><a href="form_elements.html">Form Elements</a></li>
-                    <li><a href="form_validation.html">Form Validation</a></li>
-                    <li><a href="form_wizard.html">Form Wizard</a></li>
-                </ul>
             </li>
-            <li>
-                <a class="collapsed" href="#sidebar-ui" data-toggle="collapse" data-parent="#sidebar">
+            <li >
+                <a href="/">
                     <span class="icon">
-                        <i class="glyphicon glyphicon-tree-conifer"></i>
+                        <i class="fa fa-user"></i>
                     </span>
-                    UI Elements
-                    <i class="toggle fa fa-angle-down"></i>
+                    學生提案清單
                 </a>
-                <ul id="sidebar-ui" class="collapse">
-                    <li><a href="ui_components.html">Components</a></li>
-                    <li><a href="ui_notifications.html">Notifications</a></li>
-                    <li><a href="ui_icons.html">Icons</a></li>
-                    <li><a href="ui_buttons.html">Buttons</a></li>
-                    <li><a href="ui_tabs_accordion.html">Tabs & Accordion</a></li>
-                    <li><a href="ui_list_groups.html">List Groups</a></li>
-                </ul>
             </li>
-            <li>
-                <a href="grid.html">
+            <li >
+                <a href="/">
                     <span class="icon">
-                        <i class="glyphicon glyphicon-th"></i>
+                        <i class="fa fa-user"></i>
                     </span>
-                    Grid
+                    企業提案審核
                 </a>
             </li>
-            <li>
-                <a class="collapsed" href="#sidebar-maps" data-toggle="collapse" data-parent="#sidebar">
+		
+		</ul>
+        <h5 class="sidebar-nav-title">會員系統 <a class="action-link" href="#"></a></h5>
+        <ul class="sidebar-nav">
+            <li >
+                <a href="/">
                     <span class="icon">
-                        <i class="glyphicon glyphicon-map-marker"></i>
+                        <i class="fa fa-user"></i>
                     </span>
-                    Maps
-                    <i class="toggle fa fa-angle-down"></i>
+                    會員管理
                 </a>
-                <ul id="sidebar-maps" class="collapse">
-                    <!-- data-no-pjax turns off pjax loading for this link. Use in case of complicated js loading on the
-                         target page -->
-                    <li><a href="maps_google.html" data-no-pjax>Google Maps</a></li>
-                    <li><a href="maps_vector.html">Vector Maps</a></li>
-                </ul>
             </li>
-            <li>
-                <!-- an example of nested submenu. basic bootstrap collapse component -->
-                <a class="collapsed" href="#sidebar-tables" data-toggle="collapse" data-parent="#sidebar">
+            <li >
+                <a href="/">
                     <span class="icon">
-                        <i class="fa fa-table"></i>
+                        <i class="fa fa-users"></i>
                     </span>
-                    Tables
-                    <i class="toggle fa fa-angle-down"></i>
-                </a>
-                <ul id="sidebar-tables" class="collapse">
-                    <li><a href="tables_basic.html">Tables Basic</a></li>
-                    <li><a href="tables_dynamic.html">Tables Dynamic</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="collapsed" href="#sidebar-extra" data-toggle="collapse" data-parent="#sidebar">
-                    <span class="icon">
-                        <i class="fa fa-leaf"></i>
-                    </span>
-                    Extra
-                    <i class="toggle fa fa-angle-down"></i>
-                </a>
-                <ul id="sidebar-extra" class="collapse">
-                    <li><a href="calendar.html">Calendar</a></li>
-                    <li><a href="invoice.html">Invoice</a></li>
-                    <li><a href="login.html" target="_blank" data-no-pjax>Login Page</a></li>
-                    <li><a href="error.html" target="_blank" data-no-pjax>Error Page</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="search.html">Search Results</a></li>
-                    <li><a href="time_line.html" data-no-pjax>Time Line</a></li>
-                </ul>
-            </li>
-            <li>
-                <a class="collapsed" href="#sidebar-levels" data-toggle="collapse" data-parent="#sidebar">
-                    <span class="icon">
-                        <i class="fa fa-folder-open"></i>
-                    </span>
-                    Menu Levels
-                    <i class="toggle fa fa-angle-down"></i>
-                </a>
-                <ul id="sidebar-levels" class="collapse">
-                    <li><a href="#">Level 1</a></li>
-                    <li>
-                        <a class="collapsed" href="#sidebar-sub-levels" data-toggle="collapse" data-parent="#sidebar-levels">
-                            Level 2
-                            <i class="toggle fa fa-angle-down"></i>
-                        </a>
-                        <ul id="sidebar-sub-levels" class="collapse">
-                            <li><a href="#">Level 3</a></li>
-                            <li><a href="#">Level 3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <h5 class="sidebar-nav-title">Labels <a class="action-link" href="#"><i class="glyphicon glyphicon-plus"></i></a></h5>
-        <!-- some styled links in sidebar. ready to use as links to email folders, projects, groups, etc -->
-        <ul class="sidebar-labels">
-            <li>
-                <a href="#">
-                    <!-- yep, .circle again -->
-                    <i class="fa fa-circle text-warning mr-xs"></i>
-                    <span class="label-name">My Recent</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-circle text-gray mr-xs"></i>
-                    <span class="label-name">Starred</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-circle text-danger mr-xs"></i>
-                    <span class="label-name">Background</span>
+                    企業會員認證
                 </a>
             </li>
         </ul>
-        <h5 class="sidebar-nav-title">Projects</h5>
-        <!-- A place for sidebar notifications & alerts -->
-        <div class="sidebar-alerts">
-            <div class="alert fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
-                <span class="text-white fw-semi-bold">Sales Report</span> <br>
-                <div class="progress progress-xs mt-xs mb-0">
-                    <div class="progress-bar progress-bar-gray-light" style="width: 16%"></div>
-                </div>
-                <small>Calculating x-axis bias... 65%</small>
-            </div>
-            <div class="alert fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
-                <span class="text-white fw-semi-bold">Personal Responsibility</span> <br>
-                <div class="progress progress-xs mt-xs mb-0">
-                    <div class="progress-bar progress-bar-danger" style="width: 23%"></div>
-                </div>
-                <small>Provide required notes</small>
-            </div>
-        </div>
+        <h5 class="sidebar-nav-title">版面管理 <a class="action-link" href="#"></a></h5>
+        <ul class="sidebar-nav">
+            <li >
+                <a href="/">
+                    <span class="icon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    關於我們
+                </a>
+            </li>
+            <li >
+                <a class="collapsed" href="#member-dashboard" data-toggle="collapse" data-parent="#sidebar">
+                    <span class="icon">
+                        <i class="fa fa-user"></i>
+                    </span>
+                    會員合約
+                    <i class="toggle fa fa-angle-down"></i>
+                </a>
+                <ul id="member-dashboard" class="collapse">
+                    <li><a href="index.html">一般會員</a></li>
+                    <li><a href="widgets.html">學生會員</a></li>
+                    <li><a href="widgets.html">企業會員</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </nav>
 <!-- This is the white navigation bar seen on the top. A bit enhanced BS navbar. See .page-controls in _base.scss. -->
@@ -712,232 +609,8 @@
 <div class="content-wrap">
     <!-- main page content. the place to put widgets in. usually consists of .row > .col-md-* > .widget.  -->
     <main id="content" class="content" role="main">
-        <h1 class="page-title">Dashboard <small><small>The Lucky One</small></small></h1>
+        <h1 class="page-title">Dashboard <small><small>總覽</small></small></h1>
         <div class="row">
-            <div class="col-md-8">
-                <!-- minimal widget consist of .widget class. note bg-transparent - it can be any background like bg-gray,
-                bg-primary, bg-white -->
-                <section class="widget bg-transparent">
-                    <!-- .widget-body is a mostly semantic class. may be a sibling to .widget>header or .widget>footer -->
-                    <div class="widget-body">
-                        <div id="map" class="mapael">
-                            <div class="stats">
-                                <h5 class="text-white">GEO-LOCATIONS</h5>
-                                <p class="h3 text-warning no-margin"><strong id="geo-locations-number">1 656 843</strong> <i class="fa fa-map-marker"></i></p>
-                            </div>
-                            <div class="map">
-                                <span>Alternative content for the map</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="widget bg-transparent">
-                    <header>
-                        <h4>
-                            Map
-                            <span class="fw-semi-bold">Statistics</span>
-                        </h4>
-                        <div class="widget-controls widget-controls-hover">
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
-                            <a href="#"><i class="fa fa-refresh"></i></a>
-                            <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-                        </div>
-                    </header>
-                    <div class="widget-body">
-                        <p>Status: <strong>Live</strong></p>
-                        <p>
-                            <span class="circle bg-warning"><i class="fa fa-map-marker"></i></span>
-                            146 Countries, 2759 Cities
-                        </p>
-                        <div class="row progress-stats">
-                            <div class="col-sm-9">
-                                <h5 class="name">Foreign Visits</h5>
-                                <p class="description deemphasize">Some Cool Text</p>
-                                <div class="progress progress-sm js-progress-animate bg-white">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                         data-width="60%"
-                                         aria-valuemax="100" style="width: 0;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 text-align-center">
-                                <span class="status rounded rounded-lg bg-body-light">
-                                    <small><span id="percent-1">75</span>%</small>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row progress-stats">
-                            <div class="col-sm-9">
-                                <h5 class="name">Local Visits</h5>
-                                <p class="description deemphasize">P. to C. Conversion</p>
-                                <div class="progress progress-sm js-progress-animate bg-white">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="39"
-                                         data-width="39%"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 0;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 text-align-center">
-                                <span class="status rounded rounded-lg bg-body-light">
-                                    <small><span  id="percent-2">84</span>%</small>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row progress-stats">
-                            <div class="col-sm-9">
-                                <h5 class="name">Sound Frequencies</h5>
-                                <p class="description deemphasize">Average Bitrate</p>
-                                <div class="progress progress-sm js-progress-animate bg-white">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80"
-                                         data-width="80%"
-                                         aria-valuemin="0" aria-valuemax="100" style="width: 0;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3 text-align-center">
-                                <span class="status rounded rounded-lg bg-body-light">
-                                    <small><span id="percent-3">92</span>%</small>
-                                </span>
-                            </div>
-                        </div>
-                        <h5 class="fw-semi-bold mt">Map Distributions</h5>
-                        <p>Tracking: <strong>Active</strong></p>
-                        <p>
-                            <span class="circle bg-warning"><i class="fa fa-cog"></i></span>
-                            391 elements installed, 84 sets
-                        </p>
-                        <div class="input-group mt">
-                            <input type="text" class="form-control" placeholder="Search Map">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-search text-gray"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <section class="widget">
-                    <!-- .widget>header is generally a place for widget title and widget controls. see .widget in _base.scss -->
-                    <header>
-                        <h5>
-                            USERBASE GROWTH
-                        </h5>
-                        <div class="widget-controls">
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
-                            <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-                        </div>
-                    </header>
-                    <div class="widget-body">
-                        <div class="stats-row">
-                            <div class="stat-item">
-                                <h6 class="name">Overall Growth</h6>
-                                <p class="value">76.38%</p>
-                            </div>
-                            <div class="stat-item">
-                                <h6 class="name">Montly</h6>
-                                <p class="value">10.38%</p>
-                            </div>
-                            <div class="stat-item">
-                                <h6 class="name">24h</h6>
-                                <p class="value">3.38%</p>
-                            </div>
-                        </div>
-                        <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
-                                 aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                            </div>
-                        </div>
-                        <p>
-                            <small><span class="circle bg-warning"><i class="glyphicon glyphicon-chevron-up"></i></span></small>
-                            <span class="fw-semi-bold">17% higher</span>
-                            than last month</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="widget">
-                    <header>
-                        <h5>
-                            TRAFFIC VALUES
-                        </h5>
-                        <div class="widget-controls">
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
-                            <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-                        </div>
-                    </header>
-                    <div class="widget-body">
-                        <div class="stats-row">
-                            <div class="stat-item">
-                                <h6 class="name">Overall Values</h6>
-                                <p class="value">17 567 318</p>
-                            </div>
-                            <div class="stat-item">
-                                <h6 class="name">Montly</h6>
-                                <p class="value">55 120</p>
-                            </div>
-                            <div class="stat-item">
-                                <h6 class="name">24h</h6>
-                                <p class="value">9 695</p>
-                            </div>
-                        </div>
-                        <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60"
-                                 aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                            </div>
-                        </div>
-                        <p>
-                            <small><span class="circle bg-warning"><i class="fa fa-chevron-down"></i></span></small>
-                            <span class="fw-semi-bold">8% lower</span>
-                            than last month
-                        </p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="widget">
-                    <header>
-                        <h5>
-                            RANDOM VALUES
-                        </h5>
-                        <div class="widget-controls">
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
-                            <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
-                        </div>
-                    </header>
-                    <div class="widget-body">
-                        <div class="stats-row">
-                            <div class="stat-item">
-                                <h6 class="name">Overcome T.</h6>
-                                <p class="value">104.85%</p>
-                            </div>
-                            <div class="stat-item">
-                                <h6 class="name">Takeoff Angle</h6>
-                                <p class="value">14.29&deg;</p>
-                            </div>
-                            <div class="stat-item">
-                                <h6 class="name">World Pop.</h6>
-                                <p class="value">7,211M</p>
-                            </div>
-                        </div>
-                        <div class="progress progress-xs">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60"
-                                 aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                            </div>
-                        </div>
-                        <p>
-                            <small><span class="circle bg-warning"><i class="fa fa-plus"></i></span></small>
-                            <span class="fw-semi-bold">8 734 higher</span>
-                            than last month
-                        </p>
-                    </div>
-                </section>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
