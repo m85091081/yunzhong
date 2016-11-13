@@ -54,12 +54,12 @@ def getUID(Token):
     except:
         return False
 
-def getName(Token):
+def getData(Token):
     try:
         JSONdata = getInfo(Token)
         data=json.loads(JSONdata)
         print(data)
-        return data['name']
+        return data
     
     except:
         return False

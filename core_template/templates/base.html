@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html class="sb-init">
-<head>
+	<head>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>耘種</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>耘種</title>
+		<meta name="description" content="">
+		<meta name="keywords" content="">
 
-<link rel="shortcut icon" href="favicon.ico"/>
+		<link rel="shortcut icon" href="favicon.ico"/>
 
-<link href="/static/css/bootstrap.min.css" rel="stylesheet">
-<link href="/static/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-<link href="/static/css/slidebars.min.css" rel="stylesheet">
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/static/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+		<link href="/static/css/slidebars.min.css" rel="stylesheet">
 
-<!--mainbanner-->
-<link href="/static/css/swiper-3.2.7.min.css" rel="stylesheet">
-<!--/mainbanner-->
+		<!--mainbanner-->
+		<link href="/static/css/swiper-3.2.7.min.css" rel="stylesheet">
+		<!--/mainbanner-->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa" rel="stylesheet">
-<link href="/static/css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa" rel="stylesheet">
+		<link href="/static/css/style.css" rel="stylesheet">
 
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> 
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/swiper-3.2.7.jquery.min.js"></script>
-<script src="/static/js/slidebars.min.js"></script>
-<script src="/static/js/jquery.animateNumber.min.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> 
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/swiper-3.2.7.jquery.min.js"></script>
+		<script src="/static/js/slidebars.min.js"></script>
+		<script src="/static/js/jquery.animateNumber.min.js"></script>
 
 
-<script>
+		<script>
 $(function() {
-	
+
 	//xs sidebar
 	(function($) {
-	$(document).ready(function() {
-	  $.slidebars();
-	});
+		$(document).ready(function() {
+			$.slidebars();
+		});
 	}) (jQuery);
-	
+
 	// 如果是手機版,將affix的top設定為header預設的高度
 	if($(window).width() >= 768){
 		var headerHeight = 1;
 	}else{
 		var headerHeight = $('header').height();
-    }
-	
+	}
+
 	// 使用affixfunction,固定導航條
 	$('header').affix({
-	  offset: {
-		top: headerHeight
-	  }
+		offset: {
+			top: headerHeight
+		}
 	});
-	
+
 	// 如果是手機版,滑動到header預設的高度時調整margin-top高度
 	if($(window).width() < 768){
 		$(window).scroll(function () {
@@ -67,17 +67,17 @@ $(function() {
 			}else{
 				$('#mainbanner').css('margin-top', 0);
 			}
-            if ($(this).scrollTop()>0)
-                     {
-                             $('#header').fadeOut();
-                          }
-                else
-                         {
-                               $('#header').fadeIn();
-                           }
+			if ($(this).scrollTop()>0)
+			{
+				$('#header').fadeOut();
+			}
+			else
+			{
+				$('#header').fadeIn();
+			}
 		});
 	}
-	
+
 	$('#model-forgotpw-btn').on('click', function () {
 		$('#model-login').modal('hide');
 	});
@@ -92,386 +92,390 @@ $(function() {
 		$('#model-login').modal('show');
 		$('#model-forgotpw').modal('hide');
 	});
-			
+
 });
 
-</script>
+		</script>
 
-<!--mainbanner-->
-<script>        
-  var mySwiper = new Swiper ('.swiper-mainbanner', {
-    direction: 'horizontal',
-    loop: true,
-    nextButton: '.mainbanner-next',
-    prevButton: '.mainbanner-prev',
+		<!--mainbanner-->
+		<script>        
+var mySwiper = new Swiper ('.swiper-mainbanner', {
+	direction: 'horizontal',
+	loop: true,
+	nextButton: '.mainbanner-next',
+	prevButton: '.mainbanner-prev',
 	pagination : '.swiper-pagination',
 	paginationClickable :true,
-  })        
-</script>
-<!--/mainbanner-->
+})        
+		</script>
+		<!--/mainbanner-->
 
-</head>
+	</head>
 
-<body>
-<div id="left_menu" class="sb-slidebar sb-left sb-width-custom" data-sb-width="80%">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">培訓課程 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/class/">基礎課程</a></li>
-            <li><a href="/class/">進階課程</a></li>
-            <li><a href="/class/">選修課程</a></li>
-            <li><a href="/class/submit">課程提案</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">多元活動 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/proinfo/">活動分類</a></li>
-            <li><a href="/proinfo/">活動提案</a></li>
-          </ul>
-        </li> <li><a href="proinfo-poto.html">活動花絮</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員專區 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-             {% if current_user.is_authenticated %}
-            <li><a href="/users/info">會員資料編輯</a></li>
-            <li><a href="member-collect.html">我的收藏</a></li>
-            {% else %}
-<li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
-<li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
-            {% endif %}
-<li><a href="member-benefits.html">會員權益</a></li>
-            <li><a href="/proinfo/shop">購物車</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">關於耘種 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../about">關於我們</a></li>
-            <li><a href="contact.html">聯絡我們</a></li>
-          </ul>
-        </li>
-      </ul>
-</div>
-<div id="sb-site" class="index_container">
-    <header id="index_header">
-    
-        <div id="top-xs" class="row visible-xs">
-        	<div id="nav-xs" class="col-xs-2">
-                <button type="button" id="nav-xs-btn" class="navbar-toggle collapsed sb-toggle-left">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-			</div>
-            {% if current_user.is_authenticated %}
-        	<div id="member-xs" class="col-xs-10">
-                <a href="#" data-toggle="modal" data-target="#model-memberbtn"><i class="fa fa-user"></i>{{current_user.name()}}</a>
-			</div>
-            {%endif %}
-        </div><!--top-xs-->
-    
-        
-        <div id="header" class="container">
-        <div class="row">
-            <div id="company_logo" class="col-sm-3"><a href="/"><img src="/static/images/logo.png"></a></div><!--/company_logo-->
-    
-            <nav id="mainnav-box" class="navbar navbar-default col-sm-9 hidden-xs">            
-                <div class="collapse navbar-collapse">
-                  <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">培訓課程 <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="/class/">基礎課程</a></li>
-                        <li><a href="/class/">進階課程</a></li>
-                        <li><a href="/class/">選修課程</a></li>
-                        <li><a href="/class/submit">課程提案</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">多元活動 <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="/proinfo/">活動分類</a></li>
-                        <li><a href="/proinfo/">活動提案</a></li>
-          </ul>
-        </li> <li><a href="proinfo-poto.html">活動花絮</a></li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員專區 <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                  {% if current_user.is_authenticated %}
-                  <li><a href="/users/info">會員資料編輯</a></li>
-                  <li><a href="member-collect.html">我的收藏</a></li>
-                  {% else %}
-                  <li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
-                  <li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
-                  {% endif %}
-                  <li><a href="member-benefits.html">會員權益</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">關於耘種 <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="../about">關於我們</a></li>
-                        <li><a href="contact.html">聯絡我們</a></li>
-                      </ul>
-                    </li>
-                    {% if current_user.is_authenticated %}
-                    <li><a href="#" class="m-name"><i class="fa fa-user" aria-hidden="true"></i> {{current_user.name()}}</a></li>
-                    <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 登出</a></li>
-                    {% else %}
-                    <li><a href="#" data-toggle="modal" data-target="#model-login"><i class="fa fa-sign-in" aria-hidden="true"></i> 登入</a></li>
-                    {% endif %}
-                    {%if request.cookies.get('num') == None%}
-                    <li><a href="/proinfo/shop"><i class="fa fa-shopping-cart " aria-hidden="true"></i> 0</a></li>
-                    {%else%}
-                    <li><a href="/proinfo/shop"><i class="fa fa-shopping-cart " aria-hidden="true"></i> {{request.cookies.get('num')}}</a></li>
-                    {%endif%}
-                  </ul>
-                </div><!-- /.navbar-collapse -->
-            </nav><!--/mainnav-box-->
-			
-            {% if not current_user.is_authenticated %}
-			<div id="login-xs-box" class="visible-xs">
-				<div id="login-xs">
-					<form method="POST" action="../login/">
-                      {{ loginform.csrf_token }}
-					  <div class="form-group">
-                          <i class="fa fa-user"></i>{{loginform.email(class_="enter-input form-control")}}
-					  </div>
-					  <div class="form-group">
-                          <i class="fa fa-key"></i>{{loginform.password(class_="enter-input form-control")}}
-					  </div>
-					  <div class="checkbox">
-						<label>
-						  <input type="checkbox" checked> 記住帳號及密碼
-						</label>
-					  </div>
-					  <div class="form-group">
-						  <input type="button" onclick="javascript:location.href='/fb'" class="btn btn-info" value="FB 登錄"></input>
-						  <button type="submit" class="btn btn-default">登入</button>
-					  </div>
-					  <div class="form-group"><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a> <a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></div>
-					</form>
+	<body>
+		<div id="left_menu" class="sb-slidebar sb-left sb-width-custom" data-sb-width="80%">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">培訓課程 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/class/">基礎課程</a></li>
+						<li><a href="/class/">進階課程</a></li>
+						<li><a href="/class/">選修課程</a></li>
+						<li><a href="/class/submit">課程提案</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">多元活動 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/proinfo/">活動分類</a></li>
+						<li><a href="/proinfo/">活動提案</a></li>
+					</ul>
+				</li> <li><a href="proinfo-poto.html">活動花絮</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員專區 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						{% if current_user.is_authenticated %}
+						<li><a href="/users/info">會員資料編輯</a></li>
+						<li><a href="member-collect.html">我的收藏</a></li>
+						{% else %}
+						<li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
+						{% endif %}
+						<li><a href="member-benefits.html">會員權益</a></li>
+						<li><a href="/proinfo/shop">購物車</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">關於耘種 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="../about">關於我們</a></li>
+						<li><a href="contact.html">聯絡我們</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="sb-site" class="index_container">
+			<header id="index_header">
+
+				<div id="top-xs" class="row visible-xs">
+					<div id="nav-xs" class="col-xs-2">
+						<button type="button" id="nav-xs-btn" class="navbar-toggle collapsed sb-toggle-left">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					{% if current_user.is_authenticated %}
+					<div id="member-xs" class="col-xs-10">
+						<a href="#" data-toggle="modal" data-target="#model-memberbtn"><i class="fa fa-user"></i>{{current_user.name()}}</a>
+					</div>
+					{%endif %}
+				</div><!--top-xs-->
+
+
+				<div id="header" class="container">
+					<div class="row">
+						<div id="company_logo" class="col-sm-3"><a href="/"><img src="/static/images/logo.png"></a></div><!--/company_logo-->
+
+						<nav id="mainnav-box" class="navbar navbar-default col-sm-9 hidden-xs">            
+							<div class="collapse navbar-collapse">
+								<ul class="nav navbar-nav">
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">培訓課程 <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="/class/">基礎課程</a></li>
+											<li><a href="/class/">進階課程</a></li>
+											<li><a href="/class/">選修課程</a></li>
+											<li><a href="/class/submit">課程提案</a></li>
+										</ul>
+									</li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">多元活動 <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="/proinfo/">活動分類</a></li>
+											<li><a href="/proinfo/">活動提案</a></li>
+										</ul>
+									</li> <li><a href="proinfo-poto.html">活動花絮</a></li>
+									{% if not current_user.is_authenticated %}
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員專區 <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
+											<li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
+											<li><a href="member-benefits.html">會員權益</a></li>
+										</ul>
+									</li>
+									{% endif %}
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">關於耘種 <span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="../about">關於我們</a></li>
+											<li><a href="contact.html">聯絡我們</a></li>
+										</ul>
+									</li>
+									{% if current_user.is_authenticated %}
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{current_user.name()}}<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="/users/info">會員資料編輯</a></li>
+											<li><a href="member-collect.html">我的收藏</a></li>
+											<li><a href="member-benefits.html">會員權益</a></li>
+											<li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 登出</a></li>
+										</ul>
+									</li>
+									{% else %}
+									<li><a href="#" data-toggle="modal" data-target="#model-login"><i class="fa fa-sign-in" aria-hidden="true"></i> 登入</a></li>
+									{% endif %}
+									{%if request.cookies.get('num') == None%}
+									<li><a href="/proinfo/shop"><i class="fa fa-shopping-cart " aria-hidden="true"></i> 0</a></li>
+									{%else%}
+									<li><a href="/proinfo/shop"><i class="fa fa-shopping-cart " aria-hidden="true"></i> {{request.cookies.get('num')}}</a></li>
+									{%endif%}
+								</ul>
+							</div><!-- /.navbar-collapse -->
+						</nav><!--/mainnav-box-->
+
+						{% if not current_user.is_authenticated %}
+						<div id="login-xs-box" class="visible-xs">
+							<div id="login-xs">
+								<form method="POST" action="../login/">
+									{{ loginform.csrf_token }}
+									<div class="form-group">
+										<i class="fa fa-user"></i>{{loginform.email(class_="enter-input form-control")}}
+									</div>
+									<div class="form-group">
+										<i class="fa fa-key"></i>{{loginform.password(class_="enter-input form-control")}}
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" checked> 記住帳號及密碼
+										</label>
+									</div>
+									<div class="form-group">
+										<input type="button" onclick="javascript:location.href='/fb'" class="btn btn-info" value="FB 登錄"></input>
+										<button type="submit" class="btn btn-default">登入</button>
+									</div>
+									<div class="form-group"><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a> <a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></div>
+								</form>
+							</div>
+						</div><!--/login-xs-box-->
+						{%endif%}
+					</div>
+				</div><!--/header-->
+
+			</header><!--/index_header-->
+
+
+
+
+			{% block body %}
+			{% endblock %}
+
+			<footer id="footer">
+				<div class="container">
+					<div id="ftbar" class="row">
+						<div class="col-sm-3">
+							<h3>培訓課程</h3>
+							<ul>
+								<li><a href="/class/">基礎課程</a></li>
+								<li><a href="/class/">進階課程</a></li>
+								<li><a href="/class/">選修課程</a></li>
+								<li><a href="/class/submit">課程提案</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3">
+							<h3>多元活動</h3>
+							<ul>
+								<li><a href="/proinfo/">活動分類</a></li>
+								<li><a href="/proinfo/">活動提案</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3">
+							<h3>會員專區</a></h3>
+							<ul>
+								{% if current_user.is_authenticated %}
+								<li><a href="/users/info">會員資料編輯</a></li>
+								<li><a href="member-collect.html">我的收藏</a></li>
+								{% else %}
+								<li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
+								<li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
+								{% endif %}
+								<li><a href="member-benefits.html">會員權益</a></li>
+								<li><a href="/proinfo/shop">購物車</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3">
+							<h3>關於耘種</h3>
+							<ul>
+								<li><a href="../about">關於我們</a></li>
+								<li><a href="contact.html">聯絡我們</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>                    
+
+
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+
+							<div id="footer_link">
+								<ul class="ulol-org">
+									<li>© 耘種 All Rights Reserved.</li>
+									<li>Develop by <a href="http://mkdir.tw/" target="_blank">mkdir.tw</a> 創夾資訊</li>
+								</ul>
+							</div><!--/footer_link-->
+						</div>
+					</div>
 				</div>
-			</div><!--/login-xs-box-->
-            {%endif%}
-        </div>
-        </div><!--/header-->
-    
-    </header><!--/index_header-->
 
-    
-        
-        
-    {% block body %}
-    {% endblock %}
 
-	<footer id="footer">
-        <div class="container">
-        <div id="ftbar" class="row">
-        	<div class="col-sm-3">
-                <h3>培訓課程</h3>
-                <ul>
-                  <li><a href="/class/">基礎課程</a></li>
-                  <li><a href="/class/">進階課程</a></li>
-                  <li><a href="/class/">選修課程</a></li>
-                  <li><a href="/class/submit">課程提案</a></li>
-                </ul>
-            </div>
-        	<div class="col-sm-3">
-                <h3>多元活動</h3>
-                <ul>
-                  <li><a href="/proinfo/">活動分類</a></li>
-                  <li><a href="/proinfo/">活動提案</a></li>
-                </ul>
-            </div>
-        	<div class="col-sm-3">
-                <h3>會員專區</a></h3>
-                <ul>
-                  {% if current_user.is_authenticated %}
-                  <li><a href="/users/info">會員資料編輯</a></li>
-                  <li><a href="member-collect.html">我的收藏</a></li>
-                  {% else %}
-                  <li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
-                  <li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
-                  {% endif %}
-                  <li><a href="member-benefits.html">會員權益</a></li>
-                  <li><a href="/proinfo/shop">購物車</a></li>
-                </ul>
-            </div>
-        	<div class="col-sm-3">
-                <h3>關於耘種</h3>
-                <ul>
-                  <li><a href="../about">關於我們</a></li>
-                  <li><a href="contact.html">聯絡我們</a></li>
-                </ul>
-            </div>
-        </div>
-        </div>                    
-                    
-        
-        <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                
-                <div id="footer_link">
-                    <ul class="ulol-org">
-                    	<li>© 耘種 All Rights Reserved.</li>
-                        <li>Develop by <a href="http://mkdir.tw/" target="_blank">mkdir.tw</a> 創夾資訊</li>
-                    </ul>
-                </div><!--/footer_link-->
-            </div>
-        </div>
-        </div>
-        
-        
-    </footer><!--/footer-->
+			</footer><!--/footer-->
 
 
 
-</div>
-<div class="modal fade" id="model-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4>會員登入</h4>
-          </div>
-          <div class="modal-body">
-          
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="member-login1">
-                    <form method="POST" action="../login/">
-                      {{ loginform.csrf_token }}
-                      <div class="form-group">
-                        <i class="fa fa-user"></i>{{ loginform.email(class_="enter-input form-control") }}
-                      </div>
-                      <div class="form-group">
-                        <i class="fa fa-key"></i>{{ loginform.password(class_="enter-input form-control") }}
-                      </div>
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox" checked> 記住電子郵件及密碼
-                        </label>
-                      </div>
-                      <div class="form-group">
-                          <input type = "button" onclick="javascript:location.href='/fb'" class="btn btn-info" value="FB 登入"></input>
-						  <button type="submit" class="btn btn-default">登入</button>
-                      </div>
-                      <div class="form-group text-right"><a href="#" id="model-forgotpw-btn" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a> <a href="#" id="model-signup-btn" data-toggle="modal" data-target="#model-signup">免費加入會員</a></div>
-                    </form>
-                </div>
-              </div>
-            
-          
-          
-          </div>
-        </div>
-      </div>
-    </div><!--/model-login-->
+		</div>
+		<div class="modal fade" id="model-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4>會員登入</h4>
+					</div>
+					<div class="modal-body">
+
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="member-login1">
+								<form method="POST" action="../login/">
+									{{ loginform.csrf_token }}
+									<div class="form-group">
+										<i class="fa fa-user"></i>{{ loginform.email(class_="enter-input form-control") }}
+									</div>
+									<div class="form-group">
+										<i class="fa fa-key"></i>{{ loginform.password(class_="enter-input form-control") }}
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" checked> 記住電子郵件及密碼
+										</label>
+									</div>
+									<div class="form-group">
+										<input type = "button" onclick="javascript:location.href='/fb'" class="btn btn-info" value="FB 登入"></input>
+										<button type="submit" class="btn btn-default">登入</button>
+									</div>
+									<div class="form-group text-right"><a href="#" id="model-forgotpw-btn" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a> <a href="#" id="model-signup-btn" data-toggle="modal" data-target="#model-signup">免費加入會員</a></div>
+								</form>
+							</div>
+						</div>
 
 
-<div class="modal fade bs-example-modal-lg" id="model-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4>選擇加入會員種類</h4>
-          </div>
-          <div id="member" class="modal-body">
-              <div class="row">
-                 <div id="student" class="col-xs-6 col-sm-6 col-md-4">
-                      <div class="thumbnail text-center">
-                          <span class="student"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
-                          <div class="caption">
-                             <h3>學生會員</h3>
-                             <p class="hidden-xs">國中以上各級學齡學生會員</p>
-                             <p><a href="/register/student" class="btn btn-info b-student" role="button"><span class="hidden-xs">申請加入</span><span class="visible-xs">學生會員</span></a></p>
-                         </div>
-                     </div>
-                 </div>
-                 <div id="general" class="col-xs-6 col-sm-6 col-md-4">
-                      <div class="thumbnail text-center">
-                          <span class="general"><i class="fa fa-users" aria-hidden="true"></i></span>
-                          <div class="caption">
-                             <h3>一般會員</h3>
-                             <p class="hidden-xs">社會人士等菁英們歡迎加入</p>
-                             <p><a href="/register/general" class="btn btn-info b-general" role="button"><span class="hidden-xs">申請加入</span><span class="visible-xs">一般會員</span></a></p>
-                         </div>
-                     </div>
-                 </div>
-                 <div id="company" class="col-xs-6 col-sm-6 col-md-4">
-                      <div class="thumbnail text-center">
-                          <span class="company"><i class="fa fa-cog" aria-hidden="true"></i></span>
-                          <div class="caption">
-                             <h3>企業會員</h3>
-                             <p class="hidden-xs">企業公司機關等團體代表會員</p>
-                             <p><a href="#" class="btn btn-info b-company" disabled="disabled"><span class="hidden-xs">聯絡我們</span><span class="visible-xs">聯絡我們</span></a></p>
-                         </div>
-                     </div>
-                 </div>
-             </div>
 
-          </div>
-        </div>
-      </div>
-    </div><!--/model-signup-->
+					</div>
+				</div>
+			</div>
+		</div><!--/model-login-->
 
 
-<div class="modal fade" id="model-forgotpw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">忘記密碼</h4>
-          </div>
-          <div id="member" class="modal-body">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 control-label">您的Email：</label>
-                    <div class="col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                      <button type="submit" class="btn btn-default">密碼查詢</button>
-					  <button type="button" id="back-login2" class="btn btn-default hidden-xs">返回登入</button>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                      <p class="red">※ 請輸入您註冊的Email申請補發新密碼，經系統認證無誤後將寄發新密碼至您的Email。</p>
-                    </div>
-                  </div>
-                </form>
-          </div>
-        </div>
-      </div>
-    </div><!--/model-forgotpw-->
+		<div class="modal fade bs-example-modal-lg" id="model-signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4>選擇加入會員種類</h4>
+					</div>
+					<div id="member" class="modal-body">
+						<div class="row">
+							<div id="student" class="col-xs-6 col-sm-6 col-md-4">
+								<div class="thumbnail text-center">
+									<span class="student"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
+									<div class="caption">
+										<h3>學生會員</h3>
+										<p class="hidden-xs">國中以上各級學齡學生會員</p>
+										<p><a href="/register/student" class="btn btn-info b-student" role="button"><span class="hidden-xs">申請加入</span><span class="visible-xs">學生會員</span></a></p>
+									</div>
+								</div>
+							</div>
+							<div id="general" class="col-xs-6 col-sm-6 col-md-4">
+								<div class="thumbnail text-center">
+									<span class="general"><i class="fa fa-users" aria-hidden="true"></i></span>
+									<div class="caption">
+										<h3>一般會員</h3>
+										<p class="hidden-xs">社會人士等菁英們歡迎加入</p>
+										<p><a href="/register/general" class="btn btn-info b-general" role="button"><span class="hidden-xs">申請加入</span><span class="visible-xs">一般會員</span></a></p>
+									</div>
+								</div>
+							</div>
+							<div id="company" class="col-xs-6 col-sm-6 col-md-4">
+								<div class="thumbnail text-center">
+									<span class="company"><i class="fa fa-cog" aria-hidden="true"></i></span>
+									<div class="caption">
+										<h3>企業會員</h3>
+										<p class="hidden-xs">企業公司機關等團體代表會員</p>
+										<p><a href="#" class="btn btn-info b-company" disabled="disabled"><span class="hidden-xs">聯絡我們</span><span class="visible-xs">聯絡我們</span></a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div><!--/model-signup-->
 
 
-<div class="modal fade" id="model-memberbtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-          	<ul class="row">
-            	<li class="col-xs-6"><a href="/users/info"><img src="/static/images/icon-member-xs-01.png"><span>我的資料</span></a></li>
-            	<li class="col-xs-6"><a href="member-collect.html"><img src="static/images/icon-member-xs-02.png"><span>我的收藏</span></a></li>
-            	<li class="col-xs-6"><a href="#"><img src="static/images/icon-member-xs-03.png"><span>我的履歷</span></a></li>
-            	<li class="col-xs-6"><a href="#"><img src="static/images/icon-member-xs-06.png"><span>登出</span></a></li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-        </div>
-      </div>
-    </div><!--/model-memberbtn-->
+		<div class="modal fade" id="model-forgotpw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">忘記密碼</h4>
+					</div>
+					<div id="member" class="modal-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label for="" class="col-sm-3 control-label">您的Email：</label>
+								<div class="col-sm-9">
+									<input type="" class="form-control" id="" placeholder="Email">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<button type="submit" class="btn btn-default">密碼查詢</button>
+									<button type="button" id="back-login2" class="btn btn-default hidden-xs">返回登入</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-9">
+									<p class="red">※ 請輸入您註冊的Email申請補發新密碼，經系統認證無誤後將寄發新密碼至您的Email。</p>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!--/model-forgotpw-->
 
-</body>
+
+		<div class="modal fade" id="model-memberbtn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<ul class="row">
+							<li class="col-xs-6"><a href="/users/info"><img src="/static/images/icon-member-xs-01.png"><span>我的資料</span></a></li>
+							<li class="col-xs-6"><a href="member-collect.html"><img src="static/images/icon-member-xs-02.png"><span>我的收藏</span></a></li>
+							<li class="col-xs-6"><a href="#"><img src="static/images/icon-member-xs-03.png"><span>我的履歷</span></a></li>
+							<li class="col-xs-6"><a href="#"><img src="static/images/icon-member-xs-06.png"><span>登出</span></a></li>
+						</ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+				</div>
+			</div>
+		</div><!--/model-memberbtn-->
+
+	</body>
 </html>
 
 

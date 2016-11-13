@@ -45,7 +45,11 @@
                                     <div class="form-group">
                                         <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 註冊Email：</label>
                                         <div class="col-lg-10 col-sm-9">
+                                            {% if fbtoken and fbname['email'] %}
+                                            {{ form.email(class_="form-control",value=fbname['email']) }}
+                                            {%else%}
                                             {{ form.email(class_="form-control") }}
+											{%endif%}
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -64,7 +68,7 @@
                                         <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 姓名：</label>
                                         <div class="col-lg-10 col-sm-9">
                                             {% if fbtoken  %}
-                                            {{ form.name(class_="form-control",value=fbname,disabled=True) }}
+                                            {{ form.name(class_="form-control",value=fbname['name'],readonly=True) }}
                                             
                                             {%else%}
                                             {{ form.name(class_="form-control") }}
@@ -112,7 +116,11 @@
                                     <div class="form-group">
                                         <label for="" class="col-lg-2 col-sm-3 control-label">FB帳號：</label>
                                         <div class="col-lg-10 col-sm-9">
-                                            {{ form.fbid(class_="form-control") }}
+                                            {% if fbtoken  %}
+                                            {{ form.fbid(class_="form-control",value=fbname['id'],readonly=True) }}
+                                            {%else%}
+                                            {{ form.fbid(class_="form-control",disabled=True) }}
+                                            {%endif%}
                                         </div>
                                     </div>
                                     <div class="form-group education">

@@ -71,7 +71,7 @@ def reg_stu():
     loginform = loginForm()
     fbtoken = request.cookies.get('fbToken')
     if fbtoken:
-        fbname = facebook.getName(fbtoken)
+        fbname = facebook.getData(fbtoken)
 
     if request.method== 'POST' and not form.validate_on_submit():
         for field_name, field_errors in form.errors.items():
@@ -100,14 +100,16 @@ def reg_gen():
 
 @app.route('/fb')
 def fblogin():
-    print('jjj')
     code = request.args.get('code',False)
     if code:
         Res=facebook.getToken(request.base_url,code)
         if Res[0]:
             fbuid = facebook.getUID(Res[1])
             if dbUser.count(fbuid) is not 0 :
-                return '他媽你註冊過了噢'
+                user = dbUser.fbusercheck(fbuid)
+                user_obj = User(user['email'])
+                flask_login.login_user(user_obj)
+                return redirect(request.args.get("next") or url_for('main.index'))
             else:
                 resp = make_response(redirect(url_for('main.index')))
                 resp.set_cookie(key='fbreg', value='1', expires=time.time()+2)

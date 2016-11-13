@@ -65,6 +65,11 @@ class User:
         usern = user.find_one({"email": email})
         return usern
 
+    def fbusercheck(fbid):
+        user = db['Users']
+        usern = user.find_one({"fbid": fbid})
+        return usern
+        
     def add(email, password, name ,birthday , country , phone , postnum , address , education , grade , school ,major,lineid, fbid):
         user = db['Users']
         user.create_index("email", unique=True)
