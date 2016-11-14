@@ -247,6 +247,10 @@ $(function () {
 				uploadScript: null,
 				deleteScript: null,
 				captionPlaceholder: 'Type caption for image',
+				fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
+                url: '/mdupload/', // (string) A relative path to an upload script
+                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i // (regexp) Regexp of accepted file types
+            }
 				styles: {
 					slideshow: {
 						label: '<span class="fa fa-play"></span>',

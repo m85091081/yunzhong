@@ -1,4 +1,4 @@
-from flask import make_response, Response, request, render_template, Blueprint, url_for, redirect, session
+from flask import make_response, Response, request, render_template, Blueprint, url_for, redirect, session,jsonify
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
 classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 from core_module.dbmongo import User,Product,Pictures
@@ -167,21 +167,14 @@ def serve_picture(sha1):
     except IOError:
         loginform = loginForm()
         return render_template('404.html',**locals()), 404
-@app.route('/ckupload',methods=['POST'])
+@app.route('/mdupload',methods=['POST'])
 def ckupload():
-    url = ''
-    callback = request.args.get("CKEditorFuncNum")
-    if request.method == 'POST' and 'upload' in request.files:
-        f = request.files['upload']
+    url=""
+    if request.method == 'POST' and 'Content' in request.files:
+        f = request.files['Content']
         sha1 = uploadpicture(f)
         url = url_for('serve_picture',sha1=str(sha1))
-        res = """
-
-        <script type="text/javascript">
-          window.parent.CKEDITOR.tools.callFunction(%s, '%s');
-        </script>
-
-        """ % (callback, url)
-        resp = make_response(res)
-        resp.headers["Content-Type"]="text/html"
-        return resp
+        files=dict(url=url)
+        return jsonify(files=files)
+    else:
+        return jsonify(url=url)
