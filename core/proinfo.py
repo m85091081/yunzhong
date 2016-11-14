@@ -170,11 +170,13 @@ def serve_picture(sha1):
 @app.route('/mdupload',methods=['POST'])
 def ckupload():
     url=""
-    if request.method == 'POST' and 'Content' in request.files:
-        f = request.files['Content']
+    if request.method == 'POST' and 'files[]' in request.files:
+        f = request.files['files[]']
         sha1 = uploadpicture(f)
         url = url_for('serve_picture',sha1=str(sha1))
-        files=dict(url=url)
-        return jsonify(files=files)
+        return jsonify(files=[{"url":url}])
     else:
-        return jsonify(url=url)
+        files=[]
+        files.append(dict(url="http://linkesch.com/medium-editor-insert-plugin/uploads/01.jpg"))
+        return jsonify(files=files)
+
