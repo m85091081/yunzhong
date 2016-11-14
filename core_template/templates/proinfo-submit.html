@@ -6,33 +6,33 @@
 }
 </style>
 <style>
-        .medium-insert-images figure figcaption,
-        .mediumInsert figure figcaption,
-        .medium-insert-embeds figure figcaption,
-        .mediumInsert-embeds figure figcaption {
-            font-size: 12px;
-            line-height: 1.2em;
-        }
-        .medium-insert-images-slideshow figure {
-            width: 100%;
-        }
-        .medium-insert-images-slideshow figure img {
-            margin: 0;
-        }
-        .medium-insert-images.medium-insert-images-grid.small-grid figure {
-            width: 12.5%;
-        }
-        @media (max-width: 750px) {
-            .medium-insert-images.medium-insert-images-grid.small-grid figure {
-                width: 25%;
-            }
-        }
-        @media (max-width: 450px) {
-            .medium-insert-images.medium-insert-images-grid.small-grid figure {
-                width: 50%;
-            }
-        }
-    </style>
+.medium-insert-images figure figcaption,
+.mediumInsert figure figcaption,
+.medium-insert-embeds figure figcaption,
+.mediumInsert-embeds figure figcaption {
+	font-size: 12px;
+	line-height: 1.2em;
+}
+		.medium-insert-images-slideshow figure {
+			width: 100%;
+		}
+		.medium-insert-images-slideshow figure img {
+			margin: 0;
+		}
+		.medium-insert-images.medium-insert-images-grid.small-grid figure {
+			width: 12.5%;
+		}
+		@media (max-width: 750px) {
+			.medium-insert-images.medium-insert-images-grid.small-grid figure {
+				width: 25%;
+			}
+		}
+		@media (max-width: 450px) {
+			.medium-insert-images.medium-insert-images-grid.small-grid figure {
+				width: 50%;
+			}
+		}
+</style>
 <script>
 jQuery(document).ready(function() {
 	function img_preview(input){
@@ -61,35 +61,32 @@ jQuery(document).ready(function() {
 					<li class="active">課程提案</li>
 				</ol>
 			</div><!--in-breadcrumb-->
-		</div>
-		<div class="col-xs-12 col-md-12 col-sm-12 init">
-			<h1 class="page-header">
-				<i class="fa fa-picture-o" aria-hidden="true"></i>
-				封面上傳
-			</h1>
-			<center>
-				<div class="img_size">
-				</div>
+			<div class="col-xs-12 col-md-12 col-sm-12 init">
+				<h1 class="page-header">
+					<i class="fa fa-picture-o" aria-hidden="true"></i>
+					封面上傳
+				</h1>
+				<center>
+					<div class="img_size">
+					</div>
+					<label for="img_upload">
+						<img class="img_preview" style="max-width:100%;max-height:700px;">
+					</label>
+					<input name="img_upload" id="img_upload" type="file" style="display:none;" accept="image/*">
+				</center>
+				<div class="img-size"></div>
 				<label for="img_upload">
-					<img class="img_preview" style="max-width:100%;max-height:700px;">
+					<img src="/static/images/upload-background.png" id='back'>
 				</label>
-				<input name="img_upload" id="img_upload" type="file" style="display:none;" accept="image/*">
-			</center>
-			<div class="img-size">
+				<input name="img_upload" id="img_upload" type="file" style="display:none" accept="image/*">
+				<h1 class="page-header"></h1>
 			</div>
-			<label for="img_upload">
-				<img src="/static/images/upload-background.png" id='back'>
-			</label>
-			<input name="img_upload" id="img_upload" type="file" style="display:none" accept="image/*">
-			<h1 class="page-header"></h1>
-
-			<h1 class="page-header">
-				<i class="fa fa-th-large" aria-hidden="true"></i>
-				課程資訊
-			</h1>
-			<input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
-
 			<div class="col-xs-12 col-sm-12 col-md-12 init" >
+				<h1 class="page-header">
+					<i class="fa fa-th-large" aria-hidden="true"></i>
+					課程資訊
+				</h1>
+				<input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
 				<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
 					<label class="col-lg-2 col-sm-12 col-xs-12 control-label init">
 						<i class="fa fa-calendar" aria-hidden="true"></i>
@@ -126,44 +123,16 @@ jQuery(document).ready(function() {
 						<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
 					</div>
 				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 init" style="position:static;">
 				<h1 class="page-header">
 					<i class="fa fa-th-list" aria-hidden="true"></i>
 					課程簡介：
 				</h1>
+				<div class="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;"data-placeholder="plesase click to type"></div>
 			</div>
 		</div>
-        <div class="editable" style="outline: none; min-height: 38px; margin: 0 0 20px 0; padding: 0 0 20px 0;"data-placeholder="Type some text"></div>
 	</div>
-	<!--<ul class="row proinfo-info-box" style="padding: 0px 0px 0px 0px;">                    
-	 <li class="col-lg-6 col-xs-12" style="padding:0px 0px 0px 0px;">
-	 <div class="col-lg-3 col-sm-3">
-	 <i class="fa fa-calendar" aria-hidden="true"></i>
-	 活動日期：
-	 </div>
-	 <div class="col-lg-9 col-sm-9">
-	 <input type="text" class="form-control" placeholder="格式：2016/11/12">
-	 </div>
-	 </li>
-	 <li class="col-lg-6 col-xs-12">
-	 <i class="material-icons">place</i> 
-	 活動地點：
-	 <a href="#" target="_blank">
-	 </a>
-	 </li>
-	 <li class="col-lg-6 col-xs-12">
-	 <i class="material-icons">link</i>
-	 相關連結：
-	 <a href="#" target="_blank"></a>
-	 </li>
-	 <li class="col-lg-6 col-xs-12">
-	 <i class="material-icons">stars</i>
-	 主辦單位：
-	 <a href="#" target="_blank"></a>
-	 </li>
-	 </ul>-->
-</div>
-</div>
-</div>
 </div>
 <!-- CSS -->
 <link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/medium-editor.min.css">
@@ -184,37 +153,37 @@ jQuery(document).ready(function() {
 <script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script src="/static/bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
 <script>
-  var editor = new MediumEditor('.editable'
-            );
+var editor = new MediumEditor('.editable'
+		);
 
-        $(function () {
-            $('.editable').mediumInsert({
-                editor: editor,
-                addons: {
-                    images: {
-                        uploadScript: null,
-                        deleteScript: null,
-                        captionPlaceholder: 'Type caption for image',
-                        styles: {
-                            slideshow: {
-                                label: '<span class="fa fa-play"></span>',
-                                added: function ($el) {
-                                    $el
-                                        .data('cycle-center-vert', true)
-                                        .cycle({
-                                            slides: 'figure'
-                                        });
-                                },
-                                removed: function ($el) {
-                                    $el.cycle('destroy');
-                                }
-                            }
-                        },
-                        actions: null
-                    }
-                }
-            });
-        });
+$(function () {
+	$('.editable').mediumInsert({
+		editor: editor,
+		addons: {
+			images: {
+				uploadScript: null,
+				deleteScript: null,
+				captionPlaceholder: 'Type caption for image',
+				styles: {
+					slideshow: {
+						label: '<span class="fa fa-play"></span>',
+						added: function ($el) {
+							$el
+								.data('cycle-center-vert', true)
+								.cycle({
+									slides: 'figure'
+								});
+						},
+						removed: function ($el) {
+							$el.cycle('destroy');
+						}
+					}
+				},
+				actions: null
+			}
+		}
+	});
+});
 
 </script>
 {% endblock %}
