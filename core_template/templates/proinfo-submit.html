@@ -2,143 +2,267 @@
 {% block body %}
 <style>
 .init{
-    padding: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 </style>
 <script>
 jQuery(document).ready(function() {
-    function img_preview(input){
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                jQuery('.img_preview').attr('src', e.target.result);
-                var kb = format_float(e.total / 1024, 2);
-            }
-            reader.readAsDataURL(input.files[0]);
-            $('#back').hide();
-        }
-    }
-    jQuery("div").on("change", "#img_upload", function (){
-        img_preview(this);
-    });
+	function img_preview(input){
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				jQuery('.img_preview').attr('src', e.target.result);
+				var kb = format_float(e.total / 1024, 2);
+			}
+			reader.readAsDataURL(input.files[0]);
+			$('#back').hide();
+		}
+	}
+	jQuery("div").on("change", "#img_upload", function (){
+		img_preview(this);
+	});
 });
 </script>
 <div id="in-container" class="proinfo-box"> 
-    <div class="container">
-        <div class="row" style="margin-top: 20px">
-            <div class="col-xs-12 in-breadcrumb">
-                <ol class="breadcrumb">
-                    <li><a href="/">首頁</a></li>
-                    <li><a href="/class">培訓課程</a></li>
-                    <li class="active">課程提案</li>
-                </ol>
-            </div><!--in-breadcrumb-->
-        </div>
-        <div class="col-xs-12 col-md-12 col-sm-12 init">
-            <h1 class="page-header">
-                <i class="fa fa-picture-o" aria-hidden="true"></i>
-                封面上傳
-            </h1>
-            <center>
-                <div class="img_size">
-                </div>
-                <label for="img_upload">
-                    <img class="img_preview" style="max-width:100%;max-height:700px;">
-                </label>
-                <input name="img_upload" id="img_upload" type="file" style="display:none;" accept="image/*">
-            </center>
-            <div class="img-size">
-            </div>
-            <label for="img_upload">
-                <img src="/static/images/upload-background.png" id='back'>
-            </label>
-            <input name="img_upload" id="img_upload" type="file" style="display:none" accept="image/*">
-            <h1 class="page-header"></h1>
+	<div class="container">
+		<div class="row" style="margin-top: 20px">
+			<div class="col-xs-12 in-breadcrumb">
+				<ol class="breadcrumb">
+					<li><a href="/">首頁</a></li>
+					<li><a href="/class">培訓課程</a></li>
+					<li class="active">課程提案</li>
+				</ol>
+			</div><!--in-breadcrumb-->
+		</div>
+		<div class="col-xs-12 col-md-12 col-sm-12 init">
+			<h1 class="page-header">
+				<i class="fa fa-picture-o" aria-hidden="true"></i>
+				封面上傳
+			</h1>
+			<center>
+				<div class="img_size">
+				</div>
+				<label for="img_upload">
+					<img class="img_preview" style="max-width:100%;max-height:700px;">
+				</label>
+				<input name="img_upload" id="img_upload" type="file" style="display:none;" accept="image/*">
+			</center>
+			<div class="img-size">
+			</div>
+			<label for="img_upload">
+				<img src="/static/images/upload-background.png" id='back'>
+			</label>
+			<input name="img_upload" id="img_upload" type="file" style="display:none" accept="image/*">
+			<h1 class="page-header"></h1>
 
-            <h1 class="page-header">
-                <i class="fa fa-th-large" aria-hidden="true"></i>
-                課程資訊
-            </h1>
-            <input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
+			<h1 class="page-header">
+				<i class="fa fa-th-large" aria-hidden="true"></i>
+				課程資訊
+			</h1>
+			<input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
 
-            <div class="col-xs-12 col-sm-12 col-md-12 init" >
-                <div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-                    <label class="col-lg-2 col-sm-12 col-xs-12 control-label init">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        活動日期：
-                    </label>
-                    <div class="col-lg-8 col-sm-12 col-xs-12 init">
-                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-                    <label class="col-lg-2 col-sm-12 control-label init">
-                        <i class="fa fa-map-marker" aria-hidden="true" style="padding:2.68px"></i>
-                        活動地點：
-                    </label>
-                    <div class="col-lg-10 col-sm-12 col-xs-12 init">
-                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-                    <label class="col-lg-2 col-sm-12 control-label init">
-                        <i class="fa fa-link" aria-hidden="true"></i>
-                        相關連結：
-                    </label>
-                    <div class="col-lg-8 col-sm-12 init">
-                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-                    <label class="col-lg-2 col-sm-12 control-label init">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        主辦單位：
-                    </label>
-                    <div class="col-lg-10 col-sm-12 init" style="margin-bottom:20px">
-                        <input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-                    </div>
-                </div>
-                <h1 class="page-header">
-                    <i class="fa fa-th-list" aria-hidden="true"></i>
-                    課程簡介：
-                </h1>
-                <textarea class="form-control" name='content' id='editor' rows="10" style="margin-bottom:20px;"></textarea>
-            </div>
-            <!--<ul class="row proinfo-info-box" style="padding: 0px 0px 0px 0px;">                    
-                <li class="col-lg-6 col-xs-12" style="padding:0px 0px 0px 0px;">
-                <div class="col-lg-3 col-sm-3">
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-                活動日期：
-                </div>
-                <div class="col-lg-9 col-sm-9">
-                <input type="text" class="form-control" placeholder="格式：2016/11/12">
-                </div>
-                </li>
-                <li class="col-lg-6 col-xs-12">
-                <i class="material-icons">place</i> 
-                活動地點：
-                <a href="#" target="_blank">
-                </a>
-                </li>
-                <li class="col-lg-6 col-xs-12">
-                <i class="material-icons">link</i>
-                相關連結：
-                <a href="#" target="_blank"></a>
-                </li>
-                <li class="col-lg-6 col-xs-12">
-                <i class="material-icons">stars</i>
-                主辦單位：
-                <a href="#" target="_blank"></a>
-                </li>
-                </ul>-->
-        </div>
-    </div>
+			<div class="col-xs-12 col-sm-12 col-md-12 init" >
+				<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+					<label class="col-lg-2 col-sm-12 col-xs-12 control-label init">
+						<i class="fa fa-calendar" aria-hidden="true"></i>
+						活動日期：
+					</label>
+					<div class="col-lg-8 col-sm-12 col-xs-12 init">
+						<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+					<label class="col-lg-2 col-sm-12 control-label init">
+						<i class="fa fa-map-marker" aria-hidden="true" style="padding:2.68px"></i>
+						活動地點：
+					</label>
+					<div class="col-lg-10 col-sm-12 col-xs-12 init">
+						<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+					<label class="col-lg-2 col-sm-12 control-label init">
+						<i class="fa fa-link" aria-hidden="true"></i>
+						相關連結：
+					</label>
+					<div class="col-lg-8 col-sm-12 init">
+						<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+					<label class="col-lg-2 col-sm-12 control-label init">
+						<i class="fa fa-star" aria-hidden="true"></i>
+						主辦單位：
+					</label>
+					<div class="col-lg-10 col-sm-12 init" style="margin-bottom:20px">
+						<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+					</div>
+				</div>
+				<h1 class="page-header">
+					<i class="fa fa-th-list" aria-hidden="true"></i>
+					課程簡介：
+				</h1>
+				<div class="editable"></div>
+			</div>
+			<!--<ul class="row proinfo-info-box" style="padding: 0px 0px 0px 0px;">                    
+	   <li class="col-lg-6 col-xs-12" style="padding:0px 0px 0px 0px;">
+	   <div class="col-lg-3 col-sm-3">
+	   <i class="fa fa-calendar" aria-hidden="true"></i>
+	   活動日期：
+	   </div>
+	   <div class="col-lg-9 col-sm-9">
+	   <input type="text" class="form-control" placeholder="格式：2016/11/12">
+	   </div>
+	   </li>
+	   <li class="col-lg-6 col-xs-12">
+	   <i class="material-icons">place</i> 
+	   活動地點：
+	   <a href="#" target="_blank">
+	   </a>
+	   </li>
+	   <li class="col-lg-6 col-xs-12">
+	   <i class="material-icons">link</i>
+	   相關連結：
+	   <a href="#" target="_blank"></a>
+	   </li>
+	   <li class="col-lg-6 col-xs-12">
+	   <i class="material-icons">stars</i>
+	   主辦單位：
+	   <a href="#" target="_blank"></a>
+	   </li>
+	   </ul>-->
+		</div>
+	</div>
 </div>
 </div>
-<script src="{{ url_for('static', filename='js/ckeditor/ckeditor.js') }}"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/medium-editor.min.css">
+<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/themes/beagle.min.css" id="medium-editor-theme">
+<!-- Font Awesome for awesome icons. You can redefine icons used in a plugin configuration -->
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
+<link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
+<!-- JS -->
+<!-- JS -->
+<script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/bower_components/medium-editor/dist/js/medium-editor.js"></script>
+<script src="/static/bower_components/handlebars/handlebars.runtime.min.js"></script>
+<script src="/static/bower_components/jquery-sortable/source/js/jquery-sortable-min.js"></script>
+<!-- Unfortunately, jQuery File Upload Plugin has a few more dependencies itself -->
+<script src="/static/bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/static/bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/static/bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
 <script>
-	CKEDITOR.replace('editor',{
-		filebrowserImageUploadUrl: '/ckupload',
+var editor = new MediumEditor('.editable', {
+	toolbar: {
+		/* These are the default options for the toolbar,
+		   if nothing is passed this is what is used */
+		allowMultiParagraphSelection: true,
+		buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'quote'],
+		diffLeft: 0,
+		diffTop: -10,
+		firstButtonClass: 'medium-editor-button-first',
+		lastButtonClass: 'medium-editor-button-last',
+		relativeContainer: null,
+		standardizeSelectionStart: false,
+		static: false,
+		/* options which only apply when static is true */
+		align: 'center',
+		sticky: false,
+		updateOnEmptySelection: false
+	}
 });
+</script>
+<script>
+$(function () {
+	$('.editable').mediumInsert({
+		editor: editor, // (MediumEditor) Instance of MediumEditor
+		enabled: true, // (boolean) If the plugin is enabled
+		addons: { // (object) Addons configuration
+			images: { // (object) Image addon configuration
+				label: '<span class="fa fa-camera"></span>', // (string) A label for an image addon
+				uploadScript: null, // DEPRECATED: Use fileUploadOptions instead
+				deleteScript: 'delete.php', // (string) A relative path to a delete script
+				deleteMethod: 'POST',
+				fileDeleteOptions: {}, // (object) extra parameters send on the delete ajax request, see http://api.jquery.com/jquery.ajax/
+				preview: true, // (boolean) Show an image before it is uploaded (only in browsers that support this feature)
+				captions: true, // (boolean) Enable captions
+				captionPlaceholder: 'Type caption for image (optional)', // (string) Caption placeholder
+				autoGrid: 3, // (integer) Min number of images that automatically form a grid
+				formData: {}, // DEPRECATED: Use fileUploadOptions instead
+				fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
+					url: 'upload.php', // (string) A relative path to an upload script
+					acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i // (regexp) Regexp of accepted file types
+				},
+				styles: { // (object) Available image styles configuration
+					wide: { // (object) Image style configuration. Key is used as a class name added to an image, when the style is selected (.medium-insert-images-wide)
+		label: '<span class="fa fa-align-justify"></span>', // (string) A label for a style
+		added: function ($el) {}, // (function) Callback function called after the style was selected. A parameter $el is a current active paragraph (.medium-insert-active)
+		removed: function ($el) {} // (function) Callback function called after a different style was selected and this one was removed. A parameter $el is a current active paragraph (.medium-insert-active)
+	},
+					left: {
+						label: '<span class="fa fa-align-left"></span>'
+					},
+					right: {
+						label: '<span class="fa fa-align-right"></span>'
+					},
+					grid: {
+						label: '<span class="fa fa-th"></span>'
+					}
+				},
+				actions: { // (object) Actions for an optional second toolbar
+					remove: { // (object) Remove action configuration
+						label: '<span class="fa fa-times"></span>', // (string) Label for an action
+						clicked: function ($el) { // (function) Callback function called when an action is selected
+							var $event = $.Event('keydown');
+
+							$event.which = 8;
+							$(document).trigger($event);   
+						}
+					}
+				},
+				messages: {
+					acceptFileTypesError: 'This file is not in a supported format: ',
+					maxFileSizeError: 'This file is too big: '
+				},
+				uploadCompleted: function ($el, data) {}, // (function) Callback function called when upload is completed
+				uploadFailed: function (uploadErrors, data) {} // (function) Callback function called when upload failed
+			},
+			embeds: { // (object) Embeds addon configuration
+				label: '<span class="fa fa-youtube-play"></span>', // (string) A label for an embeds addon
+				placeholder: 'Paste a YouTube, Vimeo, Facebook, Twitter or Instagram link and press Enter', // (string) Placeholder displayed when entering URL to embed
+				captions: true, // (boolean) Enable captions
+				captionPlaceholder: 'Type caption (optional)', // (string) Caption placeholder
+				oembedProxy: 'http://medium.iframe.ly/api/oembed?iframe=1', // (string/null) URL to oEmbed proxy endpoint, such as Iframely, Embedly or your own. You are welcome to use "http://medium.iframe.ly/api/oembed?iframe=1" for your dev and testing needs, courtesy of Iframely. *Null* will make the plugin use pre-defined set of embed rules without making server calls.
+					styles: { // (object) Available embeds styles configuration
+						wide: { // (object) Embed style configuration. Key is used as a class name added to an embed, when the style is selected (.medium-insert-embeds-wide)
+							label: '<span class="fa fa-align-justify"></span>', // (string) A label for a style
+							added: function ($el) {}, // (function) Callback function called after the style was selected. A parameter $el is a current active paragraph (.medium-insert-active)
+							removed: function ($el) {} // (function) Callback function called after a different style was selected and this one was removed. A parameter $el is a current active paragraph (.medium-insert-active)
+						},
+						left: {
+							label: '<span class="fa fa-align-left"></span>'
+						},
+						right: {
+							label: '<span class="fa fa-align-right"></span>'
+						}
+					},
+				actions: { // (object) Actions for an optional second toolbar
+					remove: { // (object) Remove action configuration
+						label: '<span class="fa fa-times"></span>', // (string) Label for an action
+						clicked: function ($el) { // (function) Callback function called when an action is selected
+							var $event = $.Event('keydown');
+
+							$event.which = 8;
+							$(document).trigger($event);   
+						}
+					}
+				}
+			}
+		}
+	});
+});
+
 </script>
 {% endblock %}
