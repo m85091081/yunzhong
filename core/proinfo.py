@@ -168,15 +168,12 @@ def serve_picture(sha1):
         loginform = loginForm()
         return render_template('404.html',**locals()), 404
 @app.route('/mdupload',methods=['POST'])
-def ckupload():
-    url=""
+def mdupload():
     if request.method == 'POST' and 'files[]' in request.files:
         f = request.files['files[]']
         sha1 = uploadpicture(f)
         url = url_for('serve_picture',sha1=str(sha1))
         return jsonify(files=[{"url":url}])
     else:
-        files=[]
-        files.append(dict(url="http://linkesch.com/medium-editor-insert-plugin/uploads/01.jpg"))
-        return jsonify(files=files)
+        return False
 
