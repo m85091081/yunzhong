@@ -437,16 +437,7 @@ $(function(){
 
     function pageLoad(){
         $('.widget').widgster();
-        initSimpleChart();
-        initChangesChart();
-        initChangesYearChart();
-        initSalesChart();
-        initSalesChart2();
-        initRealTime1();
-        initYearsMap();
         initTiles();
-        initWeather();
-        initChat();
     }
 
     pageLoad();

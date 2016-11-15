@@ -1,7 +1,143 @@
 {% extends "admin/no_collaps.html"%}
-{% block siteInfoClass%}Active{%endblock%}
+{% block siteInfoClass%}active{%endblock%}
 {%block content%}
-<h1 class="page-title">Dashboard <small><small>總覽</small></small></h1>
+<h1 class="page-title">網站資訊 <small><small>總覽</small></small></h1>
 <div class="row">
+	<div class="col-md-6 col-sm-6">
+		<section class="widget bg-primary text-white">
+			<div class="widget-body clearfix">
+				<div class="row">
+					<div class="col-xs-3">
+						<span class="widget-icon">
+							<i class="glyphicon glyphicon-globe"></i>
+						</span>
+					</div>
+					<div class="col-xs-9">
+						<h5 class="no-margin">網站累積瀏覽次數</h5>
+						<p class="h2 no-margin fw-normal">4,332</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<h5 class="no-margin">Registrations</h5>
+						<p class="value4">+830</p>
+					</div>
+					<div class="col-xs-6">
+						<h5 class="no-margin">Bounce Rate</h5>
+						<p class="value4">4.5%</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<section class="widget bg-info text-white">
+			<div class="widget-body clearfix">
+				<div class="row">
+					<div class="col-xs-3">
+						<span class="widget-icon">
+							<i class=" glyphicon glyphicon-user"></i>
+						</span>
+					</div>
+					<div class="col-xs-9">
+						<div class="live-tile" data-mode="carousel" data-speed="750" data-delay="3000" data-height="57">
+							<div>
+								<h5 class="no-margin">VISITS TODAY</h5>
+								<p class="h2 no-margin fw-normal">12,324</p>
+							</div>
+							<div>
+								<h5 class="no-margin">VISITS YESTERDAY</h5>
+								<p class="h2 no-margin fw-normal">11,885</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<h5 class="no-margin">New Visitors</h5>
+						<div class="live-tile" data-mode="carousel" data-speed="750" data-delay="3000" data-height="25">
+							<div>
+								<p class="value4">1,332</p>
+							</div>
+							<div>
+								<p class="value4">20.1%</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<h5 class="no-margin">Bounce Rate</h5>
+						<div class="live-tile" data-mode="carousel" data-speed="750" data-delay="3000" data-height="26">
+							<div>
+								<p class="value4">217</p>
+							</div>
+							<div>
+								<p class="value4">2.3%</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 </div>
+<div class="row">
+	<div class="col-md-6 col-sm-6">
+		<section class="widget bg-primary text-white">
+			<div class="widget-body clearfix">
+				<div class="row">
+					<div class="col-xs-3">
+						<span class="widget-icon">
+							<i class="glyphicon glyphicon-globe"></i>
+						</span>
+					</div>
+					<div class="col-xs-9">
+						<h5 class="no-margin">網站累積瀏覽次數</h5>
+						<p class="h2 no-margin fw-normal">4,332</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<h5 class="no-margin">Registrations</h5>
+						<p class="value4">+830</p>
+					</div>
+					<div class="col-xs-6">
+						<h5 class="no-margin">Bounce Rate</h5>
+						<p class="value4">4.5%</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="col-md-6 col-sm-6">
+		<section class="widget bg-primary text-white">
+			<div class="widget-body clearfix">
+				<div class="row">
+					<div class="col-xs-3">
+						<span class="widget-icon">
+							<i class="glyphicon glyphicon-globe"></i>
+						</span>
+					</div>
+					<div class="col-xs-9">
+						<h5 class="no-margin">網站累積瀏覽次數</h5>
+						<p class="h2 no-margin fw-normal">4,332</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<h5 class="no-margin">Registrations</h5>
+						<p class="value4">+830</p>
+					</div>
+					<div class="col-xs-6">
+						<h5 class="no-margin">Bounce Rate</h5>
+						<p class="value4">4.5%</p>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script src="/static/admin/js/widgets.js"></script>
+{%endblock%}
+{% block script%}
+<script src="/static/admin/js/widgets.js"></script>
 {%endblock%}
