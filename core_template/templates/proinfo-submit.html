@@ -31,6 +31,14 @@
 			padding: 0px 0px 0px 0px;
 		}
 </style>
+<script src="/static/js/jquery.Jcrop.min.js"></script>
+<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/static/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/static/js/jquery.fileupload-image.js"></script>
 <div id="in-container" class="proinfo-box"> 
 	<div class="container">
 		<div class="row" style="margin-top: 20px;">
@@ -59,7 +67,7 @@
 									<label for="img_upload">
 										<img class="img_preview" style="max-width:100%;max-height:700px;">
 									</label>
-									<input name="img_upload" id="img_upload" type="file" style="display:none;" data-url="/mdupload" accept="image/*">
+									<input name="img_upload" id="img_upload" type="file" accept="image/*" style="display:none;">
 								</center>
 								<div class="img_size"></div>
 								<label for="img_upload">
@@ -246,7 +254,7 @@ $(function () {
 
 </script>
 <script>
-jQuery(document).ready(function() {
+/*jQuery(document).ready(function() {
 	function img_preview(input){
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
@@ -262,6 +270,18 @@ jQuery(document).ready(function() {
 	jQuery("div").on("change", "#img_upload", function (){
 		img_preview(this);
 	});
+});*/
+$('.img_preview').fileupload({
+    url: '//jquery-file-upload.appspot.com/',
+	dataType: 'json',
+			    // Enable image resizing, except for Android and Opera,
+			    // which actually support image resizing, but fail to
+			    // send Blob objects via XHR requests:
+	disableImageResize: /Android(?!.*Chrome)|Opera/
+		.test(window.navigator && navigator.userAgent),
+	imageMaxWidth: 800,
+	imageMaxHeight: 800,
+	imageCrop: true // Force cropped images
 });
 </script>
 {% endblock %}
