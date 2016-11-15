@@ -104,7 +104,13 @@ def delclr():
 def submitpro():
     loginform = loginForm()
     if request.method == 'GET':
-        return render_template('proinfo-submit.html' , **locals())
+        return render_template('lesson.html' , **locals())
+
+@proinfo.route('/submit',methods=['GET','POST'])
+def submitprinfoo():
+    loginform = loginForm()
+    if request.method == 'GET':
+        return render_template('event.html' , **locals())
 
 @proinfo.route('/shop', methods=['GET', 'POST'])
 def shop():
