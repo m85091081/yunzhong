@@ -31,25 +31,14 @@
 			padding: 0px 0px 0px 0px;
 		}
 </style>
-<script>
-jQuery(document).ready(function() {
-	function img_preview(input){
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				jQuery('.img_preview').attr('src', e.target.result);
-				var kb = format_float(e.total / 1024, 2);
-			}
-			reader.readAsDataURL(input.files[0]);
-			$('#back').hide();
-			$('#back1').hide();
-		}
-	}
-	jQuery("div").on("change", "#img_upload", function (){
-		img_preview(this);
-	});
-});
-</script>
+<script src="/static/js/jquery.Jcrop.min.js"></script>
+<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/static/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="/static/js/jquery.fileupload-image.js"></script>
 <div id="in-container" class="proinfo-box"> 
 	<div class="container">
 		<div class="row" style="margin-top: 20px;">
@@ -61,13 +50,13 @@ jQuery(document).ready(function() {
 				</ol>
 			</div><!--in-breadcrumb-->
 			<ul class="nav nav-tabs nav-justified">
-				<li class="active"><a data-toggle="tab" href="#lesson">課程提案</a></li>
-				<li><a data-toggle="tab" href="#event">活動提案</a></li>
+				<li class="active"><a data-toggle="tab" href="/class/submit#lesson">課程提案</a></li>
+				<li><a data-toggle="tab" href="/class/submit#event">活動提案</a></li>
 			</ul>
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="tab-content">
-						<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade in active" id="lesson">
+						<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade in active" id="lesson" style="position:static;">
 							<div class="col-xs-12 col-md-12 col-sm-12 init">
 								<h1 class="page-header">
 									<i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -78,7 +67,7 @@ jQuery(document).ready(function() {
 									<label for="img_upload">
 										<img class="img_preview" style="max-width:100%;max-height:700px;">
 									</label>
-									<input name="img_upload" id="img_upload" type="file" style="display:none;" accept="image/*">
+									<input name="img_upload" id="img_upload" type="file" accept="image/*" style="display:none;">
 								</center>
 								<div class="img_size"></div>
 								<label for="img_upload">
@@ -138,7 +127,7 @@ jQuery(document).ready(function() {
 								<div class="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;"data-placeholder="plesase click to type"></div>
 							</div>
 						</div>
-						<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade" id="event">
+						<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade" id="event" style="position:static;">
 							<div class="col-xs-12 col-md-12 col-sm-12 init">
 								<h1 class="page-header">
 									<i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -206,7 +195,7 @@ jQuery(document).ready(function() {
 									<i class="fa fa-th-list" aria-hidden="true"></i>
 									課程簡介：
 								</h1>
-								<div class="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;"data-placeholder="plesase click to type"></div>
+								<div class="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;"data-placeholder="please click to type"></div>
 							</div>
 						</div>
 					</div>
@@ -222,7 +211,7 @@ jQuery(document).ready(function() {
 </div>
 <!-- CSS -->
 <link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/medium-editor.min.css">
-<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/themes/beagle.css" id="medium-editor-theme">
+<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/themes/beagle.min.css" id="medium-editor-theme">
 <!-- Font Awesome for awesome icons. You can redefine icons used in a plugin configuration -->
 <link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
 <link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
@@ -237,7 +226,8 @@ jQuery(document).ready(function() {
 <script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script src="/static/bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
 <script>
-var editor = new MediumEditor('.editable');
+var editor = new MediumEditor('.editable',{
+});
 
 $(function () {
 	$('.editable').mediumInsert({
@@ -247,30 +237,51 @@ $(function () {
 				uploadScript: null,
 				deleteScript: null,
 				captionPlaceholder: 'Type caption for image',
-				fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
-                url: '/mdupload', // (string) A relative path to an upload script
-                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i // (regexp) Regexp of accepted file types
-            },
-				styles: {
-					slideshow: {
-						label: '<span class="fa fa-play"></span>',
-						added: function ($el) {
-							$el
-								.data('cycle-center-vert', true)
-								.cycle({
-									slides: 'figure'
-								});
-						},
-						removed: function ($el) {
-							$el.cycle('destroy');
-						}
-					}
+				fileUploadOptions: {
+					url: '/mdupload',
+					acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
+					maxFileSize:3000000,
 				},
-				actions: null
+				actions: null,
+				messages: {
+					acceptFileTypesError: '上傳格式只接受jpg,png：',
+					maxFileSizeError: '圖片大小請小於3MB: ',
+				},
 			}
 		}
 	});
 });
 
+</script>
+<script>
+/*jQuery(document).ready(function() {
+	function img_preview(input){
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				jQuery('.img_preview').attr('src', e.target.result);
+				var kb = format_float(e.total / 1024, 2);
+			}
+			reader.readAsDataURL(input.files[0]);
+			$('#back').hide();
+			$('#back1').hide();
+		}
+	}
+	jQuery("div").on("change", "#img_upload", function (){
+		img_preview(this);
+	});
+});*/
+$('.img_preview').fileupload({
+    url: '//jquery-file-upload.appspot.com/',
+	dataType: 'json',
+			    // Enable image resizing, except for Android and Opera,
+			    // which actually support image resizing, but fail to
+			    // send Blob objects via XHR requests:
+	disableImageResize: /Android(?!.*Chrome)|Opera/
+		.test(window.navigator && navigator.userAgent),
+	imageMaxWidth: 800,
+	imageMaxHeight: 800,
+	imageCrop: true // Force cropped images
+});
 </script>
 {% endblock %}
