@@ -168,13 +168,12 @@ def serve_picture(sha1):
         loginform = loginForm()
         return render_template('404.html',**locals()), 404
 @app.route('/mdupload',methods=['POST'])
-def ckupload():
-    url=""
-    if request.method == 'POST' and 'Content' in request.files:
-        f = request.files['Content']
+def mdupload():
+    if request.method == 'POST' and 'files[]' in request.files:
+        f = request.files['files[]']
         sha1 = uploadpicture(f)
         url = url_for('serve_picture',sha1=str(sha1))
-        files=dict(url=url)
-        return jsonify(files=files)
+        return jsonify(files=[{"url":url}])
     else:
-        return jsonify(url=url)
+        return False
+
