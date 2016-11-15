@@ -49,14 +49,15 @@
 					<li class="active">課程提案</li>
 				</ol>
 			</div><!--in-breadcrumb-->
-			<ul class="nav nav-tabs nav-justified">
-				<li class="active"><a data-toggle="tab" href="/class/submit#lesson">課程提案</a></li>
-				<li><a data-toggle="tab" href="/class/submit#event">活動提案</a></li>
+			<ul class="nav nav-tabs nav-justified" id="myTabs">
+				<li class="{%block lessonactive%}{%endblock%}"><a href="/class/submit">課程提案</a></li>
+				<li class="{%block eventactive%}{%endblock%}"><a href="/proinfo/submit">活動提案</a></li>
 			</ul>
+			<form method='POST' action="{% block action %}{%endblock%}">
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="tab-content">
-						<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade in active" id="lesson" style="position:static;">
+						<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade in active" style="position:static;">
 							<div class="col-xs-12 col-md-12 col-sm-12 init">
 								<h1 class="page-header">
 									<i class="fa fa-picture-o" aria-hidden="true"></i>
@@ -127,77 +128,6 @@
 								<div class="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;"data-placeholder="plesase click to type"></div>
 							</div>
 						</div>
-						<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade" id="event" style="position:static;">
-							<div class="col-xs-12 col-md-12 col-sm-12 init">
-								<h1 class="page-header">
-									<i class="fa fa-picture-o" aria-hidden="true"></i>
-									封面上傳gd
-								</h1>
-								<center>
-									<div class="img_size"></div>
-									<label for="img_upload">
-										<img class="img_preview" style="max-width:100%;max-height:700px;">
-									</label>
-									<input name="img_upload" id="img_upload" type="file" style="display:none;" accept="image/*">
-								</center>
-								<div class="img_size"></div>
-								<label for="img_upload">
-									<img src="/static/images/upload-background.png" id='back1'>
-								</label>
-								<input name="img_upload" id="img_upload" type="file" style="display:none" accept="image/*">
-								<h1 class="page-header"></h1>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-12 init" >
-								<h1 class="page-header">
-									<i class="fa fa-th-large" aria-hidden="true"></i>
-									課程資訊
-								</h1>
-								<input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
-								<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-									<label class="col-lg-2 col-sm-12 col-xs-12 control-label init">
-										<i class="fa fa-calendar" aria-hidden="true"></i>
-										活動日期：
-									</label>
-									<div class="col-lg-8 col-sm-12 col-xs-12 init">
-										<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-									<label class="col-lg-2 col-sm-12 control-label init">
-										<i class="fa fa-map-marker" aria-hidden="true" style="padding:2.68px"></i>
-										活動地點：
-									</label>
-									<div class="col-lg-10 col-sm-12 col-xs-12 init">
-										<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-									<label class="col-lg-2 col-sm-12 control-label init">
-										<i class="fa fa-link" aria-hidden="true"></i>
-										相關連結：
-									</label>
-									<div class="col-lg-8 col-sm-12 init">
-										<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-									</div>
-								</div>
-								<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
-									<label class="col-lg-2 col-sm-12 control-label init">
-										<i class="fa fa-star" aria-hidden="true"></i>
-										主辦單位：
-									</label>
-									<div class="col-lg-10 col-sm-12 init" style="margin-bottom:20px">
-										<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-12 init" style="position:static;">
-								<h1 class="page-header">
-									<i class="fa fa-th-list" aria-hidden="true"></i>
-									課程簡介：
-								</h1>
-								<div class="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;"data-placeholder="please click to type"></div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -205,6 +135,7 @@
 			<div class="col-md-4 col-xs-4 col-sm-4 init" style="text-align:center;margin-bottom:50px;">
 				<button type="submit" value="Go" class="btn btn-default">註冊</button>
 			</div>
+			</form>
 			<div class="col-md-4 col-xs-4 col-sm-4 init"></div>
 		</div>
 	</div>
@@ -225,6 +156,19 @@
 <script src="/static/bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
 <script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script src="/static/bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
+<script>
+// Javascript to enable link to tab
+var url = document.location.toString();
+console.log(url);
+if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+} 
+
+// Change hash for page-reload
+$('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+})
+</script>
 <script>
 var editor = new MediumEditor('.editable',{
 });

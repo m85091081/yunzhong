@@ -48,6 +48,9 @@ class User:
             return True
         else:
             return False
+    def find():
+        user = db['Users']
+        return user.find()
     def count(val):
         if val is "all" :
             user = db['Users']
