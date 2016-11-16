@@ -133,24 +133,6 @@
 		</div>
 	</div>
 </div>
-{% block modal %}
-<div class="modal fade" id="modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="modalLabel">Crop the image</h4>
-			</div>
-			<div class="modal-body">
-				<div class="tab-content">
-					<img id="image" class="img_preview" style="max-width:100%;max-height:700px;">
-				</div>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
-{% endblock %}
 <!-- CSS -->
 <link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/medium-editor.min.css">
 <link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/themes/beagle.min.css" id="medium-editor-theme">
@@ -248,4 +230,22 @@ $(function () {
 	});
 });
 </script>
+{% endblock %}
+{% block modal %}
+<div class="modal fade" id="modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modalLabel">Crop the image</h4>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content">
+					<img id="image" class="img_preview" style="max-width:100%;max-height:700px;">
+				</div>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
