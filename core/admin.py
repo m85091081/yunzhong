@@ -6,7 +6,9 @@ admbp = Blueprint('admbp', __name__ , template_folder='../core_template/template
 
 @admbp.route('/')
 def admindex():
-    return render_template('admin/index.html')
+    allmem = dbmongo.User.find()
+    allmemcount = allmem.count()
+    return render_template('admin/index.html',**locals())
 
 @admbp.route('/user')
 def admuser():
@@ -15,6 +17,7 @@ def admuser():
     if q:
         search = True
     allmem = dbmongo.User.find()
+    allmemcount = allmem.count()
     page = request.args.get('page', type=int, default=1)
     pagemem = dbmongo.User.find().limit(30).skip((int(page)-1)*30)
     pagin = Pagination(page=page,per_page=30,bs_version=3,total=allmem.count(),search=search,record_name='allmem')
