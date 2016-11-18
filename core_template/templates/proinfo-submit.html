@@ -30,6 +30,22 @@
 		.init{
 			padding: 0px 0px 0px 0px;
 		}
+		.fileUpload {
+			position: relative;
+			overflow: hidden;
+			margin: 10px;
+		}
+		.fileUpload input.upload {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
 </style>
 <div id="in-container" class="proinfo-box"> 
 	<div class="container">
@@ -56,19 +72,14 @@
 										封面上傳
 									</h1>
 									<center>
-										<img class="img_preview" style="max-width:100%;max-height:700px;">
-										<input name="files[]" id="img_upload" data-url="/mdupload" type="file" accept="image/*" style="display:none;">
+										<!--<label for="img_upload" class="btn btn-default">
+			  <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
+			  <span>upload</span>
+			  </label>-->
+			  							<button type="button" class="btn btn-primary btn-lg" data-target="#modal" data-toggle="modal">
+				  							按此上傳圖片
+			  							</button>
 									</center>
-									<div class="img_size"></div>
-									<label for="img_upload">
-										<img src="/static/images/upload-background.png" id='back'>
-									</label>
-									<input name="img_upload" id="img_upload" type="file" style="display:none" accept="image/*">
-									<h1 class="page-header"></h1>
-									<!-- Button trigger modal -->
-									<button type="button" class="btn btn-primary btn-lg" data-target="#modal" data-toggle="modal">
-										Launch demo modal
-									</button>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 init" >
 									<h1 class="page-header">
@@ -140,6 +151,7 @@
 <link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
 <link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
 <link rel="stylesheet" href="/static/css/cropper.css">
+<link rel="stylesheet" href="/static/css/cropper_setting.css">
 <!-- JS -->
 <!-- JS -->
 <script src="/static/bower_components/medium-editor/dist/js/medium-editor.js"></script>
@@ -151,10 +163,11 @@
 <script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script src="/static/bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
 <script src="/static/js/cropper.js"></script>
+<script src="/static/js/cropper_setting.js"></script>
+<script src="/static/js/tether.min.js"></script>
 <script>
 var editor = new MediumEditor('.editable',{
 });
-
 $(function () {
 	$('.editable').mediumInsert({
 		editor: editor,
@@ -204,8 +217,8 @@ $(function () {
 		done: function (e, data) {
 			$.each(data.result.files, function (index, file) {
 				$('.img_preview').attr('src',file.url);
+				$('#bb').show();
 			});
-			$('#back').hide();
 		}
 	});
 });
@@ -217,7 +230,10 @@ $(function () {
 	var canvasData;
 	$('#modal').on('shown.bs.modal', function () {
 		$image.cropper({
-			autoCropArea: 0.5,
+			aspectRatio: 16 / 9,
+			viewMode: 2,
+			responsive: true,
+			zoomable: false,
 			built: function () {
 				$image.cropper('setCanvasData', canvasData);
 				$image.cropper('setCropBoxData', cropBoxData);
@@ -227,6 +243,7 @@ $(function () {
 		cropBoxData = $image.cropper('getCropBoxData');
 		canvasData = $image.cropper('getCanvasData');
 		$image.cropper('destroy');
+		cropper.getCroppedCanvas();
 	});
 });
 </script>
@@ -240,10 +257,18 @@ $(function () {
 				<h4 class="modal-title" id="modalLabel">Crop the image</h4>
 			</div>
 			<div class="modal-body">
+				<center>
+					<div class="fileUpload btn btn-primary">
+						<span>檔案上傳</span>
+						<input type="file" data-url="/mdupload" class="upload" accept="image/*" id="img_upload">
+					</div>
+				</center>
 				<div class="tab-content">
 					<img id="image" class="img_preview" style="max-width:100%;max-height:700px;">
 				</div>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary btn-lg" style="display:none;" id="bb">
+					確認
+				</button>
 			</div>
 		</div>
 	</div>
