@@ -116,6 +116,7 @@ class User:
         print(user.insert_one(raw).inserted_id)
         return True
     
+
 class Pictures:
     def savepicture(content,mime,sha1):
         picture = db['pictures']
@@ -132,8 +133,32 @@ class Pictures:
             pass
         return sha1
 
-
     def getpicture(sha1):
         picture = db['pictures']
         return picture.find_one({'sha1':sha1})
+
+
+class Visit:
+    def init():
+        Visit = db['Visit']
+        Visit.create_index("day",unique=True)
+        raw = {
+                "count":0,
+                "day":"all",
+                }
+        try:
+            print(Visit.insert_one(raw).inserted_id)
+        except:
+            pass
+        return True
+
+    def count():
+        Visit = db['Visit']
+        return Visit.find_one({"day":"all"})
+
+    def incount():
+        Visit = db['Visit']
+        Visit.update({"day":"all"},{"$inc":{"count":1}})
+        return True
+
 

@@ -8,6 +8,7 @@ admbp = Blueprint('admbp', __name__ , template_folder='../core_template/template
 def admindex():
     allmem = dbmongo.User.find()
     allmemcount = allmem.count()
+    allvisit = dbmongo.Visit.count()["count"]
     return render_template('admin/index.html',**locals())
 
 @admbp.route('/user')
