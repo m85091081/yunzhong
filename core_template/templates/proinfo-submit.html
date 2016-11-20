@@ -76,9 +76,9 @@
 			  <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
 			  <span>upload</span>
 			  </label>-->
-			  							<button type="button" class="btn btn-primary btn-lg" data-target="#modal" data-toggle="modal">
-				  							按此上傳圖片
-			  							</button>
+			  <button type="button" class="btn btn-default" data-target="#modal" data-toggle="modal">
+				  按此上傳圖片
+			  </button>
 									</center>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 init" >
@@ -218,6 +218,7 @@ $(function () {
 			$.each(data.result.files, function (index, file) {
 				$('.img_preview').attr('src',file.url);
 				$('#bb').show();
+				$('#modal').modal('hide');
 			});
 		}
 	});
@@ -258,17 +259,17 @@ $(function () {
 			</div>
 			<div class="modal-body">
 				<center>
-					<div class="fileUpload btn btn-primary">
-						<span>檔案上傳</span>
+					<div class="tab-content">
+						<img id="image" class="img_preview" style="max-width:100%;max-height:700px;">
+					</div>
+					<div class="fileUpload btn btn-default">
+						<span>瀏覽</span>
 						<input type="file" data-url="/mdupload" class="upload" accept="image/*" id="img_upload">
 					</div>
+					<button type="button" class="btn btn-default" style="display:none;" id="bb">
+						確認
+					</button>
 				</center>
-				<div class="tab-content">
-					<img id="image" class="img_preview" style="max-width:100%;max-height:700px;">
-				</div>
-				<button type="button" class="btn btn-primary btn-lg" style="display:none;" id="bb">
-					確認
-				</button>
 			</div>
 		</div>
 	</div>
