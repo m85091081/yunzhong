@@ -217,8 +217,8 @@ $(function () {
 		done: function (e, data) {
 			$.each(data.result.files, function (index, file) {
 				$('.img_preview').attr('src',file.url);
-				$('#bb').show();
 				$('#modal').modal('hide');
+				$('#modal1').modal('show');
 			});
 		}
 	});
@@ -229,7 +229,7 @@ $(function () {
 	var $image = $('#image');
 	var cropBoxData;
 	var canvasData;
-	$('#modal').on('shown.bs.modal', function () {
+	$('#modal1').on('shown.bs.modal', function () {
 		$image.cropper({
 			aspectRatio: 16 / 9,
 			viewMode: 2,
@@ -259,14 +259,31 @@ $(function () {
 			</div>
 			<div class="modal-body">
 				<center>
-					<div class="tab-content">
-						<img id="image" class="img_preview" style="max-width:100%;max-height:700px;">
-					</div>
 					<div class="fileUpload btn btn-default">
 						<span>瀏覽</span>
 						<input type="file" data-url="/mdupload" class="upload" accept="image/*" id="img_upload">
 					</div>
-					<button type="button" class="btn btn-default" style="display:none;" id="bb">
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modal1" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modalLabel">Crop the image</h4>
+			</div>
+			<div class="modal-body">
+				<center>
+					<div class="tab-content">
+						<img id="image" class="img_preview" style="max-width:100%;max-height:700px;">
+					</div>
+					<button type="button" class="btn btn-default" onclick="javascript:$('#modal1').modal('hide');$('#modal').modal('show');">
+						返回
+					</button>
+					<button type="button" class="btn btn-default">
 						確認
 					</button>
 				</center>
