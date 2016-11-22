@@ -1,7 +1,7 @@
 import datetime
 import conf.setting as setting
 from pymongo import MongoClient
-
+import pymongo
 client = MongoClient(setting.mongohost)
 db = client['Yunzhong']
 class InitDB:
@@ -139,26 +139,14 @@ class Pictures:
 
 
 class Visit:
-    def init():
-        Visit = db['Visit']
-        Visit.create_index("day",unique=True)
-        raw = {
-                "count":0,
-                "day":"all",
-                }
-        try:
-            print(Visit.insert_one(raw).inserted_id)
-        except:
-            pass
-        return True
-
     def count():
         Visit = db['Visit']
-        return Visit.find_one({"day":"all"})
+        return [Visit.find_one({"day":"all"}),Visit.find_one({"day":str(datetime.datetime.today().date())})]
 
     def incount():
         Visit = db['Visit']
-        Visit.update({"day":"all"},{"$inc":{"count":1}})
+        Visit.update({"day":"all"},{"$inc":{"count":1}},upsert=True)
+        Visit.update({"day":str(datetime.datetime.today().date())},{"$inc":{"count":1}},upsert=True)
         return True
 
 
