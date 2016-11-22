@@ -74,8 +74,8 @@
 									</h1>
 									<center>
 										<div class="img_size"></div>
-											<img id="imgtest" src="/static/images/upload-background.png" onclick=" $('#modal').modal('show'); " style="max-width:100%;max-height:700px;">
-			  			</center>
+										<img id="imgtest" src="/static/images/upload-background.png" onclick=" $('#modal').modal('show'); " style="max-width:100%;max-height:700px;">
+									</center>
 								</div>
 								{{ form.cover(id_="cover",style="display:none") }}
 								<div class="col-xs-12 col-sm-12 col-md-12 init" >
@@ -216,6 +216,7 @@ $(function () {
 				$('.img_preview').attr('src',file.url);
 				$('#modal').modal('hide');
 				$('#modal1').modal('show');
+				$('#upload_background').hide();
 			});
 		}
 	});
@@ -236,7 +237,7 @@ $(function () {
 		});
 	}).on('hidden.bs.modal', function () {
 		var u = $('#image').cropper('getCroppedCanvas').toDataURL() ;
-		        $('#imgtest').attr('src',u);
+		$('#imgtest').attr('src',u);
 		console.log(u);
 	});
 });
