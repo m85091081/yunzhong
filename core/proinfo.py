@@ -35,7 +35,6 @@ def showinfo(url):
 @classrom.route('/submit',methods=['GET','POST'])
 def submitpro():
     loginform = loginForm()
-    form = submitclassinfo()
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
 
@@ -51,7 +50,6 @@ def actshowinfo(url):
 @act.route('/submit',methods=['GET','POST'])
 def submitprinfoo():
     loginform = loginForm()
-    form = submitclassinfo()
     if request.method == 'GET':
         return render_template('event.html' , **locals())
 

@@ -15,11 +15,19 @@ class Product:
     def verfiyclass():
         prod = db['Product']
         return prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
-    
+   
+    def stayclass():
+        prod = db['Product']
+        return prod.find({'$and':[{ 'verfiy': False},{'activity': False}]})
+
     def verfiyacti():
         prod = db['Product']
-        return prod.find({'verfiy': True},{'activity': True})
-    
+        return prod.find({'$and':[{'verfiy': True},{'activity': True}]})
+   
+    def stayacti():
+        prod = db['Product']
+        return prod.find({'$and':[{'verfiy': False},{'activity': True}]})
+
     def getdata(url):
         prod = db['Product']
         produ = prod.find_one({"url": url})
@@ -29,7 +37,7 @@ class Product:
         prod = db['Product']
         prod.create_index("url", unique=True)
         raw = {
-                "verfiy":verfiy, ##布林
+                "verfiy":bool(verfiy), ##布林
                 "activity": bool(activity), ##他媽是不是活動
                 "url":str(url), 
                 "title":str(title),
@@ -63,9 +71,15 @@ class User:
         if val is "all" :
             user = db['Users']
             return user.count()
+        elif val is "student":
+            user = db['Users']
+            return user.find({'school':{'$ne':None}}).count()
         elif val is "company":
             user = db['Users']
-            return user.find({'companyid': {'$ne': None}}).count()
+            return user.find({'companyid':{'$ne':None}}).count()
+        elif val is "general":
+            user =db['Users']
+            return user.find({'companyname':{'$ne':None}}).count()
         else:
             user = db['Users']
             return user.find({'fbid': val}).count()

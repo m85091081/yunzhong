@@ -60,7 +60,6 @@
 				<li class="{%block eventactive%}{%endblock%}"><a href="/acti/submit">活動提案</a></li>
 			</ul>
 			<form method='POST' action="{% block action %}{%endblock%}">
-				{{ form.csrf_token }}
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="tab-content">
@@ -74,20 +73,20 @@
 										<img id="imgtest" src="/static/images/upload-background.png" onclick=" $('#modal').modal('show'); " style="max-width:100%;max-height:700px;">
 									</center>
 								</div>
-								{{ form.cover(id_="cover",style="display:none") }}
+									<input type="text" class="form-control" style="display:none">
 								<div class="col-xs-12 col-sm-12 col-md-12 init" >
 									<h1 class="page-header">
 										<i class="fa fa-th-large" aria-hidden="true"></i>
 										課程資訊
 									</h1>
-									{{ form.name(class_="form-control",style="margin-bottom:20px") }}
+									<input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
 										<label class="col-lg-2 col-sm-12 col-xs-12 control-label init">
 											<i class="fa fa-calendar" aria-hidden="true"></i>
 											活動日期：
 										</label>
 										<div class="col-lg-8 col-sm-12 col-xs-12 init">
-											{{ form.start(class_="form-control input-sm") }}
+											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
@@ -96,7 +95,7 @@
 											活動地點：
 										</label>
 										<div class="col-lg-10 col-sm-12 col-xs-12 init">
-											{{ form.address(class_="form-control input-sm") }}
+											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
@@ -105,7 +104,7 @@
 											相關連結：
 										</label>
 										<div class="col-lg-8 col-sm-12 init">
-											{{ form.link(class_="form-control input-sm") }}
+											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
@@ -114,7 +113,7 @@
 											主辦單位：
 										</label>
 										<div class="col-lg-10 col-sm-12 init" style="margin-bottom:20px">
-											{{ form.organizer(class_="form-control input-sm") }}
+											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
 										</div>
 									</div>
 								</div>
@@ -236,7 +235,7 @@ $(function () {
 			}
 		});
 	}).on('hidden.bs.modal', function () {
-		var u = $('#image').cropper('getCroppedCanvas').toDataURL() ;
+		var u = $('#image').cropper('getCroppedCanvas').toDataURL('image/jpeg') ;
 		$('#imgtest').attr('src',u);
 		$('#image').cropper('destroy');
 		console.log(u);

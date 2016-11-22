@@ -6,8 +6,16 @@ admbp = Blueprint('admbp', __name__ , template_folder='../core_template/template
 
 @admbp.route('/')
 def admindex():
-    allmem = dbmongo.User.find()
-    allmemcount = allmem.count()
+    allmem = dbmongo.User
+    allmemcount = allmem.count("all")
+    allstdcount = allmem.count("student")
+    allgencount = allmem.count("general")
+    allcocount  = allmem.count("company")
+    allprod = dbmongo.Product
+    allvfyclass = allprod.verfiyclass().count()
+    allvfyacti  = allprod.verfiyacti().count()
+    allstayclass= allprod.stayclass().count()
+    allstayacti = allprod.stayacti().count()
     visit = dbmongo.Visit.count()
     allvisit = visit[0]["count"]
     todayvisit = visit[1][0]["count"]
