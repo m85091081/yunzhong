@@ -6,6 +6,7 @@ client = MongoClient(setting.mongohost)
 db = client['Yunzhong']
 class InitDB:
     user = db['Users']
+
 class Product:
     def count(val):
         prod = db['Product']
