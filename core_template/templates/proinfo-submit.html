@@ -210,7 +210,7 @@ jQuery(document).ready(function() {
 /*$(function () {
 $('#img_upload').fileupload({
 dataType: 'json',
-done: function (e, data) {
+one: function (e, data) {
 $.each(data.result.files, function (index, file) {
 $('.img_preview').attr('src',file.url);
 $('#modal').modal('hide');
@@ -237,6 +237,7 @@ $(function () {
 	}).on('hidden.bs.modal', function () {
 		var u = $('#image').cropper('getCroppedCanvas').toDataURL() ;
 		$('#imgtest').attr('src',u);
+		$('#image').cropper('destroy');
 		console.log(u);
 	});
 });
