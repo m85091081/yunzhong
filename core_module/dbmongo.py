@@ -141,7 +141,7 @@ class Pictures:
 class Visit:
     def count():
         Visit = db['Visit']
-        return [Visit.find_one({"day":"all"}),Visit.find_one({"day":str(datetime.datetime.today().date())})]
+        return [Visit.find_one({"day":"all"}),Visit.find().sort("$natural",-1).limit(2)]
 
     def incount():
         Visit = db['Visit']
