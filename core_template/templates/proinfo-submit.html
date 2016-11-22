@@ -46,6 +46,22 @@
 			opacity: 0;
 			filter: alpha(opacity=0);
 		}
+.tableinput {
+display: block; 
+padding: 0; 
+margin: 0; 
+border: 0; 
+width: 100%;
+border-radius:0;
+font-size:100%;
+height:39px;
+}
+
+td {
+padding:0px 8px 0px 8px !important;
+text-align:center;
+vertical-align:middle !important;
+}
 </style>
 <div id="in-container" class="proinfo-box"> 
 	<div class="container">
@@ -130,26 +146,23 @@
 										<i class="fa fa-th-list" aria-hidden="true"></i>
 										票卷建立：
 									</h1>
-									<table class="table table-bordered table-condensed">
+									<table class="table table-bordered nopadding">
 										<thead>
 											<tr style="margin: 0; padding: 0;">
-												<th style="width:5%;">#</th>
+												<th style="width:5%;"></th>
 												<th style="width:75%;">票券名稱</th>
 												<th style="width:10%;">票價</th>
 												<th style="width:10%;">張數</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr style="margin: 0; padding: 0;">
-												<td></td>
-												<td> <input type="text" class="form-control" style="display: block; padding: 0; margin: 0; border: 0; width: 100%;">  </td>
-												<td> <input type="text" style="display: block; padding: 0; margin: 0; border: 0; width: 100%;" class="form-control" /> </td>
-												<td> <input type="text" class="form-control" style="display: block; padding: 0; margin: 0; border: 0; width: 100%;" /> </td>
+											<tr id = "0" class="nopadding">
+												<td><a href="javascript:AddAfter()" ><i class="fa fa-plus" aria-hidden="true"></i></a></td>
+												<td> <input name="ticket[]" type="text" placeholder="請輸入票種名稱" class="tableinput form-control">  </td>
+												<td> <input name="ticket[]" type="text" placeholder="票價" class="tableinput form-control"> </td>
+												<td> <input name="ticket[]" type="text" placeholder="數量" class="tableinput form-control"> </td>
 											</tr>
 										</tbody>
-
-
-
 									</table>
 								</div>
 							</div>
@@ -187,6 +200,16 @@
 <script src="/static/js/cropper_setting.js"></script>
 <script src="/static/js/tether.min.js"></script>
 <script>
+var i = 0;
+
+function AddAfter(){
+	$('#'+i).after('<tr id='+ (i+1) +'> <td><a href="javascript:delrow('+ (i+1) +')"><i class="fa fa-minus"></i></a></td> <td><input name="ticket[]" type="text" placeholder="請輸入票種名稱" class="tableinput form-control">  </td> <td> <input name="ticket[]"  type="text" placeholder="票價" class="tableinput form-control"> </td> <td> <input name="ticket[]" type="text" placeholder="數量" class="tableinput form-control"> </td>  </tr>');
+      i= i+1;
+}
+function delrow(row){
+    $('#'+row).remove();
+}
+
 var editor = new MediumEditor('.editable',{
 });
 $(function () {
