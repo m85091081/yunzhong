@@ -10,7 +10,9 @@ def admindex():
     allmemcount = allmem.count()
     visit = dbmongo.Visit.count()
     allvisit = visit[0]["count"]
-    todayvisit = visit[1]["count"]
+    todayvisit = visit[1][0]["count"]
+    yesterdayvisit = visit[1][1]["count"]
+    percent = round(todayvisit/yesterdayvisit*100,1)
     return render_template('admin/index.html',**locals())
 
 @admbp.route('/user')

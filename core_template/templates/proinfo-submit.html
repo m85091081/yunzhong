@@ -73,15 +73,8 @@
 										封面上傳
 									</h1>
 									<center>
-										<img class="img_preview">
-										<img src="/static/images/upload-background.png" id="upload_background">	
-										<!--<label for="img_upload" class="btn btn-default">
-			  <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
-			  <span>upload</span>
-			  </label>-->
-			  							<button type="button" class="btn btn-default" data-target="#modal" data-toggle="modal">
-											按此上傳圖片
-										</button>
+										<div class="img_size"></div>
+										<img id="imgtest" src="/static/images/upload-background.png" onclick=" $('#modal').modal('show'); " style="max-width:100%;max-height:700px;">
 									</center>
 								</div>
 								{{ form.cover(id_="cover",style="display:none") }}
@@ -231,25 +224,21 @@ $(function () {
 </script>
 <script>
 $(function () {
-	var $image = $('#image');
 	var cropBoxData;
-	var canvasData;
 	$('#modal1').on('shown.bs.modal', function () {
-		$image.cropper({
+		$('#image').cropper({
 			aspectRatio: 16 / 9,
 			viewMode: 2,
 			responsive: true,
 			zoomable: false,
 			built: function () {
-				$image.cropper('setCanvasData', canvasData);
-				$image.cropper('setCropBoxData', cropBoxData);
+				$('#image').cropper('setCropBoxData', cropBoxData);
 			}
 		});
 	}).on('hidden.bs.modal', function () {
-		cropBoxData = $image.cropper('getCropBoxData');
-		canvasData = $image.cropper('getCanvasData');
-		$image.cropper('destroy');
-		cropper.getCroppedCanvas();
+		var u = $('#image').cropper('getCroppedCanvas').toDataURL() ;
+		$('#imgtest').attr('src',u);
+		console.log(u);
 	});
 });
 </script>
@@ -288,7 +277,7 @@ $(function () {
 					<button type="button" class="btn btn-default" onclick="javascript:$('#modal1').modal('hide');$('#modal').modal('show');">
 						返回
 					</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">
+					<button type="button" onclick="$('#modal1').modal('hide');" id="modal1hide" class="btn btn-default">
 						確認
 					</button>
 				</center>
