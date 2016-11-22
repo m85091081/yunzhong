@@ -4,14 +4,21 @@ from wtforms.fields.html5 import DateField
 from wtforms.validators import Length  , EqualTo  
 from wtforms.validators import DataRequired as Required
 class submitclassinfo(FlaskForm):
-    name = StringField('',[Required()],render_kw={"placeholder": "請輸入活動名稱"})
+    name = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入課程名稱"})
+    cover = StringField('',validators=[Required()])
+    start = DateField('開始日期: ', format='%Y-%m-%d',validators=[Required()],render_kw={"placeholder": "格式: 2016-01-20"})
+    end = DateField('結束日期: ', format='%Y-%m-%d',validators=[Required()],render_kw={"placeholder": "格式: 2016-01-21"})
+    address = StringField('',validators=[Required()],render_kw={"placeholder":"格式:台北市XX"})
+    link = StringField("",validators=[Required()],render_kw={"placeholder":"格式:http://xxxx"})
+    content = StringField("",validators=[Required()])
+    organizer = StringField('',validators=[Required()])
     
 class registerForm(FlaskForm):
     email = StringField('註冊 Email：',validators=[Required()])
     password = PasswordField('密碼：', validators=[Required(),EqualTo('confirm', message='Passwords must match') ])
     confirm = PasswordField('確認密碼：')
     name = StringField('姓名：',validators=[Required()])
-    birthday  = DateField('生日：', format='%Y-%m-%d',validators=[Required()],render_kw={"placeholder": "格式: 2016/01/20"})
+    birthday  = DateField('生日：', format='%Y-%m-%d',validators=[Required()],render_kw={"placeholder": "格式: 2016-01-20"})
     country = RadioField('',choices=[('taiwan','本國'),('china','陸生'),('japan','日本'),('korea','韓國')],validators=[Required()])
     phone = IntegerField('',validators=[Required()])
     postnum = IntegerField('',validators=[Required()],render_kw={"placeholder": "郵遞區號"})

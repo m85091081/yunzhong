@@ -2,7 +2,7 @@ from flask import make_response, Response, request, render_template, Blueprint, 
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
 classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 from core_module.dbmongo import User,Product,Pictures
-from core_module.form import loginForm , productForm
+from core_module.form import loginForm , productForm, submitclassinfo
 from core_module.pictures import uploadpicture
 from flask_paginate import Pagination
 from core import app
@@ -103,12 +103,14 @@ def delclr():
 @classrom.route('/submit',methods=['GET','POST'])
 def submitpro():
     loginform = loginForm()
+    form = submitclassinfo()
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
 
 @proinfo.route('/submit',methods=['GET','POST'])
 def submitprinfoo():
     loginform = loginForm()
+    form = submitclassinfo()
     if request.method == 'GET':
         return render_template('event.html' , **locals())
 
