@@ -73,6 +73,8 @@
 										封面上傳
 									</h1>
 									<center>
+										<img class="img_preview">
+										<img src="/static/images/upload-background.png" id="upload_background">	
 										<!--<label for="img_upload" class="btn btn-default">
 			  <input type="file" class="sr-only" id="inputImage" name="file" accept="image/*">
 			  <span>upload</span>
@@ -221,6 +223,7 @@ $(function () {
 				$('.img_preview').attr('src',file.url);
 				$('#modal').modal('hide');
 				$('#modal1').modal('show');
+				$('#upload_background').hide();
 			});
 		}
 	});
@@ -285,7 +288,7 @@ $(function () {
 					<button type="button" class="btn btn-default" onclick="javascript:$('#modal1').modal('hide');$('#modal').modal('show');">
 						返回
 					</button>
-					<button type="button" class="btn btn-default">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
 						確認
 					</button>
 				</center>
