@@ -1,3 +1,8 @@
 {% extends "proinfo-submit.html"%}
+{%block breadcrumb%}
+<li><a href="/">首頁</a></li>
+<li><a href="/class">培訓課程</a></li>
+<li class="active">課程提案</li>
+{%endblock%}
 {%block lessonactive %}active{%endblock%}
 {%block action %}/class/submit{%endblock%}

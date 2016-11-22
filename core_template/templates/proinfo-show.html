@@ -96,7 +96,6 @@
                      -->
                      </ul>
               </section>
-{%if data.payment %} 
               <section id="proinfo-form" class="proinfo-form">                 
                  <h3>票券購買</h3>
                  <form action='/proinfo/addcart' method='POST' class="form-horizontal">
@@ -138,70 +137,7 @@
                      </div>
                      <div class="proinfo-form-btn"><input type="submit" class="btn btn-warning" value="加入購物車"></div> 
                  </form>
-{%else%}
                  </section><!--/proinfo-form-->
-                 <section id="proinfo-form2" class="proinfo-form"> 
-                   <h3>報名參加</h3>
-                    <form class="form-horizontal">
-            
-            	<div class="row">
-                <div class="col-md-6 col-xs-12">
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 姓名：</label>
-                    <div class="col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 電話：</label>
-                    <div class="col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> E-mail：</label>
-                    <div class="col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 col-xs-12 control-label proinfo-form-title"><span class="red">*</span> 報名項目：</label>
-                    <div class="col-sm-9">
-                        <select class="form-control">
-                          <option>『NASA-一場人類冒險』特展 台灣站</option>
-                          <option>『NASA-一場人類冒險』特展 台灣站</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-
-                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 繳費金額：</label>
-                    <div class="col-sm-9 select-inline">
-                        <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 control-label proinfo-form-title"><span class="red">*</span> 帳號末五碼：</label>
-                    <div class="col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                </div>  
-                <div class="col-md-6 col-xs-12">
-                  <div class="form-group">
-                    <label for="" class="col-sm-3 control-label proinfo-form-title">其他事項：</label>
-                    <div class="col-sm-9">
-                      <textarea class="form-control"></textarea>
-                    </div>
-                  </div>
-                 </div>
-                 <div class="col-xs-12 proinfo-form-btn"><input type="submit" class="btn btn-warning" value="免費申請報名"></div> 
-                 </div>
-                </form>
-                 
-                 </section>
-                 {%endif%}          
-                 
              </div><!--/proinfo-show-->
 
             </div>

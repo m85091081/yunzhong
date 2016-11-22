@@ -52,14 +52,12 @@
 		<div class="row" style="margin-top: 20px;">
 			<div class="col-xs-12 in-breadcrumb">
 				<ol class="breadcrumb">
-					<li><a href="/">首頁</a></li>
-					<li><a href="/class">培訓課程</a></li>
-					<li class="active">課程提案</li>
+					{%block breadcrumb%}{%endblock%}
 				</ol>
 			</div><!--in-breadcrumb-->
 			<ul class="nav nav-tabs nav-justified" id="myTabs">
 				<li class="{%block lessonactive%}{%endblock%}"><a href="/class/submit">課程提案</a></li>
-				<li class="{%block eventactive%}{%endblock%}"><a href="/proinfo/submit">活動提案</a></li>
+				<li class="{%block eventactive%}{%endblock%}"><a href="/acti/submit">活動提案</a></li>
 			</ul>
 			<form method='POST' action="{% block action %}{%endblock%}">
 				{{ form.csrf_token }}

@@ -19,11 +19,13 @@ class Product:
         produ = prod.find_one({"url": url})
         return produ
     
-    def init(url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,payment,orderdict):
+    def init(verfiy,url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
         prod = db['Product']
         prod.create_index("url", unique=True)
-        raw = { "activity": bool(activity),
-                "url":str(url),
+        raw = {
+                "verfiy":verfiy, ##布林
+                "activity": bool(activity), ##他媽是不是活動
+                "url":str(url), 
                 "title":str(title),
                 "pic":str(pic),
                 "timedict":timedict,
@@ -33,7 +35,6 @@ class Product:
                 "holderlist":holderlist,
                 "about":str(about),
                 "prodata":prodata, ##相關資料
-                "payment":payment, ##布林
                 "orderdict":orderdict
                 }
         print(prod.insert_one(raw).inserted_id)

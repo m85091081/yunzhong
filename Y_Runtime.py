@@ -5,7 +5,7 @@ from core import app
 import os, logging
 from conf import setting
 from core.index import main
-from core.proinfo import proinfo,classrom
+from core.proinfo import proinfo,classrom,act
 from core.user import auth , register, users
 from core.admin import admbp
 from core_module.form import loginForm
@@ -13,6 +13,7 @@ from core_module.form import loginForm
 app.register_blueprint(admbp, url_prefix="/admin")
 app.secret_key = setting.yourkey
 app.register_blueprint(main)
+app.register_blueprint(act, url_prefix="/acti")
 app.register_blueprint(proinfo, url_prefix="/proinfo")
 app.register_blueprint(classrom, url_prefix="/class")
 app.register_blueprint(auth, url_prefix="/login")
