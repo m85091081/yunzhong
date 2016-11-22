@@ -18,9 +18,9 @@ def porinfo():
     q = request.args.get('q')
     if q:
         search = True
-    allpd = Product.countall()
+    allpd = Product.verfiyclass()
     page = request.args.get('page', type=int, default=1)
-    pagepd = Product.countall().limit(9).skip((int(page)-1)*9)
+    pagepd = Product.verfiyclass().limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('proinfo.html',**locals())
 
@@ -28,7 +28,7 @@ def porinfo():
 def showinfo(url):
     loginform = loginForm()
     data = Product.getdata(url)
-    if Product.count(str(url)) == 0 :
+    if Product.count(str(url)) == 0 or data.get('activity') == True or data.get('verfiy') == False:
         return render_template('404.html',**locals())
     return render_template('proinfo-show.html',**locals())
 
@@ -41,6 +41,13 @@ def submitpro():
 
 ### 活動模組
 
+@act.route('/show/<url>', methods=['GET', 'POST'])
+def actshowinfo(url):
+    loginform = loginForm()
+    data = Product.getdata(url)
+    if Product.count(str(url)) == 0 or data.get('activity') == False or data.get('verfiy') == False:
+        return render_template('404.html',**locals())
+    return render_template('proinfo-show.html',**locals())
 @act.route('/submit',methods=['GET','POST'])
 def submitprinfoo():
     loginform = loginForm()

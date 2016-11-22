@@ -11,9 +11,15 @@ class Product:
     def count(val):
         prod = db['Product']
         return prod.find({'url': str(val)}).count()
-    def countall():
+    
+    def verfiyclass():
         prod = db['Product']
-        return prod.find()
+        return prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
+    
+    def verfiyacti():
+        prod = db['Product']
+        return prod.find({'verfiy': True},{'activity': True})
+    
     def getdata(url):
         prod = db['Product']
         produ = prod.find_one({"url": url})
