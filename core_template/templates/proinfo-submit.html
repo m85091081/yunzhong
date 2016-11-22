@@ -189,38 +189,39 @@ $(function () {
 });
 </script>
 <script>
-/*jQuery(document).ready(function() {
-function img_preview(input){
-if (input.files && input.files[0]) {
-var reader = new FileReader();
-reader.onload = function (e) {
-jQuery('.img_preview').attr('src', e.target.result);
-var kb = format_float(e.total / 1024, 2);
-}
-reader.readAsDataURL(input.files[0]);
-$('#back').hide();
-$('#back1').hide();
-}
-}
-jQuery("div").on("change", "#img_upload", function (){
-img_preview(this);
-});
-});*/
-</script>
-<script>
-$(function () {
-	$('#img_upload').fileupload({
-		dataType: 'json',
-		done: function (e, data) {
-			$.each(data.result.files, function (index, file) {
-				$('.img_preview').attr('src',file.url);
-				$('#modal').modal('hide');
-				$('#modal1').modal('show');
-				$('#upload_background').hide();
-			});
+jQuery(document).ready(function() {
+	function img_preview(input){
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				jQuery('.img_preview').attr('src', e.target.result);
+				var kb = format_float(e.total / 1024, 2);
+			}
+			reader.readAsDataURL(input.files[0]);
+			$('#modal').modal('hide');
+			$('#modal1').modal('show');
+			$('#upload_background').hide();
 		}
+	}
+	jQuery("div").on("change", "#img_upload", function (){
+		img_preview(this);
 	});
 });
+</script>
+<script>
+/*$(function () {
+$('#img_upload').fileupload({
+dataType: 'json',
+done: function (e, data) {
+$.each(data.result.files, function (index, file) {
+$('.img_preview').attr('src',file.url);
+$('#modal').modal('hide');
+$('#modal1').modal('show');
+$('#upload_background').hide();
+});
+}
+});
+});*/
 </script>
 <script>
 $(function () {
