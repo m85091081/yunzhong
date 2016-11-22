@@ -98,7 +98,7 @@ class User:
     def add(email, password, name ,birthday , country , phone , postnum , address , education , grade , school ,major,lineid, fbid):
         user = db['Users']
         user.create_index("email", unique=True)
-        user.create_index("fbid", unique=True)
+        user.create_index("fbid", unique=True, partialFilterExpression={"fbid" : { "$type": "string"}})
         raw = {"email": email,
                 "password": password,
                 "name": name,

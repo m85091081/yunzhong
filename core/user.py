@@ -79,7 +79,11 @@ def reg_stu():
             print(field_name)
         return render_template('reg_err.html',**locals())
     elif form.validate_on_submit():
-        dbUser.add(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.education.data,form.grade.data,form.school.data,form.major.data,form.lineid.data,form.fbid.data)
+        if form.fbid.data =="":
+            fbuuid = None
+        else:
+            fbuuid = form.fbid.data
+        dbUser.add(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.education.data,form.grade.data,form.school.data,form.major.data,form.lineid.data,fbuuid)
         return render_template('reg_info.html',**locals())
     return render_template('member-student.html',**locals())
 
@@ -93,7 +97,11 @@ def reg_gen():
             print(field_name)
         return render_template('reg_err.html',**locals())
     elif form.validate_on_submit():
-        dbUser.addgen(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.industry.data,form.companyname.data,form.jobtitle.data,form.lineid.data,form.fbid.data)
+        if form.fbid.data =="":
+            fbuuid = None
+        else:
+            fbuuid = form.fbid.data
+        dbUser.addgen(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.industry.data,form.companyname.data,form.jobtitle.data,form.lineid.data,fbuuid)
         return render_template('reg_info.html',**locals())
     return render_template('member-general.html',**locals())
 
