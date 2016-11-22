@@ -102,7 +102,7 @@
 											活動日期：
 										</label>
 										<div class="col-lg-8 col-sm-12 col-xs-12 init">
-											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+											<input type="text" name="daterange" class="form-control input-sm" placeholder="格式：2016/11/12">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
@@ -290,6 +290,42 @@ $(function () {
 		$('#image').cropper('destroy');
 		console.log(u);
 	});
+});
+</script>
+<script type="text/javascript">
+$(function() {
+    $('input[name="daterange"]').daterangepicker({
+	        timePicker: true,
+			autoApply: true,
+			cancelClass: "btn-danger",
+	        locale: {
+
+			            format: 'YYYY-MM-DD HH:MM',
+						daysOfWeek: [
+						            "日",
+						            "一",
+						            "二",
+						            "三",
+						            "四",
+						            "五",
+						            "六"
+						        ],
+						monthNames: [
+								    "一月",
+								            "二月",
+								            "三月",
+								            "四月",
+								            "五月",
+								            "六月",
+								            "七月",
+								            "八月",
+								            "九月",
+								            "十月",
+								            "十一月",
+								            "十二月"
+						        ]
+			        }
+	    });
 });
 </script>
 {% endblock %}
