@@ -71,7 +71,6 @@
 										封面上傳
 									</h1>
 									<center>
-										<div class="img_size"></div>
 										<img id="imgtest" src="/static/images/upload-background.png" onclick=" $('#modal').modal('show'); " style="max-width:100%;max-height:700px;">
 									</center>
 								</div>
@@ -253,10 +252,12 @@ $(function () {
 	var cropBoxData;
 	$('#modal1').on('shown.bs.modal', function () {
 		$('#image').cropper({
-			aspectRatio: 16 / 9,
+			aspectRatio: 2 / 1,
 			viewMode: 2,
 			responsive: true,
 			zoomable: false,
+			minCropBoxWidth: 300,
+			minCropBoxHeight: 150,
 			built: function () {
 				$('#image').cropper('setCropBoxData', cropBoxData);
 			}
