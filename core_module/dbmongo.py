@@ -4,39 +4,31 @@ from pymongo import MongoClient
 import pymongo
 client = MongoClient(setting.mongohost)
 db = client['Yunzhong']
-class InitDB:
-    user = db['Users']
-
 
 class Product:
-    def count(val):
-        prod = db['Product']
-        return prod.find({'url': str(val)}).count()
+    def __init__(self):
+        self.prod = db['Product']
     
-    def verfiyclass():
-        prod = db['Product']
-        return prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
-   
-    def stayclass():
-        prod = db['Product']
-        return prod.find({'$and':[{ 'verfiy': False},{'activity': False}]})
-
-    def verfiyacti():
-        prod = db['Product']
-        return prod.find({'$and':[{'verfiy': True},{'activity': True}]})
-   
-    def stayacti():
-        prod = db['Product']
-        return prod.find({'$and':[{'verfiy': False},{'activity': True}]})
-
-    def getdata(url):
-        prod = db['Product']
-        produ = prod.find_one({"url": url})
-        return produ
+    def count(self,val):
+        return self.prod.find({'url': str(val)}).count()
     
-    def init(verfiy,url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
-        prod = db['Product']
-        prod.create_index("url", unique=True)
+    def verfiyclass(self):
+        return self.prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
+   
+    def stayclass(self):
+        return self.prod.find({'$and':[{ 'verfiy': False},{'activity': False}]})
+
+    def verfiyacti(self):
+        return self.prod.find({'$and':[{'verfiy': True},{'activity': True}]})
+   
+    def stayacti(self):
+        return self.prod.find({'$and':[{'verfiy': False},{'activity': True}]})
+
+    def getdata(self,url):
+        return self.prod.find_one({"url": url})
+    
+    def init(self,verfiy,url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
+        self.prod.create_index("url", unique=True)
         raw = {
                 "verfiy":bool(verfiy), ##布林
                 "activity": bool(activity), ##他媽是不是活動
@@ -52,7 +44,7 @@ class Product:
                 "prodata":prodata, ##相關資料
                 "orderdict":orderdict
                 }
-        print(prod.insert_one(raw).inserted_id)
+        self.prod.insert_one(raw)
         return True
 
 
