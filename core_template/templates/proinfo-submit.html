@@ -75,7 +75,7 @@
 				<li class="{%block lessonactive%}{%endblock%}"><a href="/class/submit">課程提案</a></li>
 				<li class="{%block eventactive%}{%endblock%}"><a href="/acti/submit">活動提案</a></li>
 			</ul>
-			<form method='POST' action="{% block action %}{%endblock%}">
+			<form method='POST' action="{% block action %}{%endblock%}" id="prodform">
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<div class="tab-content">
@@ -89,13 +89,13 @@
 										<img id="imgtest" src="/static/images/upload-background.png" onclick=" $('#modal').modal('show'); " style="max-width:100%;max-height:700px;">
 									</center>
 								</div>
-								<input type="text" class="form-control" style="display:none">
+								<input type="text" class="form-control" id="cover" name="cover" style="display:none">
 								<div class="col-xs-12 col-sm-12 col-md-12 init" >
 									<h1 class="page-header">
 										<i class="fa fa-th-large" aria-hidden="true"></i>
 										課程資訊
 									</h1>
-									<input type="text" class="form-control" placeholder="請輸入課程名稱" style="margin-bottom:20px">
+									<input type="text" class="form-control" name="name" placeholder="請輸入課程名稱" style="margin-bottom:20px">
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
 										<label class="col-lg-2 col-sm-12 col-xs-12 control-label init">
 											<i class="fa fa-calendar" aria-hidden="true"></i>
@@ -111,7 +111,7 @@
 											活動地點：
 										</label>
 										<div class="col-lg-10 col-sm-12 col-xs-12 init">
-											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+											<input type="text" class="form-control input-sm" name="address" placeholder="格式：2016/11/12">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
@@ -120,7 +120,7 @@
 											相關連結：
 										</label>
 										<div class="col-lg-8 col-sm-12 init">
-											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+											<input type="text" class="form-control input-sm" name="link" placeholder="格式：2016/11/12">
 										</div>
 									</div>
 									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
@@ -129,7 +129,7 @@
 											主辦單位：
 										</label>
 										<div class="col-lg-10 col-sm-12 init" style="margin-bottom:20px">
-											<input type="text" class="form-control input-sm" placeholder="格式：2016/11/12">
+											<input type="text" class="form-control input-sm" name="organize"placeholder="格式：2016/11/12">
 										</div>
 									</div>
 								</div>
@@ -138,7 +138,8 @@
 										<i class="fa fa-th-list" aria-hidden="true"></i>
 										課程簡介：
 									</h1>
-									<div class="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;" data-placeholder="請點擊輸入文字"></div>
+									<div class="editable" id="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;" data-placeholder="請點擊輸入文字"></div>
+									<textarea style="display:none;" name="content" id="content"></textarea>
 								</div>
 								<div class="col-xs-12 col-sm-12 col-md-12 init" style="position:static;">
 									<h1 class="page-header">
@@ -255,10 +256,16 @@ jQuery(document).ready(function() {
 });
 </script>
 <script>
+$( "#prodform" ).submit(function( event ) {
+		$('#content').val($('#editable').html());
+		$('#cover').val($('#imgtest').attr('src'));
+});
+</script>
+<script>
 /*$(function () {
 $('#img_upload').fileupload({
 dataType: 'json',
-one: function (e, data) {
+done: function (e, data) {
 $.each(data.result.files, function (index, file) {
 $('.img_preview').attr('src',file.url);
 $('#modal').modal('hide');
