@@ -7,6 +7,7 @@ db = client['Yunzhong']
 class InitDB:
     user = db['Users']
 
+
 class Product:
     def count(val):
         prod = db['Product']
@@ -56,50 +57,44 @@ class Product:
 
 
 class User:
-    def login(email,password):
-        user = db['Users']
-        usern = user.find_one({"email": email})
+    def __init__(self):
+        self.user = db['Users']
+
+    def login(self,email,password):
+        usern = self.user.find_one({"email": email})
         passwordhash = usern['password'] 
         if password == passwordhash :
             return True
         else:
             return False
-    def find():
-        user = db['Users']
-        return user.find()
-    def count(val):
+    
+    def find(self):
+        return self.user.find()
+
+    def count(self,val):
         if val is "all" :
-            user = db['Users']
-            return user.count()
+            return self.user.count()
         elif val is "student":
-            user = db['Users']
-            return user.find({'school':{'$ne':None}}).count()
+            return self.user.find({'school':{'$ne':None}}).count()
         elif val is "company":
-            user = db['Users']
-            return user.find({'companyid':{'$ne':None}}).count()
+            return self.user.find({'companyid':{'$ne':None}}).count()
         elif val is "general":
-            user =db['Users']
-            return user.find({'companyname':{'$ne':None}}).count()
+            return self.user.find({'companyname':{'$ne':None}}).count()
         else:
-            user = db['Users']
-            return user.find({'fbid': val}).count()
-            
+            return self.user.find({'fbid': val}).count()
 
-    def usercheck(email):
-        user = db['Users']
-        usern = user.find_one({"email": email})
-        return usern
+    def usercheck(self,email):
+        return self.user.find_one({"email": email})
 
-    def fbusercheck(fbid):
-        user = db['Users']
-        usern = user.find_one({"fbid": fbid})
-        return usern
+    def fbusercheck(self,fbid):
+        return self.user.find_one({"fbid": fbid})
         
-    def add(email, password, name ,birthday , country , phone , postnum , address , education , grade , school ,major,lineid, fbid):
-        user = db['Users']
-        user.create_index("email", unique=True)
-        user.create_index("fbid", unique=True, partialFilterExpression={"fbid" : { "$type": "string"}})
+    def add(self,email, password, name ,birthday , country , phone , postnum , address , education , grade , school ,major,lineid, fbid):
+        self.user.create_index("email", unique=True)
+        self.user.create_index("fbid", unique=True, partialFilterExpression={"fbid" : { "$type": "string"}})
+        verfiyofemail = True
         raw = {"email": email,
+                "verfiyofemail":verfiyofemail,
                 "password": password,
                 "name": name,
                 "birthday": datetime.datetime.combine(birthday, datetime.datetime.min.time()),
@@ -114,14 +109,15 @@ class User:
                 "lineid":lineid,
                 "fbid":fbid,
                 "date": datetime.datetime.utcnow()}
-        print(user.insert_one(raw).inserted_id)
+        self.user.insert_one(raw)
         return True
     
-    def addgen(email, password, name , birthday, country, phone, postnum, address, industry, companyname, jobtitle, lineid, fbid):
-        user = db['Users']
-        user.create_index("email", unique=True)
-        user.create_index("fbid", unique=True)
+    def addgen(self,email, password, name , birthday, country, phone, postnum, address, industry, companyname, jobtitle, lineid, fbid):
+        self.user.create_index("email", unique=True)
+        verfiyofemail = True
+        self.user.create_index("fbid", unique=True, partialFilterExpression={"fbid" : { "$type": "string"}})
         raw = {"email": email,
+                "verfiyofemail":verfiyofemail,
                 "password": password,
                 "name": name,
                 "birthday": datetime.datetime.combine(birthday, datetime.datetime.min.time()),
@@ -135,7 +131,7 @@ class User:
                 "lineid":lineid,
                 "fbid":fbid,
                 "date": datetime.datetime.utcnow()}
-        print(user.insert_one(raw).inserted_id)
+        self.user.insert_one(raw)
         return True
     
 

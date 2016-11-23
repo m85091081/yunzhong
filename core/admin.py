@@ -3,10 +3,10 @@ from core import app
 from core_module import dbmongo
 from flask_paginate import Pagination
 admbp = Blueprint('admbp', __name__ , template_folder='../core_template/templates')
+allmem = dbmongo.User()
 
 @admbp.route('/')
 def admindex():
-    allmem = dbmongo.User
     allmemcount = allmem.count("all")
     allstdcount = allmem.count("student")
     allgencount = allmem.count("general")
@@ -29,9 +29,8 @@ def admuser():
     q = request.args.get('q')
     if q:
         search = True
-    allmem = dbmongo.User.find()
-    allmemcount = allmem.count()
+    allmemcount = allmem.find().count()
     page = request.args.get('page', type=int, default=1)
-    pagemem = dbmongo.User.find().limit(30).skip((int(page)-1)*30)
-    pagin = Pagination(page=page,per_page=30,bs_version=3,total=allmem.count(),search=search,record_name='allmem')
+    pagemem = allmem.find().limit(30).skip((int(page)-1)*30)
+    pagin = Pagination(page=page,per_page=30,bs_version=3,total=allmemcount,search=search,record_name='allmem')
     return render_template('admin/user.html',**locals())

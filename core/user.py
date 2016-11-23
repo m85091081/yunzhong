@@ -6,7 +6,7 @@ from flask import make_response,render_template , session, redirect, url_for, re
 import hashlib
 import time
 from core_module import facebook
-from core_module.dbmongo import User as dbUser
+from core_module.dbmongo import User as dbuser
 from core_module.form import registerForm , loginForm ,registerFormgen
 
 class User():
@@ -30,6 +30,7 @@ class User():
     def get_id(self):
         return self.username
 
+dbUser = dbuser()
 lm = LoginManager()
 lm.init_app(app)
 register = Blueprint('register', __name__, template_folder='../core_template/templates')
@@ -44,6 +45,7 @@ def info():
     loginform = loginForm()
     form = registerForm()
     return render_template('member-info.html',**locals())
+
 @lm.user_loader
 def user_loader(email):
     if dbUser.usercheck(email) == False:
@@ -62,8 +64,6 @@ def login():
         return render_template('login_err.html',loginform = loginform)
     else:
         return render_template('login_err.html',loginform = loginform)
-
-
 
 @register.route('/student',methods=['GET','POST'])
 def reg_stu():
@@ -104,7 +104,6 @@ def reg_gen():
         dbUser.addgen(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.industry.data,form.companyname.data,form.jobtitle.data,form.lineid.data,fbuuid)
         return render_template('reg_info.html',**locals())
     return render_template('member-general.html',**locals())
-
 
 @app.route('/fb')
 def fblogin():
