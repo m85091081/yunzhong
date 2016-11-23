@@ -288,7 +288,6 @@ $(function () {
 		var u = $('#image').cropper('getCroppedCanvas').toDataURL('image/jpeg') ;
 		$('#imgtest').attr('src',u);
 		$('#image').cropper('destroy');
-		console.log(u);
 	});
 });
 </script>
@@ -297,11 +296,12 @@ $(function() {
 	$('input[name="daterange"]').daterangepicker({
 		timePicker: true,
 		autoApply: true,
+		timePickerIncrement: 5,
 		timePicker24Hour: true,
 		cancelClass: "btn-danger",
 		locale: {
 
-			format: 'YYYY-MM-DD HH:MM',
+			format: 'YYYY-MM-DD HH:mm',
 			daysOfWeek: [
 				"日",
 				"一",
