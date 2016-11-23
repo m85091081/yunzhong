@@ -11,7 +11,7 @@ def admindex():
     allstdcount = allmem.count("student")
     allgencount = allmem.count("general")
     allcocount  = allmem.count("company")
-    allprod = dbmongo.Product
+    allprod = dbmongo.Product()
     allvfyclass = allprod.verfiyclass().count()
     allvfyacti  = allprod.verfiyacti().count()
     allstayclass= allprod.stayclass().count()
