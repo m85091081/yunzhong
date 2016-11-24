@@ -155,8 +155,8 @@ def addcart():
     loginform = loginForm()
     num = request.cookies.get('num')
     buydict = request.cookies.get('buydict')
-    for x in request.form:
-        response = make_response(redirect(url_for('classrom.showinfo',url=str(x).rsplit('-',1)[0])))
+    refer = request.headers.get('Referer')
+    response = make_response(redirect(refer))
 
     for x in request.form:
         if int(request.form[x]) <= int(Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('much')):
