@@ -50,6 +50,7 @@ def submitpro():
         name = form.name.data
         content = form.content.data
         ticket = request.form.getlist('ticket[]')
+        Product.init(False,"url-no",False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",ticket)
         return ticket[0]
     
     elif request.method == 'POST' and not form.validate_on_submit():
