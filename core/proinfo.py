@@ -41,7 +41,7 @@ def submitpro():
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
     
-    elif request.method == 'POST' and form.validate_on_submit():
+    elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) <= 3 :
         address = form.address.data
         link = form.link.data
         organize = form.organize.data
@@ -51,6 +51,13 @@ def submitpro():
         content = form.content.data
         ticket = request.form.getlist('ticket[]')
         return ticket[0]
+    
+    elif request.method == 'POST' and not form.validate_on_submit():
+        for field_name, field_errors in form.errors.items():
+            return str(field_errors)
+    else:
+        return "fuck"
+
 
 ### 活動模組
 
