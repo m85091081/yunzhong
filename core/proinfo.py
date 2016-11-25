@@ -53,11 +53,8 @@ def submitpro():
         Product.init(False,"url-no",False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",ticket)
         return ticket[0]
     
-    elif request.method == 'POST' and not form.validate_on_submit():
-        for field_name, field_errors in form.errors.items():
-            return str(field_errors)
     else:
-        return "fuck"
+        return render_template('reg_err.html',**locals())
 
 
 ### 活動模組
@@ -69,6 +66,7 @@ def actshowinfo(url):
     if Product.count(str(url)) == 0 or data.get('activity') == False or data.get('verfiy') == False:
         return render_template('404.html',**locals())
     return render_template('proinfo-show.html',**locals())
+
 @act.route('/submit',methods=['GET','POST'])
 def submitprinfoo():
     loginform = loginForm()
