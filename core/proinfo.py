@@ -1,13 +1,14 @@
 from flask import make_response, Response, request, render_template, Blueprint, url_for, redirect, session,jsonify
-proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
-act = Blueprint('act', __name__ , template_folder='../core_template/templates')
-classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 from core_module.dbmongo import Product as product,Pictures
 from core_module.form import loginForm , productForm, submitclassinfo
 from core_module.pictures import uploadpicture
 from flask_paginate import Pagination
 from core import app
 import ast
+
+proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
+act = Blueprint('act', __name__ , template_folder='../core_template/templates')
+classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 
 Product = product()
 ### classrom 課程區域
@@ -36,16 +37,18 @@ def showinfo(url):
 @classrom.route('/submit',methods=['GET','POST'])
 def submitpro():
     loginform = loginForm()
+    form = submitclassinfo()
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
-    if request.method == 'POST':
-        address = request.form['address']
-        link = request.form['link']
-        organize = request.form['organize']
-        daterange = request.form['daterange']
-        cover = request.form['cover']
-        name = request.form['name']
-        content = request.form['content']
+    
+    elif request.method == 'POST' and form.validate_on_submit():
+        address = form.address.data
+        link = form.link.data
+        organize = form.organize.data
+        daterange = form.daterange.data
+        cover = form.cover.data
+        name = form.name.data
+        content = form.content.data
         ticket = request.form.getlist('ticket[]')
         return ticket[0]
 
