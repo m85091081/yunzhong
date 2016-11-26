@@ -1,13 +1,16 @@
 from flask import make_response, Response, request, render_template, Blueprint, url_for, redirect, session,jsonify
-proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
-act = Blueprint('act', __name__ , template_folder='../core_template/templates')
-classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 from core_module.dbmongo import Product as product,Pictures
 from core_module.form import loginForm , productForm, submitclassinfo
 from core_module.pictures import uploadpicture
 from flask_paginate import Pagination
 from core import app
-import ast
+from xpinyin import Pinyin
+import ast , datetime
+
+p = Pinyin()
+proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
+act = Blueprint('act', __name__ , template_folder='../core_template/templates')
+classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
 
 Product = product()
 ### classrom 課程區域
@@ -36,8 +39,33 @@ def showinfo(url):
 @classrom.route('/submit',methods=['GET','POST'])
 def submitpro():
     loginform = loginForm()
+    form = submitclassinfo()
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
+    
+    elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) <= 3 :
+        address = form.address.data
+        link = form.link.data
+        organize = form.organize.data
+        daterange = form.daterange.data
+        cover = form.cover.data
+        name = form.name.data
+        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
+        url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
+        content = form.content.data
+        ticket = request.form.getlist('ticket[]')
+        Product.init(False,url,False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",ticket)
+        return ticket[0]
+    
+    else:
+        """偷懶debug區"""
+        """不要送任何可以測資讓認證可過即可直接測試"""
+        name = form.name.data
+        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
+        url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
+        print(url)
+        return render_template('reg_err.html',**locals())
+
 
 ### 活動模組
 
@@ -48,6 +76,7 @@ def actshowinfo(url):
     if Product.count(str(url)) == 0 or data.get('activity') == False or data.get('verfiy') == False:
         return render_template('404.html',**locals())
     return render_template('proinfo-show.html',**locals())
+
 @act.route('/submit',methods=['GET','POST'])
 def submitprinfoo():
     loginform = loginForm()
@@ -155,8 +184,8 @@ def addcart():
     loginform = loginForm()
     num = request.cookies.get('num')
     buydict = request.cookies.get('buydict')
-    for x in request.form:
-        response = make_response(redirect(url_for('classrom.showinfo',url=str(x).rsplit('-',1)[0])))
+    refer = request.headers.get('Referer')
+    response = make_response(redirect(refer))
 
     for x in request.form:
         if int(request.form[x]) <= int(Product.getdata(str(x).rsplit('-',1)[0]).get('orderdict')[int(str(x).rsplit('-',1)[1])].get('much')):

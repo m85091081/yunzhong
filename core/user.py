@@ -74,9 +74,6 @@ def reg_stu():
         fbname = facebook.getData(fbtoken)
 
     if request.method== 'POST' and not form.validate_on_submit():
-        for field_name, field_errors in form.errors.items():
-            print(field_errors)
-            print(field_name)
         return render_template('reg_err.html',**locals())
     elif form.validate_on_submit():
         if form.fbid.data =="":
@@ -92,9 +89,6 @@ def reg_gen():
     form = registerFormgen()
     loginform = loginForm()
     if request.method== 'POST' and not form.validate_on_submit():
-        for field_name , field_errors in form.errors.items():
-            print(field_errors)
-            print(field_name)
         return render_template('reg_err.html',**locals())
     elif form.validate_on_submit():
         if form.fbid.data =="":
