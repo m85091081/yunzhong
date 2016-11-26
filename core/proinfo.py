@@ -39,7 +39,7 @@ def submitpro():
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
     if request.method == 'POST':
-        address = request.form['address']
+        place = request.form['address']
         link = request.form['link']
         organize = request.form['organize']
         daterange = request.form['daterange']
