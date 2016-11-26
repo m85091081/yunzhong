@@ -77,7 +77,7 @@
                                     <div class="form-group birth">
                                         <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 生日：</label>
                                         <div class="col-lg-10 col-sm-9 select-inline">
-                                            {{ form.birthday(class_="form-control datepicker") }}
+                                            {{ form.birthday(class_="form-control dtnpicker") }}
                                         </div>
                                     </div>
                                     <div class="form-group country">
@@ -161,6 +161,42 @@
 </div>
 
 
+<script type="text/javascript">
+$(function() {
+    $('.dtnpicker').daterangepicker({
+		    singleDatePicker: true,	
+		    autoApply: true,
+			showDropdowns: true,
+			cancelClass: "btn-danger",
+	        locale: {
+			            format: 'YYYY-MM-DD',
+						daysOfWeek: [
+						            "日",
+						            "一",
+						            "二",
+						            "三",
+						            "四",
+						            "五",
+						            "六"
+						        ],
+						monthNames: [
+								    "一月",
+								            "二月",
+								            "三月",
+								            "四月",
+								            "五月",
+								            "六月",
+								            "七月",
+								            "八月",
+								            "九月",
+								            "十月",
+								            "十一月",
+								            "十二月"
+								        ]
+			        }
+	    });
+});
+</script>
 
 <script>
 $(function() {

@@ -6,7 +6,7 @@ from flask import make_response,render_template , session, redirect, url_for, re
 import hashlib
 import time
 from core_module import facebook
-from core_module.dbmongo import User as dbUser
+from core_module.dbmongo import User as dbuser
 from core_module.form import registerForm , loginForm ,registerFormgen
 
 class User():
@@ -30,6 +30,7 @@ class User():
     def get_id(self):
         return self.username
 
+dbUser = dbuser()
 lm = LoginManager()
 lm.init_app(app)
 register = Blueprint('register', __name__, template_folder='../core_template/templates')
@@ -44,6 +45,7 @@ def info():
     loginform = loginForm()
     form = registerForm()
     return render_template('member-info.html',**locals())
+
 @lm.user_loader
 def user_loader(email):
     if dbUser.usercheck(email) == False:
@@ -63,8 +65,6 @@ def login():
     else:
         return render_template('login_err.html',loginform = loginform)
 
-
-
 @register.route('/student',methods=['GET','POST'])
 def reg_stu():
     form = registerForm()
@@ -79,7 +79,11 @@ def reg_stu():
             print(field_name)
         return render_template('reg_err.html',**locals())
     elif form.validate_on_submit():
-        dbUser.add(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.education.data,form.grade.data,form.school.data,form.major.data,form.lineid.data,form.fbid.data)
+        if form.fbid.data =="":
+            fbuuid = None
+        else:
+            fbuuid = form.fbid.data
+        dbUser.add(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.education.data,form.grade.data,form.school.data,form.major.data,form.lineid.data,fbuuid)
         return render_template('reg_info.html',**locals())
     return render_template('member-student.html',**locals())
 
@@ -93,10 +97,13 @@ def reg_gen():
             print(field_name)
         return render_template('reg_err.html',**locals())
     elif form.validate_on_submit():
-        dbUser.addgen(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.industry.data,form.companyname.data,form.jobtitle.data,form.lineid.data,form.fbid.data)
+        if form.fbid.data =="":
+            fbuuid = None
+        else:
+            fbuuid = form.fbid.data
+        dbUser.addgen(form.email.data,form.password.data,form.name.data,form.birthday.data,form.country.data,form.phone.data,form.postnum.data,form.address.data,form.industry.data,form.companyname.data,form.jobtitle.data,form.lineid.data,fbuuid)
         return render_template('reg_info.html',**locals())
     return render_template('member-general.html',**locals())
-
 
 @app.route('/fb')
 def fblogin():

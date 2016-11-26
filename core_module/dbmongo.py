@@ -4,32 +4,33 @@ from pymongo import MongoClient
 import pymongo
 client = MongoClient(setting.mongohost)
 db = client['Yunzhong']
-class InitDB:
-    user = db['Users']
 
 class Product:
-    def count(val):
-        prod = db['Product']
-        return prod.find({'url': str(val)}).count()
+    def __init__(self):
+        self.prod = db['Product']
     
-    def verfiyclass():
-        prod = db['Product']
-        return prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
+    def count(self,val):
+        return self.prod.find({'url': str(val)}).count()
     
-    def verfiyacti():
-        prod = db['Product']
-        return prod.find({'verfiy': True},{'activity': True})
+    def verfiyclass(self):
+        return self.prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
+   
+    def stayclass(self):
+        return self.prod.find({'$and':[{ 'verfiy': False},{'activity': False}]})
+
+    def verfiyacti(self):
+        return self.prod.find({'$and':[{'verfiy': True},{'activity': True}]})
+   
+    def stayacti(self):
+        return self.prod.find({'$and':[{'verfiy': False},{'activity': True}]})
+
+    def getdata(self,url):
+        return self.prod.find_one({"url": url})
     
-    def getdata(url):
-        prod = db['Product']
-        produ = prod.find_one({"url": url})
-        return produ
-    
-    def init(verfiy,url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
-        prod = db['Product']
-        prod.create_index("url", unique=True)
+    def init(self,verfiy,url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
+        self.prod.create_index("url", unique=True)
         raw = {
-                "verfiy":verfiy, ##布林
+                "verfiy":bool(verfiy), ##布林
                 "activity": bool(activity), ##他媽是不是活動
                 "url":str(url), 
                 "title":str(title),
@@ -43,49 +44,49 @@ class Product:
                 "prodata":prodata, ##相關資料
                 "orderdict":orderdict
                 }
-        print(prod.insert_one(raw).inserted_id)
+        self.prod.insert_one(raw)
         return True
 
 
 class User:
-    def login(email,password):
-        user = db['Users']
-        usern = user.find_one({"email": email})
+    def __init__(self):
+        self.user = db['Users']
+
+    def login(self,email,password):
+        usern = self.user.find_one({"email": email})
         passwordhash = usern['password'] 
         if password == passwordhash :
             return True
         else:
             return False
-    def find():
-        user = db['Users']
-        return user.find()
-    def count(val):
+    
+    def find(self):
+        return self.user.find()
+
+    def count(self,val):
         if val is "all" :
-            user = db['Users']
-            return user.count()
+            return self.user.count()
+        elif val is "student":
+            return self.user.find({'school':{'$ne':None}}).count()
         elif val is "company":
-            user = db['Users']
-            return user.find({'companyid': {'$ne': None}}).count()
+            return self.user.find({'companyid':{'$ne':None}}).count()
+        elif val is "general":
+            return self.user.find({'companyname':{'$ne':None}}).count()
         else:
-            user = db['Users']
-            return user.find({'fbid': val}).count()
-            
+            return self.user.find({'fbid': val}).count()
 
-    def usercheck(email):
-        user = db['Users']
-        usern = user.find_one({"email": email})
-        return usern
+    def usercheck(self,email):
+        return self.user.find_one({"email": email})
 
-    def fbusercheck(fbid):
-        user = db['Users']
-        usern = user.find_one({"fbid": fbid})
-        return usern
+    def fbusercheck(self,fbid):
+        return self.user.find_one({"fbid": fbid})
         
-    def add(email, password, name ,birthday , country , phone , postnum , address , education , grade , school ,major,lineid, fbid):
-        user = db['Users']
-        user.create_index("email", unique=True)
-        user.create_index("fbid", unique=True)
+    def add(self,email, password, name ,birthday , country , phone , postnum , address , education , grade , school ,major,lineid, fbid):
+        self.user.create_index("email", unique=True)
+        self.user.create_index("fbid", unique=True, partialFilterExpression={"fbid" : { "$type": "string"}})
+        verfiyofemail = True
         raw = {"email": email,
+                "verfiyofemail":verfiyofemail,
                 "password": password,
                 "name": name,
                 "birthday": datetime.datetime.combine(birthday, datetime.datetime.min.time()),
@@ -100,14 +101,15 @@ class User:
                 "lineid":lineid,
                 "fbid":fbid,
                 "date": datetime.datetime.utcnow()}
-        print(user.insert_one(raw).inserted_id)
+        self.user.insert_one(raw)
         return True
     
-    def addgen(email, password, name , birthday, country, phone, postnum, address, industry, companyname, jobtitle, lineid, fbid):
-        user = db['Users']
-        user.create_index("email", unique=True)
-        user.create_index("fbid", unique=True)
+    def addgen(self,email, password, name , birthday, country, phone, postnum, address, industry, companyname, jobtitle, lineid, fbid):
+        self.user.create_index("email", unique=True)
+        verfiyofemail = True
+        self.user.create_index("fbid", unique=True, partialFilterExpression={"fbid" : { "$type": "string"}})
         raw = {"email": email,
+                "verfiyofemail":verfiyofemail,
                 "password": password,
                 "name": name,
                 "birthday": datetime.datetime.combine(birthday, datetime.datetime.min.time()),
@@ -121,7 +123,7 @@ class User:
                 "lineid":lineid,
                 "fbid":fbid,
                 "date": datetime.datetime.utcnow()}
-        print(user.insert_one(raw).inserted_id)
+        self.user.insert_one(raw)
         return True
     
 
