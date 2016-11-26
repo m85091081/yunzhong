@@ -1,10 +1,18 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField,PasswordField, RadioField , IntegerField , SelectField
+from wtforms import StringField, BooleanField,PasswordField, RadioField , IntegerField , SelectField,FieldList
 from wtforms.fields.html5 import DateField
 from wtforms.validators import Length  , EqualTo  
 from wtforms.validators import DataRequired as Required
+import wtforms
 class submitclassinfo(FlaskForm):
+    cover = StringField('',validators=[Required()])
     name = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入課程名稱"})
+    daterange = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入日期"})
+    address = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入活動地址"})
+    link = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入相關鏈接"})
+    organize = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入主辦單位"})
+    content = StringField('', widget=wtforms.widgets.TextArea())
+
     
 class registerForm(FlaskForm):
     email = StringField('註冊 Email：',validators=[Required()])
@@ -49,3 +57,5 @@ class productForm(FlaskForm):
     email = StringField('Email：',validators=[Required()],render_kw={"placeholder": "Email"})
     name = StringField('Name：',validators=[Required()],render_kw={"placeholder": "姓名"})
     phone = StringField('Email：',validators=[Required()],render_kw={"placeholder": "電話"})
+
+
