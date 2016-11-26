@@ -4,8 +4,10 @@ from core_module.form import loginForm , productForm, submitclassinfo
 from core_module.pictures import uploadpicture
 from flask_paginate import Pagination
 from core import app
-import ast
+from xpinyin import Pinyin
+import ast , datetime
 
+p = Pinyin()
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
 act = Blueprint('act', __name__ , template_folder='../core_template/templates')
 classrom = Blueprint('classrom',__name__ , template_folder='../core_template/templates')
@@ -48,12 +50,20 @@ def submitpro():
         daterange = form.daterange.data
         cover = form.cover.data
         name = form.name.data
+        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
+        url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
         content = form.content.data
         ticket = request.form.getlist('ticket[]')
-        Product.init(False,"url-no",False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",ticket)
+        Product.init(False,url,False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",ticket)
         return ticket[0]
     
     else:
+        """偷懶debug區"""
+        """不要送任何可以測資讓認證可過即可直接測試"""
+        name = form.name.data
+        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
+        url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
+        print(url)
         return render_template('reg_err.html',**locals())
 
 
