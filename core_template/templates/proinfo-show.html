@@ -33,7 +33,7 @@
                     </div>                    
                     
                     <ul class="row proinfo-info-box">                    
-                        <li class="col-lg-6 col-xs-12"><i class="material-icons">date_range</i> 活動日期：{{data.timedict.get('start')}} ~ {{data.timedict.get('end')}}</li>
+                        <li class="col-lg-6 col-xs-12"><i class="material-icons">date_range</i> 活動日期：{{data.timedict}}</li>
 
                         <li class="col-lg-6 col-xs-12"><i class="material-icons">place</i> 活動地點：<a href="#" target="_blank">{{data.place}}</a></li>
                         <li class="col-lg-6 col-xs-12"><i class="material-icons">link</i> 相關連結：<a href="#" target="_blank">{{data.link}}</a></li>
@@ -113,7 +113,7 @@
       {% for x in data.orderdict%}
     <tr>
         <td class="ticket-name"> {{x.get('name')}} </td>
-        <td class="ticket-more-info" ><a href="{{x.get('info')}}">更多資訊</a></td>
+        <td class="ticket-more-info" ></td>
         <td class="ticket-price text-center"> NT$ {{x.get('cost')}} </td>
         {%if not x.get('much') == 0%}
       <td class="ticket-status text-center">
