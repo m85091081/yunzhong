@@ -43,7 +43,7 @@ def submitpro():
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
     
-    elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) <= 3 :
+    elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) >= 3 :
         address = form.address.data
         link = form.link.data
         organize = form.organize.data
@@ -54,7 +54,13 @@ def submitpro():
         url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
         content = form.content.data
         ticket = request.form.getlist('ticket[]')
-        Product.init(False,url,False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",ticket)
+        count = 0
+        dticket = []
+        for x,y,z in zip(ticket[0::3], ticket[1::3],ticket[2::3]):
+            dtickettemp = {"id": count,"name":x,"cost":y,"much":z}
+            dticket.append(dtickettemp)
+        
+        Product.init(True,url,False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
         return ticket[0]
     
     else:

@@ -1,4 +1,5 @@
 import datetime
+import bson
 import conf.setting as setting
 from pymongo import MongoClient
 import pymongo
