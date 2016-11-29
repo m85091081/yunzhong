@@ -160,4 +160,12 @@ class Visit:
         Visit.update({"day":str(datetime.datetime.today().date())},{"$inc":{"count":1}},upsert=True)
         return True
 
+class info:
+    def about(content):
+        aboutUs = db['info']
+        aboutUs.update({"main":"about"},{"$set":{"content": content}},upsert=True)
+        return True
+    def getabout():
+        aboutUs = db['info']
+        return aboutUs.find_one({"main":"about"})
 

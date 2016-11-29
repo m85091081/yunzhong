@@ -13,6 +13,8 @@ class submitclassinfo(FlaskForm):
     organize = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入主辦單位"})
     content = StringField('', widget=wtforms.widgets.TextArea())
 
+class aboutform(FlaskForm):
+    content = StringField('', widget=wtforms.widgets.TextArea())
     
 class registerForm(FlaskForm):
     email = StringField('註冊 Email：',validators=[Required()])
