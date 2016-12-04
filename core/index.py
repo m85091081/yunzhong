@@ -23,6 +23,24 @@ def about():
     content = info.getabout()['content']
     return render_template('about.html',**locals())
 
+@main.route('/member-benefits-general', methods=['GET'])
+def benefit_general():
+    loginform = loginForm()
+    content = info.getgen()['content']
+    return render_template('member-benefits-general.html',**locals())
+
+@main.route('/member-benefits-student', methods=['GET'])
+def benefit_student():
+    loginform = loginForm()
+    content = info.getstu()['content']
+    return render_template('member-benefits-student.html',**locals())
+
+@main.route('/member-benefits-company', methods=['GET'])
+def benefit_company():
+    loginform = loginForm()
+    content = info.getcon()['content']
+    return render_template('member-benefits-company.html',**locals())
+
 @app.errorhandler(404)
 def page_not_found(e):
     loginform = loginForm()

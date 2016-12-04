@@ -47,3 +47,39 @@ def admabout():
         content = form.content.data
         dbmongo.info.about(content)
         return render_template('admin/about.html',**locals())
+
+@admbp.route('/student', methods=['POST','GET'])
+def admstudent():
+    form = aboutform()
+    content = dbmongo.info.getstu()['content']
+    if request.method == 'GET':
+        return render_template('admin/admin-member-benefits-student.html',**locals())
+
+    elif request.method == 'POST' and form.validate_on_submit():
+        content = form.content.data
+        dbmongo.info.student(content)
+        return render_template('admin/admin-member-benefits-student.html',**locals())
+
+@admbp.route('/general', methods=['POST','GET'])
+def admgeneral():
+    form = aboutform()
+    content = dbmongo.info.getgen()['content']
+    if request.method == 'GET':
+        return render_template('admin/admin-member-benefits-general.html',**locals())
+
+    elif request.method == 'POST' and form.validate_on_submit():
+        content = form.content.data
+        dbmongo.info.general(content)
+        return render_template('admin/admin-member-benefits-general.html',**locals())
+
+@admbp.route('/company', methods=['POST','GET'])
+def admcompany():
+    form = aboutform()
+    content = dbmongo.info.getcon()['content']
+    if request.method == 'GET':
+        return render_template('admin/admin-member-benefits-company.html',**locals())
+
+    elif request.method == 'POST' and form.validate_on_submit():
+        content = form.content.data
+        dbmongo.info.company(content)
+        return render_template('admin/admin-member-benefits-company.html',**locals())

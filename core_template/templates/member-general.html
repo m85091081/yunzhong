@@ -3,428 +3,189 @@
 
 <div id="in-container" class="general-box"> 
 
-<div class="container">
-<div class="row space">
+	<div class="container">
+		<div class="row space">
 
-    <div class="col-xs-12 in-breadcrumb">
-        <ol class="breadcrumb">
-          <li><a href="index.html">首頁</a></li>
-          <li>會員專區</li>
-          <li class="active">一般會員加入</li>
-        </ol>
-    </div><!--in-breadcrumb-->
-    
-    <div id="sidebar" class="col-md-3 hidden-sm hidden-xs">
-       <h4>會員專區</h4>
-       <ul class=" panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        <li class="panel dropdown active">
-         <a role="button" id="heading5" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="true" aria-controls="collapse5" class="cat">
-         加入會員<i class="fa" aria-hidden="true"></i></a>
-         <ul id="collapse5" class="collapse in" role="tabpanel" aria-labelledby="heading5" aria-expanded="true">
-			<li><a href="student">學生會員</a> </li> 
-			<li><a href="general">一般會員</a> </li>
-         </ul> 
-        </li>
-        <li class="panel"><a href="member-info.html">會員資料編輯</a></li>
-        <li class="panel"><a href="member-collect.html">會員收藏</a></li>
-        <li class="panel"><a href="proinfo-shop.html">會員購物車</a></li>
-        <li class="panel"><a href="#">會員訂購流程須知</a></li>
-       </ul>
-    </div><!--sidebar-->
-    
-    <div id="content" class="in-content col-md-9">
-        
-    	<h2 class= "page-header"><i class="fa fa-users" aria-hidden="true"></i> 一般會員加入</h2>
-        
-        <div class= "txtNormal">
-            <div id="member" class="modal-body">
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="member-signup2">
-                  <form class="form-horizontal" method="POST">
-						{{ form.csrf_token }}
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 註冊Email：</label>
-                    <div class="col-lg-10 col-sm-9">
-						{{ form.email(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 密碼：</label>
-                    <div class="col-lg-10 col-sm-9">
-                        {{ form.password(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 確認密碼：</label>
-                    <div class="col-lg-10 col-sm-9">
-                        {{ form.confirm(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 姓名：</label>
-                    <div class="col-lg-10 col-sm-9">
-                        {{ form.name(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group birth">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 生日：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        {{ form.birthday(class_="form-control datepicker") }}
-                    </div>
-                  </div>
-                  <div class="form-group country">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 國籍：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        {% for sub in form.country%}
-                        <label class="checkbox-inline checkbox-inline-xs">
-                                {{ sub }}
-								{{ sub.label }}
-						</label>
-						{% endfor %}
+			<div class="col-xs-12 in-breadcrumb">
+				<ol class="breadcrumb">
+					<li><a href="index.html">首頁</a></li>
+					<li>會員專區</li>
+					<li class="active">一般會員加入</li>
+				</ol>
+			</div><!--in-breadcrumb-->
+
+			<div id="sidebar" class="col-md-3 hidden-sm hidden-xs">
+				<h4>會員專區</h4>
+				<ul class=" panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+					<li class="panel dropdown active">
+						<a role="button" id="heading5" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="true" aria-controls="collapse5" class="cat">
+							加入會員<i class="fa" aria-hidden="true"></i></a>
+						<ul id="collapse5" class="collapse in" role="tabpanel" aria-labelledby="heading5" aria-expanded="true">
+							<li><a href="student">學生會員</a> </li> 
+							<li><a href="general">一般會員</a> </li>
+						</ul> 
+					</li>
+					<li class="panel"><a href="member-info.html">會員資料編輯</a></li>
+					<li class="panel"><a href="member-collect.html">會員收藏</a></li>
+					<li class="panel"><a href="proinfo-shop.html">會員購物車</a></li>
+					<li class="panel"><a href="#">會員訂購流程須知</a></li>
+				</ul>
+			</div><!--sidebar-->
+
+			<div id="content" class="in-content col-md-9">
+
+				<h2 class= "page-header"><i class="fa fa-users" aria-hidden="true"></i> 一般會員加入</h2>
+
+				<div class= "txtNormal">
+					<div id="member" class="modal-body">
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="member-signup2">
+								<form class="form-horizontal" method="POST">
+									{{ form.csrf_token }}
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 註冊Email：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.email(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 密碼：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.password(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 確認密碼：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.confirm(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 姓名：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.name(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group birth">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 生日：</label>
+										<div class="col-lg-10 col-sm-9 select-inline">
+											{{ form.birthday(class_="form-control dtnpicker") }}
+										</div>
+									</div>
+									<div class="form-group country">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 國籍：</label>
+										<div class="col-lg-10 col-sm-9 select-inline">
+											{% for sub in form.country%}
+											<label class="checkbox-inline checkbox-inline-xs">
+												{{ sub }}
+												{{ sub.label }}
+											</label>
+											{% endfor %}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 手機：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.phone(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group address">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 地址：</label>
+										<div class="col-lg-2 col-sm-1 select-inline">
+											{{ form.postnum(class_="form-control postalcode") }}
+										</div>
+										<div class="col-lg-8 col-sm-7 select-inline">
+											{{ form.address(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label">LINE ID：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.lineid(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label">FB帳號：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.fbid(class_="form-control",disabled=True) }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 行業別：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.industry(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 任職公司名：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.companyname(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 職稱：</label>
+										<div class="col-lg-10 col-sm-9">
+											{{ form.jobtitle(class_="form-control") }}
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="" class="col-lg-2 col-sm-3 control-label"></label>
+										<div class="col-lg-10 col-sm-9">
+											{{form.accept_tos()}} {{ form.accept_tos.label }} 
+											<a href="/member-benefits-general" target="_blank">會員權益</a>並同意相關內容 </label>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-offset-2 col-sm-offset-3 col-lg-10 col-sm-9">
+											<button type="submit" value="Go" class="btn btn-default">註冊</button>
+											<button type="button" id="back-login" class="btn btn-default hidden-xs">返回登入</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 手機：</label>
-                    <div class="col-lg-10 col-sm-9">
-                        {{ form.phone(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group address">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 地址：</label>
-                    <div class="col-lg-2 col-sm-1 select-inline">
-						{{ form.postnum(class_="form-control postalcode") }}
-					</div>
-					<div class="col-lg-8 col-sm-7 select-inline">
-                        {{ form.address(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label">LINE ID：</label>
-                    <div class="col-lg-10 col-sm-9">
-                        {{ form.lineid(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label">FB帳號：</label>
-                    <div class="col-lg-10 col-sm-9">
-                        {{ form.fbid(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 行業別：</label>
-					<div class="col-lg-10 col-sm-9">
-						{{ form.industry(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 任職公司名：</label>
-					<div class="col-lg-10 col-sm-9">
-						{{ form.companyname(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 職稱：</label>
-                    <div class="col-lg-10 col-sm-9">
-						{{ form.jobtitle(class_="form-control") }}
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"></label>
-                    <div class="col-lg-10 col-sm-9">
-						{{form.accept_tos()}} {{ form.accept_tos.label }} 
-                        <a href="member-benefits.html" target="_blank">會員權益</a>並同意相關內容 </label>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-sm-offset-3 col-lg-10 col-sm-9">
-                      <button type="submit" value="Go" class="btn btn-default">註冊</button>
-					  <button type="button" id="back-login" class="btn btn-default hidden-xs">返回登入</button>
-                    </div>
-                  </div>
-                </form>
-                </div>
-                
-                
-                <div role="tabpanel" class="tab-pane" id="member-signup2">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 註冊Email：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 密碼：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="password" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 確認密碼：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="password" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 姓名：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group birth">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 生日：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        <select class="form-control">
-                          <option>2016</option>
-                          <option>2015</option>
-                          <option>2014</option>
-                        </select> 年
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>12</option>
-                        </select> 月
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>12</option>
-                        </select> 日
-                    </div>
-                  </div>
-                  <div class="form-group country">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 國籍：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        <label class="checkbox-inline checkbox-inline-xs">
-                          <input name="inlineRadioOptions1" type="radio" id="" value=""> 本國
-                        </label>
-                        <label class="checkbox-inline">
-                          <input type="radio" name="inlineRadioOptions1" id="" value=""> 外籍
-                        </label>
-                        <select class="form-control">
-                          <option>日本</option>
-                          <option>韓國</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 手機：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group address">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 地址：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        <input type="" class="form-control postalcode" placeholder="郵遞區號" value="">
-                        <select class="form-control">
-                          <option>桃園市</option>
-                          <option>台北市</option>
-                          <option>新北市</option>
-                        </select>
-                        <select class="form-control">
-                          <option>中壢區</option>
-                          <option>平鎮區</option>
-                          <option>楊梅區</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label hidden-xs"></label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" placeholder="" value="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label">LINE ID：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label">FB帳號：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 行業別：</label>
-                    <div class="col-lg-10 col-sm-9">
-                        <select class="form-control">
-                          <option>營建工程業</option>
-                          <option>批發及零售業</option>
-                          <option>運輸及倉儲業</option>
-                          <option>製造業</option>
-                          <option>礦業及土石採取業</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 任職公司名：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 職稱：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"></label>
-                    <div class="col-lg-10 col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> 我已詳閱<a href="member-benefits.html" target="_blank">會員權益</a>並同意相關內容 </label>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-sm-offset-3 col-lg-10 col-sm-9">
-                      <button type="submit" class="btn btn-default">註冊</button>
-					  <button type="button" id="back-login" class="btn btn-default hidden-xs">返回登入</button>
-                    </div>
-                  </div>
-                </form>
-                </div>
-                
-                
-                <div role="tabpanel" class="tab-pane" id="member-signup3">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 註冊Email：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 密碼：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="password" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 確認密碼：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="password" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 公司名稱：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 公司統編：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group country">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 負責人國籍：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        <label class="checkbox-inline checkbox-inline-xs">
-                          <input name="inlineRadioOptions1" type="radio" id="" value=""> 本國
-                        </label>
-                        <label class="checkbox-inline">
-                          <input type="radio" name="inlineRadioOptions1" id="" value=""> 外籍
-                        </label>
-                        <select class="form-control">
-                          <option>日本</option>
-                          <option>韓國</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 負責人姓名：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 負責人身分證字號：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 聯絡人姓名：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 部門職稱：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 聯絡人電話：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 聯絡人手機：</label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" id="" placeholder="">
-                    </div>
-                  </div>
-                  <div class="form-group address">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"><span class="red">*</span> 地址：</label>
-                    <div class="col-lg-10 col-sm-9 select-inline">
-                        <input type="" class="form-control postalcode" placeholder="郵遞區號" value="">
-                        <select class="form-control">
-                          <option>桃園市</option>
-                          <option>台北市</option>
-                          <option>新北市</option>
-                        </select>
-                        <select class="form-control">
-                          <option>中壢區</option>
-                          <option>平鎮區</option>
-                          <option>楊梅區</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label  hidden-xs"></label>
-                    <div class="col-lg-10 col-sm-9">
-                      <input type="" class="form-control" placeholder="" value="">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="" class="col-lg-2 col-sm-3 control-label"></label>
-                    <div class="col-lg-10 col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> 我已詳閱<a href="member-benefits.html" target="_blank">會員權益</a>並同意相關內容 </label>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-lg-offset-2 col-sm-offset-3 col-lg-10 col-sm-9">
-                      <button type="submit" class="btn btn-default">註冊</button>
-					  <button type="button" id="back-login" class="btn btn-default hidden-xs">返回登入</button>
-                    </div>
-                  </div>
-                </form>
-                </div>
-              </div>
-
-          </div>
-	      
-        
-        </div>
-        
-    </div>
-        
-</div><!--/row space-->
-    
+			</div>
+		</div><!--/row space-->
+	</div>
 </div>
-</div>
-
+<script type="text/javascript">
+$(function() {
+    $('.dtnpicker').daterangepicker({
+		    singleDatePicker: true,	
+		    autoApply: true,
+			showDropdowns: true,
+			cancelClass: "btn-danger",
+	        locale: {
+			            format: 'YYYY-MM-DD',
+						daysOfWeek: [
+						            "日",
+						            "一",
+						            "二",
+						            "三",
+						            "四",
+						            "五",
+						            "六"
+						        ],
+						monthNames: [
+								    "一月",
+								            "二月",
+								            "三月",
+								            "四月",
+								            "五月",
+								            "六月",
+								            "七月",
+								            "八月",
+								            "九月",
+								            "十月",
+								            "十一月",
+								            "十二月"
+								        ]
+			        }
+	    });
+});
+</script>
 <script>
 $(function() {
 
@@ -432,25 +193,25 @@ $(function() {
 
 	//xs sidebar
 	(function($) {
-	$(document).ready(function() {
-	  $.slidebars();
-	});
+		$(document).ready(function() {
+			$.slidebars();
+		});
 	}) (jQuery);
-	
+
 	// 如果是手機版,將affix的top設定為header預設的高度
 	if($(window).width() >= 768){
 		var headerHeight = 1;
 	}else{
 		var headerHeight = $('header').height();
 	}
-	
+
 	// 使用affixfunction,固定導航條
 	$('header').affix({
-	  offset: {
-		top: headerHeight
-	  }
+		offset: {
+			top: headerHeight
+		}
 	});
-	
+
 	// 如果是手機版,滑動到header預設的高度時調整margin-top高度
 	if($(window).width() < 768){
 		$(window).scroll(function () {
@@ -463,7 +224,7 @@ $(function() {
 			}
 		});
 	}
-	
+
 	$('#model-forgotpw-btn').on('click', function () {
 		$('#model-login').modal('hide');
 	});
@@ -478,24 +239,24 @@ $(function() {
 		$('#model-login').modal('show');
 		$('#model-forgotpw').modal('hide');
 	});
-	
-		
+
+
 });
 </script>
 
 <!--mainbanner-->
 <script>        
-  var mySwiper = new Swiper ('.swiper-mainbanner', {
-    direction: 'horizontal',
-    loop: true,
-    nextButton: '.mainbanner-next',
-    prevButton: '.mainbanner-prev',
-  })       
-  
-  
+var mySwiper = new Swiper ('.swiper-mainbanner', {
+	direction: 'horizontal',
+	loop: true,
+	nextButton: '.mainbanner-next',
+	prevButton: '.mainbanner-prev',
+})       
+
+
 $('#dropdownfix label').on('click', function (event) {
-  event.stopPropagation();
- }); 
+	event.stopPropagation();
+}); 
 </script>
 <!--/mainbanner-->
 

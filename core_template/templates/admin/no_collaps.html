@@ -109,8 +109,8 @@
                     關於我們
                 </a>
             </li>
-            <li >
-				<a class="{% block collapseClass%}{%endblock%}" href="#member-dashboard" data-toggle="collapse" data-parent="#sidebar">
+			<li class="{% block collapseClass%}{%endblock%}">
+				<a href="#member-dashboard" data-toggle="collapse" data-parent="#sidebar">
                     <span class="icon">
                         <i class="fa fa-certificate" aria-hidden="true"></i>
                     </span>
@@ -118,9 +118,9 @@
                     <i class="toggle fa fa-angle-down"></i>
                 </a>
                 <ul id="member-dashboard" class="collapse">
-                    <li><a href="index.html">一般會員</a></li>
-                    <li><a href="widgets.html">學生會員</a></li>
-                    <li><a href="widgets.html">企業會員</a></li>
+                    <li><a href="/admin/general">一般會員</a></li>
+                    <li><a href="/admin/student">學生會員</a></li>
+                    <li><a href="/admin/company">企業會員</a></li>
                 </ul>
             </li>
         </ul>

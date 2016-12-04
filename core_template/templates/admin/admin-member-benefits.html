@@ -1,7 +1,7 @@
 {% extends "admin/no_collaps.html"%}
-{% block aboutMeClass%}active{%endblock%}
+{% block collapseClass%}active{%endblock%}
 {%block content%}
-<h1 class="page-title">關於我們 <small><small>編輯</small></small></h1>
+<h1 class="page-title">{% block member %}{%endblock%}<small><small>編輯</small></small></h1>
 <div class="row">
 	<div class="col-md-12">
 		<section class="widget">
@@ -22,7 +22,7 @@
 					編輯
 				</h4>
 			</header>
-			<form method='POST' action="/admin/about" id="aboutform">
+			<form method='POST' action="/admin/{%block membersubmit%}{%endblock%}" id="aboutform">
               {{ form.csrf_token }}
 			<div class="editable" id="editable" style="outline: none; min-height: 200px;" data-placeholder="請點擊輸入文字"></div>
 			{{ form.content(id = "fccontent",style="display:none;")}}
