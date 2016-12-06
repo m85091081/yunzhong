@@ -160,4 +160,39 @@ class Visit:
         Visit.update({"day":str(datetime.datetime.today().date())},{"$inc":{"count":1}},upsert=True)
         return True
 
+class info:
+    def about(content):
+        aboutUs = db['info']
+        aboutUs.update({"main":"about"},{"$set":{"content": content}},upsert=True)
+        return True
 
+    def general(content):
+        benefits = db['info']
+        benefits.update({"main":"general"},{"$set":{"content": content}},upsert=True)
+        return True
+
+    def company(content):
+        benefits = db['info']
+        benefits.update({"main":"company"},{"$set":{"content": content}},upsert=True)
+        return True
+
+    def student(content):
+        benefits = db['info']
+        benefits.update({"main":"student"},{"$set":{"content": content}},upsert=True)
+        return True
+
+    def getabout():
+        aboutUs = db['info']
+        return aboutUs.find_one({"main":"about"})
+
+    def getgen():
+        benefits = db['info']
+        return benefits.find_one({"main":"general"})
+
+    def getcon():
+        benefits = db['info']
+        return benefits.find_one({"main":"company"})
+
+    def getstu():
+        benefits = db['info']
+        return benefits.find_one({"main":"student"})

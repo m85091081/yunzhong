@@ -175,7 +175,7 @@
 				</div>
 				<div class="col-md-4 col-xs-4 col-sm-4 init"></div>
 				<div class="col-md-4 col-xs-4 col-sm-4 init" style="text-align:center;margin-bottom:50px;">
-					<button type="submit" value="Go" class="btn btn-default">註冊</button>
+					<button type="submit" value="Go" class="btn btn-default">提交</button>
 				</div>
 			</form>
 			<div class="col-md-4 col-xs-4 col-sm-4 init"></div>
@@ -261,6 +261,7 @@ jQuery(document).ready(function() {
 </script>
 <script>
 $( "#prodform" ).submit(function( event ) {
+		$('.medium-insert-buttons').remove();
 		$('#content').val($('#editable').html());
 		$('#cover').val($('#imgtest').attr('src'));
 });

@@ -1,0 +1,80 @@
+{% extends "admin/no_collaps.html"%}
+{% block aboutMeClass%}active{%endblock%}
+{%block content%}
+<h1 class="page-title">關於我們 <small><small>編輯</small></small></h1>
+<div class="row">
+	<div class="col-md-12">
+		<section class="widget">
+			<header>
+				<h4>
+					目前樣式
+				</h4>
+			</header>
+			<div class="widget-body">
+				{{ content|safe }}
+			</div>
+		</section>
+	</div>
+	<div class="col-md-12" style="position:static">
+		<section class="widget" style="position:static">
+			<header>
+				<h4>
+					編輯
+				</h4>
+			</header>
+			<form method='POST' action="/admin/about" id="aboutform">
+              {{ form.csrf_token }}
+			<div class="editable" id="editable" style="outline: none; min-height: 200px;" data-placeholder="請點擊輸入文字"></div>
+			{{ form.content(id = "fccontent",style="display:none;")}}
+			<button type="submit" value="Go" class="btn btn-default">提交</button>
+			</form>
+		</section>
+	</div>
+</div>
+{%endblock%}
+{% block script%}
+<script>
+$( "#aboutform" ).submit(function( event ) {
+		$('.medium-insert-buttons').remove();
+		$('#fccontent').val($('#editable').html());
+});
+</script>
+<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/medium-editor.min.css">
+<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/themes/beagle.min.css" id="medium-editor-theme">
+<link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
+<link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
+<script src="/static/bower_components/medium-editor/dist/js/medium-editor.js"></script>
+<script src="/static/bower_components/handlebars/handlebars.runtime.min.js"></script>
+<script src="/static/bower_components/jquery-sortable/source/js/jquery-sortable-min.js"></script>
+<!-- Unfortunately, jQuery File Upload Plugin has a few more dependencies itself -->
+<script src="/static/bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/static/bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/static/bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
+<script>
+var editor = new MediumEditor('.editable',{
+});
+$(function () {
+	$('.editable').mediumInsert({
+		editor: editor,
+		addons: {
+			images: {
+				uploadScript: null,
+				deleteScript: null,
+				captionPlaceholder: 'Type caption for image',
+				fileUploadOptions: {
+					url: '/mdupload',
+					acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
+					maxFileSize:3000000,
+				},
+				actions: null,
+				messages: {
+					acceptFileTypesError: '上傳格式只接受jpg,png：',
+					maxFileSizeError: '圖片大小請小於3MB: ',
+				},
+			}
+		}
+	});
+});
+</script>
+{%endblock%}
