@@ -42,7 +42,6 @@ def submitpro():
     form = submitclassinfo()
     if request.method == 'GET':
         return render_template('lesson.html' , **locals())
-    
     elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) >= 3 :
         address = form.address.data
         link = form.link.data
@@ -59,17 +58,12 @@ def submitpro():
         for x,y,z in zip(ticket[0::3], ticket[1::3],ticket[2::3]):
             dtickettemp = {"id": count,"name":x,"cost":y,"much":z}
             dticket.append(dtickettemp)
-        
         Product.init(True,url,False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
         return ticket[0]
     
     else:
         """偷懶debug區"""
         """不要送任何可以測資讓認證可過即可直接測試"""
-        name = form.name.data
-        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
-        url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
-        print(url)
         return render_template('reg_err.html',**locals())
 
 
@@ -86,8 +80,31 @@ def actshowinfo(url):
 @act.route('/submit',methods=['GET','POST'])
 def submitprinfoo():
     loginform = loginForm()
+    form = submitclassinfo()
     if request.method == 'GET':
-        return render_template('event.html' , **locals())
+        return render_template('lesson.html' , **locals())
+    elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) >= 3 :
+        address = form.address.data
+        link = form.link.data
+        organize = form.organize.data
+        daterange = form.daterange.data
+        cover = form.cover.data
+        name = form.name.data
+        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
+        url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
+        content = form.content.data
+        ticket = request.form.getlist('ticket[]')
+        count = 0
+        dticket = []
+        for x,y,z in zip(ticket[0::3], ticket[1::3],ticket[2::3]):
+            dtickettemp = {"id": count,"name":x,"cost":y,"much":z}
+            dticket.append(dtickettemp)
+        Product.init(True,url,True,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
+        return ticket[0]
+    else:
+        """偷懶debug區"""
+        """不要送任何可以測資讓認證可過即可直接測試"""
+        return render_template('reg_err.html',**locals())
 
 ### 購物車模組
 
