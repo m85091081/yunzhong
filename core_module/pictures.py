@@ -16,3 +16,8 @@ def uploadpicture(f):
     sha1 = hashlib.sha1(content.getvalue()).hexdigest()
     content = bson.binary.Binary(content.getvalue()) 
     return Pictures.savepicture(content,mime,sha1)
+
+def uploadcover(f):
+    content = f
+    sha1 = hashlib.sha1(content).hexdigest()
+    return Pictures.savepicture(content,"jpeg",sha1)
