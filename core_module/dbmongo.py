@@ -27,7 +27,16 @@ class Product:
 
     def getdata(self,url):
         return self.prod.find_one({"url": url})
-    
+
+    def searchall(self,title):
+        return self.prod.find({'$and':[{ 'verfiy': True},{'title':{'$all':title}}]})
+
+    def searchclass(self,title):
+        return self.prod.find({'$and':[{ 'verfiy': True},{'activity': False},{'title':{'$all':title}}]})
+
+    def searchacti(self,title):
+        return self.prod.find({'$and':[{ 'verfiy': True},{'activity': True},{'title':{'$all':title}}]})
+
     def init(self,verfiy,url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
         self.prod.create_index("url", unique=True)
         raw = {

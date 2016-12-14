@@ -5,7 +5,7 @@ from core_module.pictures import uploadpicture,uploadcover
 from flask_paginate import Pagination
 from core import app
 from xpinyin import Pinyin
-import ast , datetime, base64
+import ast , datetime, base64, re
 
 p = Pinyin()
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
@@ -27,7 +27,6 @@ def porinfo():
     pagepd = Product.verfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('proinfo.html',**locals())
-
 
 @classrom.route('/show/<url>', methods=['GET', 'POST'])
 def showinfo(url):
@@ -120,6 +119,34 @@ def submitprinfoo():
         """偷懶debug區"""
         """不要送任何可以測資讓認證可過即可直接測試"""
         return render_template('reg_err.html',**locals())
+
+
+### 搜尋模組
+
+@app.route('/search/', methods=['GET'])
+def porinfosearch():
+    loginform = loginForm()
+    category = request.args.get('category')
+    title = request.args.get('title')
+    if title==None:
+        pass
+    else:
+        title = title.rsplit(' ')
+        for index, item in enumerate(title):
+            title[index] = re.compile(''+item+'')
+    if 'search'+category not in dir(Product):
+        return render_template('404.html',**locals()),404
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    searchinfo = getattr(Product,'search'+category)
+    allpd = searchinfo(title)
+    page = request.args.get('page', type=int, default=1)
+    pagepd = searchinfo(title).sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
+    return render_template('proinfo.html',**locals())
+
 
 ### 購物車模組
 
