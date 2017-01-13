@@ -1,11 +1,11 @@
 from flask import make_response, Response, request, render_template, Blueprint, url_for, redirect, session,jsonify
 from core_module.dbmongo import Product as product,Pictures
 from core_module.form import loginForm , productForm, submitclassinfo
-from core_module.pictures import uploadpicture
+from core_module.pictures import uploadpicture,uploadcover
 from flask_paginate import Pagination
 from core import app
 from xpinyin import Pinyin
-import ast , datetime
+import ast , datetime, base64, re
 
 p = Pinyin()
 proinfo = Blueprint('proinfo', __name__ , template_folder='../core_template/templates')
@@ -24,7 +24,7 @@ def porinfo():
         search = True
     allpd = Product.verfiyclass()
     page = request.args.get('page', type=int, default=1)
-    pagepd = Product.verfiyclass().limit(9).skip((int(page)-1)*9)
+    pagepd = Product.verfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('proinfo.html',**locals())
 
@@ -47,7 +47,7 @@ def submitpro():
         link = form.link.data
         organize = form.organize.data
         daterange = form.daterange.data
-        cover = form.cover.data
+        cover = url_for('serve_picture',sha1=uploadcover(base64.b64decode(form.cover.data[23:])))
         name = form.name.data
         name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
         url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
@@ -59,7 +59,7 @@ def submitpro():
             dtickettemp = {"id": count,"name":x,"cost":y,"much":z}
             dticket.append(dtickettemp)
         Product.init(True,url,False,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
-        return ticket[0]
+        return redirect(url_for('classrom.showinfo',url=url))
     
     else:
         """偷懶debug區"""
@@ -68,6 +68,20 @@ def submitpro():
 
 
 ### 活動模組
+
+
+@act.route('/', methods=['GET', 'POST'])
+def actporinfo():
+    loginform = loginForm()
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    allpd = Product.verfiyacti()
+    page = request.args.get('page', type=int, default=1)
+    pagepd = Product.verfiyacti().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
+    return render_template('proinfo.html',**locals())
 
 @act.route('/show/<url>', methods=['GET', 'POST'])
 def actshowinfo(url):
@@ -82,13 +96,13 @@ def submitprinfoo():
     loginform = loginForm()
     form = submitclassinfo()
     if request.method == 'GET':
-        return render_template('lesson.html' , **locals())
+        return render_template('activity.html' , **locals())
     elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) >= 3 :
         address = form.address.data
         link = form.link.data
         organize = form.organize.data
         daterange = form.daterange.data
-        cover = form.cover.data
+        cover = url_for('serve_picture',sha1=uploadcover(base64.b64decode(form.cover.data[23:])))
         name = form.name.data
         name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
         url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
@@ -100,11 +114,39 @@ def submitprinfoo():
             dtickettemp = {"id": count,"name":x,"cost":y,"much":z}
             dticket.append(dtickettemp)
         Product.init(True,url,True,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
-        return ticket[0]
+        return redirect(url_for('act.actshowinfo',url=url))
     else:
         """偷懶debug區"""
         """不要送任何可以測資讓認證可過即可直接測試"""
         return render_template('reg_err.html',**locals())
+
+
+### 搜尋模組
+
+@app.route('/search/', methods=['GET'])
+def porinfosearch():
+    loginform = loginForm()
+    category = request.args.get('category')
+    title = request.args.get('title')
+    if title==None:
+        pass
+    else:
+        title = title.rsplit(' ')
+        for index, item in enumerate(title):
+            title[index] = re.compile(''+item+'')
+    if 'search'+category not in dir(Product):
+        return render_template('404.html',**locals()),404
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    searchinfo = getattr(Product,'search'+category)
+    allpd = searchinfo(title)
+    page = request.args.get('page', type=int, default=1)
+    pagepd = searchinfo(title).sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
+    return render_template('proinfo.html',**locals())
+
 
 ### 購物車模組
 

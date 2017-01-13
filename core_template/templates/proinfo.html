@@ -29,18 +29,18 @@
                                     </ul>
                                 </div>
                                 <div class="col-md-6 col-sm-7 col-xs-12">
-                                    <form class="form-inline">
+                                    <form class="form-inline" method="get" action="/search/">
                                         <div class="form-group">
-                                            <select name="select" class="form-control">
-                                                <option>全部活動查詢</option>
-                                                <option>最新活動</option>
+                                            <select name="category" class="form-control">
+                                                <option value='all'>全部活動查詢</option>
+												<option>最新活動</option>
                                                 <option>免費活動</option>
                                                 <option>付費活動</option>
                                                 <option>已額滿活動</option>
                                                 <option>尚未額滿活動</option>
                                             </select>
-                                            <input class="form-control" placeholder="找課程">
-                                            <button type="submit" class="btn btn-default" onClick="search-com.html"><i class="fa fa-search"></i></button>
+                                            <input name='title'class="form-control" placeholder="找課程">
+                                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                         </div>
                                     </form>
 
