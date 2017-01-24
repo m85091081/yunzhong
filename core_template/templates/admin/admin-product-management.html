@@ -10,33 +10,46 @@
 <div class="row">
 	<div class="col-md-12">
 		<header>
-			<h4>
-				提案總數
-			</h4>
+			<div style="float:right">
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_confirm">
+					<i class="fa fa-trash-o" aria-hidden="true"></i>
+					刪除
+				</button>
+			</div>
 		</header>
 		<div class="widgt-body">
 			<table class="table">
 				<thead>	
 					<tr>
+						<th></th>
 						<th>提案名稱</th>
 						<th>活動日期</th>
 						<th>活動地點</th>
 						<th>活動分類</th>
 						<th>相關連結</th>
-						<th>預覽</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
+								<label>
+									<input type="checkbox" value="">
+								</label>
 						</td>
 						<td>
-						</td>
-						<td class="hidden-xs text-semi-muted">
-						</td>
-						<td class="hidden-xs text-semi-muted">
+							妹妹克隆計劃
 						</td>
 						<td>
+							2017/11/12
+						</td>
+						<td class="hidden-xs text-semi-muted">
+							Stradew Valley
+						</td>
+						<td class="hidden-xs text-semi-muted">
+							科技
+						</td>
+						<td>
+							<a href="#">https://www.mino.tw/</a>
 						</td>
 						<td>
 							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#preview">預覽</button>
@@ -56,13 +69,28 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					&times;
 				</button>
-				<h4 class="modal-title" id="myModalLabel">
-					
-				</h4>
 			</div>
-			<div class="modal-body">
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div class="modal-title">
+					<h3>
+						<i class="fa fa-info-circle" aria-hidden="true"></i>
+						確定曜刪除嗎
+					</h1>
+				</div>
 			</div>
 			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary">Confirm</button>
 			</div>
 		</div>
 	</div>
