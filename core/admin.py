@@ -83,3 +83,15 @@ def admcompany():
         content = form.content.data
         dbmongo.info.company(content)
         return render_template('admin/admin-member-benefits-company.html',**locals())
+
+@admbp.route('/prosubmit', methods=['POST','GET'])
+def admprosubmit():
+    return render_template('admin/admin-product-management.html',**locals())
+
+@admbp.route('/stusubmit', methods=['POST','GET'])
+def admstusubmit():
+    return render_template('admin/admin-student-product-list.html',**locals())
+
+@admbp.route('/entsubmit', methods=['POST','GET'])
+def admentsubmit():
+    return render_template('admin/admin-enterprise-product-verify.html',**locals())

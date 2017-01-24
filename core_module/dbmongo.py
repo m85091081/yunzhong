@@ -56,6 +56,11 @@ class Product:
                 }
         self.prod.insert_one(raw)
         return True
+    
+    def proconfirm(self,urls):
+        for url in urls:
+            self.prod.update({"url":url},{"verfiy":True})
+        return True
 
 
 class User:
