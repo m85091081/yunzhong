@@ -1,4 +1,73 @@
 {% extends "admin/no_collaps.html" %}
 {% block nowSubmitClass %}active{%endblock%}
-{% block body %}
+{% block content %}
+<h1 class="page-title">
+	上架提案管理
+	<small>
+		已上架提案管理
+	</small>
+</h1>
+<div class="row">
+	<div class="col-md-12">
+		<header>
+			<h4>
+				提案總數
+			</h4>
+		</header>
+		<div class="widgt-body">
+			<table class="table">
+				<thead>	
+					<tr>
+						<th>提案名稱</th>
+						<th>活動日期</th>
+						<th>活動地點</th>
+						<th>活動分類</th>
+						<th>相關連結</th>
+						<th>預覽</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td class="hidden-xs text-semi-muted">
+						</td>
+						<td class="hidden-xs text-semi-muted">
+						</td>
+						<td>
+						</td>
+						<td>
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#preview">預覽</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</section>
+	</div>
+</div>
+
+<div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					
+				</h4>
+			</div>
+			<div class="modal-body">
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
+{% block script%}
+<script src="/static/admin/js/widgets.js"></script>
+{%endblock%}
