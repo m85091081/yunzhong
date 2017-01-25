@@ -5,7 +5,7 @@ from core_module.form import aboutform
 from flask_paginate import Pagination
 admbp = Blueprint('admbp', __name__ , template_folder='../core_template/templates')
 allmem = dbmongo.User()
-
+Product = dbmongo.Product()
 @admbp.route('/')
 def admindex():
     allmemcount = allmem.count("all")
@@ -86,12 +86,40 @@ def admcompany():
 
 @admbp.route('/prosubmit', methods=['POST','GET'])
 def admprosubmit():
+    if request.method == "POST":
+       Product.proshelve(request.form.getlist('urls[]'))
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    allpd = Product.verfiyclass()
+    page = request.args.get('page', type=int, default=1)
+    pagepd = Product.verfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-product-management.html',**locals())
 
 @admbp.route('/stusubmit', methods=['POST','GET'])
 def admstusubmit():
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    allpd = Product.noverfiyacti()
+    page = request.args.get('page', type=int, default=1)
+    pagepd = Product.noverfiyacti().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-student-product-list.html',**locals())
 
 @admbp.route('/entsubmit', methods=['POST','GET'])
 def admentsubmit():
+    if request.method == "POST":
+       Product.proconfirm(request.form.getlist('urls[]'))
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    allpd = Product.noverfiyclass()
+    page = request.args.get('page', type=int, default=1)
+    pagepd = Product.noverfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-enterprise-product-verify.html',**locals())

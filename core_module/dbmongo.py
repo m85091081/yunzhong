@@ -15,14 +15,14 @@ class Product:
     
     def verfiyclass(self):
         return self.prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
-   
-    def stayclass(self):
+  
+    def noverfiyclass(self):
         return self.prod.find({'$and':[{ 'verfiy': False},{'activity': False}]})
 
     def verfiyacti(self):
         return self.prod.find({'$and':[{'verfiy': True},{'activity': True}]})
    
-    def stayacti(self):
+    def noverfiyacti(self):
         return self.prod.find({'$and':[{'verfiy': False},{'activity': True}]})
 
     def getdata(self,url):
@@ -59,7 +59,12 @@ class Product:
     
     def proconfirm(self,urls):
         for url in urls:
-            self.prod.update({"url":url},{"verfiy":True})
+            self.prod.update({"url":url},{'$set':{"verfiy":True}})
+        return True
+
+    def proshelve(self,urls):
+        for url in urls:
+            self.prod.update({"url":url},{'$set':{"verfiy":False}})
         return True
 
 
