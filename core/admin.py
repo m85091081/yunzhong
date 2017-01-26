@@ -15,8 +15,8 @@ def admindex():
     allprod = dbmongo.Product()
     allvfyclass = allprod.verfiyclass().count()
     allvfyacti  = allprod.verfiyacti().count()
-    allstayclass= allprod.stayclass().count()
-    allstayacti = allprod.stayacti().count()
+    allstayclass= allprod.noverfiyclass().count()
+    allstayacti = allprod.noverfiyacti().count()
     visit = dbmongo.Visit.count()
     allvisit = visit[0]["count"]
     todayvisit = visit[1][0]["count"]
