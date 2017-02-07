@@ -54,7 +54,7 @@
 							<a href="#">{{ pd.get('link') }}</a>
 						</td>
 						<td>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#preview">預覽</button>
+							<button type="button" class="btn btn-info" value="/class/show/{{ pd.get('url')}}"  data-toggle="modal" data-target="#preview">預覽</button>
 						</td>
 					</tr>
 					{% endfor %}
@@ -78,7 +78,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<iframe frameborder="0" src="http://localhost:8080/acti/show/nasa-in-taiwan" height="700px" width="100%"></iframe>
+				<iframe id="preview-iframe" frameborder="0" src="" height="700px" width="100%"></iframe>
 			</div>
 		</div>
 	</div>
@@ -111,6 +111,10 @@
 <script>
 $( "#btn_confirm").click(function( event ){
 	$("#manage").submit();
+});
+$(".btn-info").click(function( event){
+	console.log($(this).val());
+	$('#preview-iframe').attr('src',$(this).val());
 });
 </script>
 {%endblock%}
