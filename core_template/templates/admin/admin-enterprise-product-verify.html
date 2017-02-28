@@ -1,0 +1,113 @@
+{% extends "admin/no_collaps.html" %}
+{% block entSubmitClass %}active{%endblock%}
+{% block content %}
+<h1 class="page-title">
+	企業提案審核
+	<small>
+		未上架提案管理
+	</small>
+</h1>
+<div class="row">
+	<div class="col-md-12">
+		<header>
+			<div style="float:right">
+				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_confirm">
+					<i class="fa fa-trash-o" aria-hidden="true"></i>
+					上架
+				</button>
+			</div>
+		</header>
+		<div class="widgt-body">
+			<table class="table">
+				<thead>	
+					<tr>
+						<th></th>
+						<th>提案名稱</th>
+						<th>活動日期</th>
+						<th>活動地點</th>
+						<th>活動分類</th>
+						<th>相關連結</th>
+					</tr>
+				</thead>
+				<tbody>
+					<form id="manage" method="POST" action="{{ url_for('admbp.admentsubmit')}}">
+					{% for pd in pagepd %}
+					<tr>
+						<td>
+								<label>
+									<input name="urls[]" type="checkbox" value="{{ pd.get('url') }}">
+								</label>
+						</td>
+						<td>
+							{{ pd.get('title') }}
+						</td>
+						<td>
+							{{ pd.get('timedict') }}
+						</td>
+						<td class="hidden-xs text-semi-muted">
+							{{ pd.get('place') }}
+						</td>
+						<td class="hidden-xs text-semi-muted">
+							{{ pd.get('classify') }}
+						</td>
+						<td>
+							<a href="#">{{ pd.get('link') }}</a>
+						</td>
+						<td>
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#preview">預覽</button>
+						</td>
+					</tr>
+					{% endfor %}
+					</form>
+				</tbody>
+			</table>
+		</div>
+                <div class="pagination">
+                    {{ pagin.links }}
+                </div>
+		</section>
+	</div>
+</div>
+
+<div class="modal fade" id="preview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div class="modal-title">
+					<h3>
+						<i class="fa fa-info-circle" aria-hidden="true"></i>
+						確定要上架嗎
+					</h1>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button id='btn_confirm' type="button" class="btn btn-primary">Confirm</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block script%}
+<script src="/static/admin/js/widgets.js"></script>
+<script>
+$( "#btn_confirm").click(function( event ){
+	$("#manage").submit();
+});
+</script>
+{%endblock%}
