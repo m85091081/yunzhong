@@ -56,6 +56,22 @@ class Product:
                 }
         self.prod.insert_one(raw)
         return True
+
+    def proupdate(self,url,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
+        raw = {
+                "title":str(title),
+                "pic":str(pic),
+                "timedict":timedict,
+                "place":place,
+                "link":str(link),
+                "classify":classify,
+                "holderlist":holderlist,
+                "about":str(about),
+                "prodata":prodata, ##相關資料
+                "orderdict":orderdict
+                }
+        self.prod.update({"url":url},{'$set':raw})
+        return True
     
     def proconfirm(self,urls):
         for url in urls:
@@ -120,7 +136,8 @@ class User:
                 "major" : major,
                 "lineid":lineid,
                 "fbid":fbid,
-                "date": datetime.datetime.utcnow()}
+                "date": datetime.datetime.utcnow(),
+                }
         self.user.insert_one(raw)
         return True
     
@@ -142,7 +159,8 @@ class User:
                 "jobtitle": jobtitle,
                 "lineid":lineid,
                 "fbid":fbid,
-                "date": datetime.datetime.utcnow()}
+                "date": datetime.datetime.utcnow(),
+                }
         self.user.insert_one(raw)
         return True
     

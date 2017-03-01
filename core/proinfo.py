@@ -49,7 +49,7 @@ def submitpro():
         daterange = form.daterange.data
         cover = url_for('serve_picture',sha1=uploadcover(base64.b64decode(form.cover.data[23:])))
         name = form.name.data
-        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
+        name_pinyin = p.get_pinyin(str(name)).replace('-','').replace(' ','')[0:14]
         url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
         content = form.content.data
         ticket = request.form.getlist('ticket[]')
@@ -104,7 +104,7 @@ def submitprinfoo():
         daterange = form.daterange.data
         cover = url_for('serve_picture',sha1=uploadcover(base64.b64decode(form.cover.data[23:])))
         name = form.name.data
-        name_pinyin = p.get_pinyin(str(name)).replace('-','')[0:14]
+        name_pinyin = p.get_pinyin(str(name)).replace('-','').replace(' ','')[0:14]
         url =  str(datetime.datetime.now().strftime('%y%m%d%H%M'))+'-'+name_pinyin
         content = form.content.data
         ticket = request.form.getlist('ticket[]')

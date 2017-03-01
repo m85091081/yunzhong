@@ -39,7 +39,11 @@
 								</label>
 						</td>
 						<td>
-							{{ pd.get('title') }}
+							{% if pd.get('activity') %}
+							<a href="/acti/show/{{pd.get('url')}}">{{ pd.get('title') }}</a>
+							{% else %}
+							<a href="/class/show/{{pd.get('url')}}">{{ pd.get('title') }}</a>
+							{% endif %}
 						</td>
 						<td>
 							{{ pd.get('timedict') }}
@@ -54,7 +58,10 @@
 							<a href="#">{{ pd.get('link') }}</a>
 						</td>
 						<td>
-							<button type="button" class="btn btn-info" value="/class/show/{{ pd.get('url')}}"  data-toggle="modal" data-target="#preview">預覽</button>
+							<button type="button" class="btn btn-info" value="/admin/preview/{{ pd.get('url')}}"  data-toggle="modal" data-target="#preview">預覽</button>
+						</td>
+						<td>
+							<a href="/admin/proedit/{{ pd.get('url')}}" class="btn btn-default"> 修改</a>
 						</td>
 					</tr>
 					{% endfor %}
