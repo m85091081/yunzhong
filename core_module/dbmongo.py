@@ -83,6 +83,20 @@ class Product:
             self.prod.update({"url":url},{'$set':{"verfiy":False}})
         return True
 
+class Admin:
+    def __init__(self):
+        self.adm = db['Admin']
+        
+    def add(self, user , cla):
+        self.adm.create_index("user", unique=True)
+        raw = {
+                "user":user,
+                "cla" : cla
+                }
+        self.adm.insert_one(raw)
+    
+    def usercheck(self,email):
+        return self.adm.find_one({"user": email})
 
 class User:
     def __init__(self):

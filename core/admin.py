@@ -1,4 +1,5 @@
 from flask import render_template,request,Blueprint,redirect,url_for,current_app
+from flask_login import current_user , login_required
 from core import app
 from core_module import dbmongo
 from core_module.form import aboutform,submitclassinfo,loginForm
@@ -8,6 +9,15 @@ import ast , datetime, base64, re
 admbp = Blueprint('admbp', __name__ , template_folder='../core_template/templates')
 dbUser = dbmongo.User()
 dbprod = dbmongo.Product()
+dbadm = dbmongo.Admin()
+@admbp.before_request
+def bfreq():
+    cmail =  current_user.email()
+    if not dbadm.usercheck(cmail) :
+        return '無管理權限'
+
+
+@login_required
 @admbp.route('/')
 def admindex():
     allmemcount = dbUser.count("all")
@@ -25,6 +35,7 @@ def admindex():
     percent = round(todayvisit/yesterdayvisit*100,1)
     return render_template('admin/index.html',**locals())
 
+@login_required
 @admbp.route('/user')
 def admuser():
     search = False
@@ -37,6 +48,7 @@ def admuser():
     pagin = Pagination(page=page,per_page=30,bs_version=3,total=allmemcount,search=search,record_name='allmem')
     return render_template('admin/user.html',**locals())
 
+@login_required
 @admbp.route('/about', methods=['POST','GET'])
 def admabout():
     form = aboutform()
@@ -49,6 +61,7 @@ def admabout():
         dbmongo.info.about(content)
         return render_template('admin/about.html',**locals())
 
+@login_required
 @admbp.route('/student', methods=['POST','GET'])
 def admstudent():
     form = aboutform()
@@ -61,6 +74,7 @@ def admstudent():
         dbmongo.info.student(content)
         return render_template('admin/admin-member-benefits-student.html',**locals())
 
+@login_required
 @admbp.route('/general', methods=['POST','GET'])
 def admgeneral():
     form = aboutform()
@@ -73,6 +87,7 @@ def admgeneral():
         dbmongo.info.general(content)
         return render_template('admin/admin-member-benefits-general.html',**locals())
 
+@login_required
 @admbp.route('/company', methods=['POST','GET'])
 def admcompany():
     form = aboutform()
@@ -85,6 +100,7 @@ def admcompany():
         dbmongo.info.company(content)
         return render_template('admin/admin-member-benefits-company.html',**locals())
 
+@login_required
 @admbp.route('/prosubmit', methods=['POST','GET'])
 def admprosubmit():
     if request.method == "POST":
@@ -99,6 +115,7 @@ def admprosubmit():
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-product-management.html',**locals())
 
+@login_required
 @admbp.route('/preview/<url>', methods=['GET'])
 def admpreview(url):
     loginform = loginForm()
@@ -108,6 +125,7 @@ def admpreview(url):
     return render_template('proinfo-show.html',**locals())
 
 
+@login_required
 @admbp.route('/proedit/<url>', methods=['POST','GET'])
 def admproedit(url):
     data = dbprod.getdata(url)
@@ -142,6 +160,7 @@ def admproedit(url):
         return render_template('reg_err.html',**locals())
 
 
+@login_required
 @admbp.route('/stusubmit', methods=['POST','GET'])
 def admstusubmit():
     search = False
@@ -154,6 +173,7 @@ def admstusubmit():
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-student-product-list.html',**locals())
 
+@login_required
 @admbp.route('/entsubmit', methods=['POST','GET'])
 def admentsubmit():
     if request.method == "POST":
