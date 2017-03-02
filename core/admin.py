@@ -1,22 +1,23 @@
-from flask import render_template,request,Blueprint
+from flask import render_template,request,Blueprint,redirect,url_for,current_app
 from core import app
 from core_module import dbmongo
-from core_module.form import aboutform
+from core_module.form import aboutform,submitclassinfo,loginForm
+from core_module.pictures import uploadpicture,uploadcover
 from flask_paginate import Pagination
+import ast , datetime, base64, re
 admbp = Blueprint('admbp', __name__ , template_folder='../core_template/templates')
-allmem = dbmongo.User()
-Product = dbmongo.Product()
+dbUser = dbmongo.User()
+dbprod = dbmongo.Product()
 @admbp.route('/')
 def admindex():
-    allmemcount = allmem.count("all")
-    allstdcount = allmem.count("student")
-    allgencount = allmem.count("general")
-    allcocount  = allmem.count("company")
-    allprod = dbmongo.Product()
-    allvfyclass = allprod.verfiyclass().count()
-    allvfyacti  = allprod.verfiyacti().count()
-    allstayclass= allprod.noverfiyclass().count()
-    allstayacti = allprod.noverfiyacti().count()
+    allmemcount = dbUser.count("all")
+    allstdcount = dbUser.count("student")
+    allgencount = dbUser.count("general")
+    allcocount  = dbUser.count("company")
+    allvfyclass = dbprod.verfiyclass().count()
+    allvfyacti  = dbprod.verfiyacti().count()
+    allstayclass= dbprod.noverfiyclass().count()
+    allstayacti = dbprod.noverfiyacti().count()
     visit = dbmongo.Visit.count()
     allvisit = visit[0]["count"]
     todayvisit = visit[1][0]["count"]
@@ -30,9 +31,9 @@ def admuser():
     q = request.args.get('q')
     if q:
         search = True
-    allmemcount = allmem.find().count()
+    allmemcount = dbUser.find().count()
     page = request.args.get('page', type=int, default=1)
-    pagemem = allmem.find().limit(30).skip((int(page)-1)*30)
+    pagemem = dbUser.find().limit(30).skip((int(page)-1)*30)
     pagin = Pagination(page=page,per_page=30,bs_version=3,total=allmemcount,search=search,record_name='allmem')
     return render_template('admin/user.html',**locals())
 
@@ -87,16 +88,59 @@ def admcompany():
 @admbp.route('/prosubmit', methods=['POST','GET'])
 def admprosubmit():
     if request.method == "POST":
-       Product.proshelve(request.form.getlist('urls[]'))
+       dbprod.proshelve(request.form.getlist('urls[]'))
     search = False
     q = request.args.get('q')
     if q:
         search = True
-    allpd = Product.verfiyclass()
+    allpd = dbprod.verfiyclass()
     page = request.args.get('page', type=int, default=1)
-    pagepd = Product.verfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagepd = dbprod.verfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-product-management.html',**locals())
+
+@admbp.route('/preview/<url>', methods=['GET'])
+def admpreview(url):
+    loginform = loginForm()
+    data = dbprod.getdata(url)
+    if dbprod.count(str(url)) == 0:
+        return render_template('404.html',**locals())
+    return render_template('proinfo-show.html',**locals())
+
+
+@admbp.route('/proedit/<url>', methods=['POST','GET'])
+def admproedit(url):
+    data = dbprod.getdata(url)
+    form = submitclassinfo()
+    if request.method == 'GET':
+        return render_template('admin/proedit.html' , **locals())
+    elif request.method == 'POST' and form.validate_on_submit() and len(list(filter(None,request.form.getlist('ticket[]')))) >= 3 :
+        address = form.address.data
+        link = form.link.data
+        organize = form.organize.data
+        daterange = form.daterange.data
+        cover = form.cover.data
+        print(cover[0:4])
+        if cover[0:4] == '/pic':
+            pass
+        else:
+            cover = url_for('serve_picture',sha1=uploadcover(base64.b64decode(cover[23:])))
+        name = form.name.data
+        content = form.content.data
+        ticket = request.form.getlist('ticket[]')
+        count = 0
+        dticket = []
+        for x,y,z in zip(ticket[0::3], ticket[1::3],ticket[2::3]):
+            dtickettemp = {"id": count,"name":x,"cost":y,"much":z}
+            dticket.append(dtickettemp)
+        dbprod.proupdate(url,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
+        return redirect(url_for('classrom.showinfo',url=url))
+    
+    else:
+        """偷懶debug區"""
+        """不要送任何可以測資讓認證可過即可直接測試"""
+        return render_template('reg_err.html',**locals())
+
 
 @admbp.route('/stusubmit', methods=['POST','GET'])
 def admstusubmit():
@@ -104,22 +148,22 @@ def admstusubmit():
     q = request.args.get('q')
     if q:
         search = True
-    allpd = Product.noverfiyacti()
+    allpd = dbprod.noverfiyacti()
     page = request.args.get('page', type=int, default=1)
-    pagepd = Product.noverfiyacti().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagepd = dbprod.noverfiyacti().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-student-product-list.html',**locals())
 
 @admbp.route('/entsubmit', methods=['POST','GET'])
 def admentsubmit():
     if request.method == "POST":
-       Product.proconfirm(request.form.getlist('urls[]'))
+       dbprod.proconfirm(request.form.getlist('urls[]'))
     search = False
     q = request.args.get('q')
     if q:
         search = True
-    allpd = Product.noverfiyclass()
+    allpd = dbprod.noverfiyclass()
     page = request.args.get('page', type=int, default=1)
-    pagepd = Product.noverfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagepd = dbprod.noverfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
     return render_template('admin/admin-enterprise-product-verify.html',**locals())

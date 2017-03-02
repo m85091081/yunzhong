@@ -1,0 +1,387 @@
+{% extends "admin/no_collaps.html"%}
+{% block content %}
+<style>
+.medium-insert-images figure figcaption,
+.mediumInsert figure figcaption,
+.medium-insert-embeds figure figcaption,
+.mediumInsert-embeds figure figcaption {
+	font-size: 12px;
+	line-height: 1.2em;
+}
+		.medium-insert-images-slideshow figure {
+			width: 100%;
+		}
+		.medium-insert-images-slideshow figure img {
+			margin: 0;
+		}
+		.medium-insert-images.medium-insert-images-grid.small-grid figure {
+			width: 12.5%;
+		}
+		@media (max-width: 750px) {
+			.medium-insert-images.medium-insert-images-grid.small-grid figure {
+				width: 25%;
+			}
+		}
+		@media (max-width: 450px) {
+			.medium-insert-images.medium-insert-images-grid.small-grid figure {
+				width: 50%;
+			}
+		}
+		.init{
+			padding: 0px 0px 0px 0px;
+		}
+		.fileUpload {
+			position: relative;
+			overflow: hidden;
+			margin: 10px;
+		}
+		.fileUpload input.upload {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+		.tableinput {
+			display: block; 
+			padding: 0; 
+			margin: 0; 
+			border: 0; 
+			width: 100%;
+			border-radius:0;
+			font-size:100%;
+			height:39px;
+		}
+
+		td {
+			padding:0px 8px 0px 8px !important;
+			text-align:center;
+			vertical-align:middle !important;
+		}
+		.daterangepicker select.minuteselect{
+			width:60px;
+		}
+</style>
+<div id="in-container" class="proinfo-box"> 
+	<div class="container">
+		<div class="row" style="margin-top: 20px;">
+			<div class="col-xs-12 in-breadcrumb">
+				<ol class="breadcrumb">
+					{%block breadcrumb%}{%endblock%}
+				</ol>
+			</div><!--in-breadcrumb-->
+			<ul class="nav nav-tabs nav-justified" id="myTabs">
+			</ul>
+			<form method='POST' id="prodform">
+              {{ form.csrf_token }}
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="tab-content">
+							<div class="col-xs-12 col-md-12 col-sm-12 init tab-pane fade in active" style="position:static;">
+								<div class="col-xs-12 col-md-12 col-sm-12 init">
+									<h1 class="page-header">
+										<i class="fa fa-picture-o" aria-hidden="true"></i>
+										封面上傳
+									</h1>
+									<center>
+										<img id="imgtest" src="{{data.pic}}" onclick=" $('#modal').modal('show'); " style="max-width:100%;max-height:700px;">
+									</center>
+								</div>
+									{{form.cover(class_="form-control",id="cover",style="display:none;")}}
+								<div class="col-xs-12 col-sm-12 col-md-12 init" >
+									<h1 class="page-header">
+										<i class="fa fa-th-large" aria-hidden="true"></i>
+										課程資訊
+									</h1>
+									{{form.name(class_="form-control",value=data.title,style="margin-bottom:20px;")}}
+									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+										<label class="col-lg-2 col-sm-12 col-xs-12 control-label init">
+											<i class="fa fa-calendar" aria-hidden="true"></i>
+											活動日期：
+										</label>
+										<div class="col-lg-8 col-sm-12 col-xs-12 init">
+									{{form.daterange(class_="form-control input-sm",value=data.timedict)}}
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+										<label class="col-lg-2 col-sm-12 control-label init">
+											<i class="fa fa-map-marker" aria-hidden="true" style="padding:2.68px"></i>
+											活動地點：
+										</label>
+										<div class="col-lg-10 col-sm-12 col-xs-12 init">
+									{{form.address(class_="form-control input-sm",value=data.place)}}
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+										<label class="col-lg-2 col-sm-12 control-label init">
+											<i class="fa fa-link" aria-hidden="true"></i>
+											相關連結：
+										</label>
+										<div class="col-lg-8 col-sm-12 init">
+									{{form.link(class_="form-control input-sm",value=data.link)}}
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-6 init" style="margin-bottom:20px">
+										<label class="col-lg-2 col-sm-12 control-label init">
+											<i class="fa fa-star" aria-hidden="true"></i>
+											活動分類：
+										</label>
+										<div class="col-lg-10 col-sm-12 init" style="margin-bottom:20px">
+									{{form.organize(class_="form-control input-sm",value=data.classify)}}
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 init" style="position:static;">
+									<h1 class="page-header">
+										<i class="fa fa-th-list" aria-hidden="true"></i>
+										課程簡介：
+									</h1>
+									<div class="editable" id="editable" style="outline: none; min-height: 200px; margin: 0 0 20px 0; padding: 0 0 20px 0;" data-placeholder="請點擊輸入文字">{{data.about|safe}}</div>
+									{{ form.content(id = "editcontent" ,style="display:none;")}}
+								</div>
+								<div class="col-xs-12 col-sm-12 col-md-12 init" style="position:static;">
+									<h1 class="page-header">
+										<i class="fa fa-th-list" aria-hidden="true"></i>
+										票卷建立：
+									</h1>
+									<table class="table table-bordered nopadding">
+										<thead>
+											<tr style="margin: 0; padding: 0;">
+												<th style="width:5%;"></th>
+												<th style="width:75%;">票券名稱</th>
+												<th style="width:10%;">票價</th>
+												<th style="width:10%;">張數</th>
+											</tr>
+										</thead>
+										<tbody>
+     									 {% for x in data.orderdict%}
+										 <tr id = "{{x.get('id')}}" class="nopadding">
+												<td><a href="javascript:AddAfter()" ><i class="fa fa-plus" aria-hidden="true"></i></a></td>
+										 <td> <input name="ticket[]" type="text" placeholder="請輸入票種名稱" class="tableinput form-control" value="{{x.get('name')}}">  </td>
+										 <td> <input name="ticket[]" type="text" placeholder="票價" class="tableinput form-control" value="{{x.get('cost')}}"> </td>
+										 <td> <input name="ticket[]" type="text" placeholder="數量" class="tableinput form-control" value="{{x.get('much')}}"> </td>
+												{% endfor %}
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-xs-4 col-sm-4 init"></div>
+				<div class="col-md-4 col-xs-4 col-sm-4 init" style="text-align:center;margin-bottom:50px;">
+					<button type="submit" value="Go" class="btn btn-default">提交</button>
+				</div>
+			</form>
+			<div class="col-md-4 col-xs-4 col-sm-4 init"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block script %}
+<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/medium-editor.min.css">
+<link rel="stylesheet" href="/static/bower_components/medium-editor/dist/css/themes/beagle.min.css" id="medium-editor-theme">
+<link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
+<link rel="stylesheet" href="/static/bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css">
+<link rel="stylesheet" href="/static/css/cropper.css">
+<link rel="stylesheet" href="/static/css/cropper_setting.css">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<!-- JS -->
+<!-- JS -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<script src="/static/bower_components/medium-editor/dist/js/medium-editor.js"></script>
+<script src="/static/bower_components/handlebars/handlebars.runtime.min.js"></script>
+<script src="/static/bower_components/jquery-sortable/source/js/jquery-sortable-min.js"></script>
+<script src="/static/bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/static/bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/static/bower_components/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
+<script src="/static/js/cropper.js"></script>
+<script src="/static/js/cropper_setting.js"></script>
+<script src="/static/js/tether.min.js"></script>
+<script>
+var i = 0;
+
+function AddAfter(){
+	$('#'+i).after('<tr id='+ (i+1) +'> <td><a href="javascript:delrow('+ (i+1) +')"><i class="fa fa-minus"></i></a></td> <td><input name="ticket[]" type="text" placeholder="請輸入票種名稱" class="tableinput form-control">  </td> <td> <input name="ticket[]"  type="text" placeholder="票價" class="tableinput form-control"> </td> <td> <input name="ticket[]" type="text" placeholder="數量" class="tableinput form-control"> </td>  </tr>');
+	i= i+1;
+}
+function delrow(row){
+	$('#'+row).remove();
+}
+
+var editor = new MediumEditor('.editable',{
+});
+$(function () {
+	$('.editable').mediumInsert({
+		editor: editor,
+		addons: {
+			images: {
+				uploadScript: null,
+				deleteScript: null,
+				captionPlaceholder: 'Type caption for image',
+				fileUploadOptions: {
+					url: '/mdupload',
+					acceptFileTypes: /(\.|\/)(jpe?g|png)$/i,
+					maxFileSize:3000000,
+				},
+				actions: null,
+				messages: {
+					acceptFileTypesError: '上傳格式只接受jpg,png：',
+					maxFileSizeError: '圖片大小請小於3MB: ',
+				},
+			}
+		}
+	});
+});
+</script>
+<script>
+jQuery(document).ready(function() {
+	function img_preview(input){
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				jQuery('.img_preview').attr('src', e.target.result);
+				var kb = format_float(e.total / 1024, 2);
+			}
+			reader.readAsDataURL(input.files[0]);
+			$('#modal').modal('hide');
+			$('#modal1').modal('show');
+			$('#upload_background').hide();
+		}
+	}
+	jQuery("div").on("change", "#img_upload", function (){
+		img_preview(this);
+	});
+});
+</script>
+<script>
+$( "#prodform" ).submit(function( event ) {
+		$('.medium-insert-buttons').remove();
+		$('#editcontent').val($('#editable').html());
+		$('#cover').val($('#imgtest').attr('src'));
+});
+</script>
+<script>
+/*$(function () {
+$('#img_upload').fileupload({
+dataType: 'json',
+done: function (e, data) {
+$.each(data.result.files, function (index, file) {
+$('.img_preview').attr('src',file.url);
+$('#modal').modal('hide');
+$('#modal1').modal('show');
+$('#upload_background').hide();
+});
+}
+});
+});*/
+</script>
+<script>
+$(function () {
+	var cropBoxData;
+	$('#modal1').on('shown.bs.modal', function () {
+		$('#image').cropper({
+			aspectRatio: 2 / 1,
+			viewMode: 2,
+			responsive: true,
+			zoomable: false,
+			minCropBoxWidth: 300,
+			minCropBoxHeight: 150,
+			built: function () {
+				$('#image').cropper('setCropBoxData', cropBoxData);
+			}
+		});
+	}).on('hidden.bs.modal', function () {
+		var u = $('#image').cropper('getCroppedCanvas').toDataURL('image/jpeg') ;
+		$('#imgtest').attr('src',u);
+		$('#image').cropper('destroy');
+	});
+});
+</script>
+<script type="text/javascript">
+$(function() {
+	$('input[name="daterange"]').daterangepicker({
+		timePicker: true,
+		autoApply: true,
+		timePickerIncrement: 5,
+		timePicker24Hour: true,
+		cancelClass: "btn-danger",
+		locale: {
+
+			format: 'YYYY-MM-DD HH:mm',
+			daysOfWeek: [
+				"日",
+				"一",
+				"二",
+				"三",
+				"四",
+				"五",
+				"六"
+			],
+			monthNames: [
+				"一月",
+				"二月",
+				"三月",
+				"四月",
+				"五月",
+				"六月",
+				"七月",
+				"八月",
+				"九月",
+				"十月",
+				"十一月",
+				"十二月"
+			]
+		}
+	});
+});
+</script>
+{% endblock %}
+{% block modal %}
+<div class="modal fade" id="modal" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modalLabel">請上傳圖片進行裁切</h4>
+			</div>
+			<div class="modal-body">
+				<center>
+					<div class="fileUpload btn btn-default">
+						<span>由本機上傳圖片</span>
+						<input type="file" data-url="/mdupload" class="upload" accept="image/*" id="img_upload">
+					</div>
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modal1" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="modalLabel">圖片裁切</h4>
+			</div>
+			<div class="modal-body">
+				<center>
+					<div class="tab-content">
+						<img id="image" class="img_preview" style="max-width:auto;max-height:440px;">
+					</div>
+					<br />
+					<button type="button" onclick="$('#modal1').modal('hide');" id="modal1hide" class="btn btn-default">
+						確認
+					</button>
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
