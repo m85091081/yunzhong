@@ -12,7 +12,11 @@ dbprod = dbmongo.Product()
 dbadm = dbmongo.Admin()
 @admbp.before_request
 def bfreq():
-    cmail =  current_user.email()
+    try:
+        cmail =  current_user.email()
+    except Exception as e:
+        return '無管理權限'
+        
     if not dbadm.usercheck(cmail) :
         return '無管理權限'
 
