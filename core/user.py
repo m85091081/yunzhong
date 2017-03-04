@@ -7,8 +7,10 @@ import hashlib
 import time
 from core_module import facebook
 from core_module.dbmongo import User as dbuser
+from core_module.dbmongo import Admin 
 from core_module.form import registerForm , loginForm ,registerFormgen
 
+dbadm = Admin()
 class User():
     def __init__(self, username):
         self.username = username
@@ -29,6 +31,14 @@ class User():
         return False
     def get_id(self):
         return self.username
+    def is_admin(self):
+        try: 
+            cmail = current_user.email()
+        except Exception as e:
+            return False
+        if not dbadm.usercheck(cmail):
+            return False
+        return True
 
 dbUser = dbuser()
 lm = LoginManager()
