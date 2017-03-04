@@ -16,11 +16,17 @@ class Product:
     def verfiyclass(self):
         return self.prod.find({'$and':[{ 'verfiy': True},{'activity': False}]})
   
+    def verfiyclasscount(self):
+        return self.prod.find({'$and':[{ 'verfiy': True},{'activity': False}]}).count()
+    
     def noverfiyclass(self):
         return self.prod.find({'$and':[{ 'verfiy': False},{'activity': False}]})
 
     def verfiyacti(self):
         return self.prod.find({'$and':[{'verfiy': True},{'activity': True}]})
+    
+    def verfiyacticount(self):
+        return self.prod.find({'$and':[{'verfiy': True},{'activity': True}]}).count()
    
     def noverfiyacti(self):
         return self.prod.find({'$and':[{'verfiy': False},{'activity': True}]})

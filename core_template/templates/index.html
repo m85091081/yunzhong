@@ -106,7 +106,7 @@ $('#model-signup').modal('show');
   
   $('#target02').animateNumber(
     {
-      number: 7000 * decimal_factor,
+		number: {{vcc}} * decimal_factor,
 
       numberStep: function(now, tween) {
         var floored_number = Math.floor(now) / decimal_factor,
@@ -123,7 +123,7 @@ $('#model-signup').modal('show');
   
   $('#target03').animateNumber(
     {
-      number: 5800 * decimal_factor,
+		number: {{vac}} * decimal_factor,
 
       numberStep: function(now, tween) {
         var floored_number = Math.floor(now) / decimal_factor,

@@ -2,11 +2,12 @@
 # muMDAU_app main / first page 
 from core import app, socketio
 from flask import request, render_template, Blueprint, url_for, redirect, session
-from core_module.dbmongo import User , Visit, info
+from core_module.dbmongo import User , Visit, info , Product
 from core_module.form import loginForm
 main = Blueprint('main', __name__ , template_folder='../core_template/templates')
 
 user = User()
+product = Product()
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -15,6 +16,8 @@ def index():
     allmem = user.count('all')
     Visit.incount()
     company = user.count('company')
+    vcc = product.verfiyclasscount()
+    vac = product.verfiyacticount()
     return render_template('index.html',**locals())
 
 @main.route('/about', methods=['GET', 'POST'])
