@@ -119,25 +119,30 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">培訓課程 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/class/">基礎課程</a></li>
-						<li><a href="/class/">進階課程</a></li>
-						<li><a href="/class/">選修課程</a></li>
+						<li><a href="/class/">課程總覽</a></li>
+						{% if current_user.is_authenticated %}
 						<li><a href="/class/submit">課程提案</a></li>
+						{% else %}
+						<li><a href="#" data-toggle="modal" data-target="#model-login">課程提案</a></li>
+						{% endif %}
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">多元活動 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/acti">活動分類</a></li>
+						<li><a href="/acti">活動總覽</a></li>
+						{% if current_user.is_authenticated %}
 						<li><a href="/acti/submit">活動提案</a></li>
+						{% else %}
+						<li><a href="#" data-toggle="modal" data-target="#model-login">活動提案</a></li>
+						{% endif %}
 					</ul>
-				</li> <li><a href="proinfo-poto.html">活動花絮</a></li>
+				</li> <li><a href="https://flickr.com/photos/{{infopp}}">活動花絮</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員專區 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						{% if current_user.is_authenticated %}
 						<li><a href="/users/info">會員資料編輯</a></li>
-						<li><a href="member-collect.html">我的收藏</a></li>
 						{% else %}
 						<li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
 						<li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
@@ -167,7 +172,6 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
 						</button>
 					</div>
 					{% if current_user.is_authenticated %}
@@ -188,19 +192,25 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">培訓課程 <span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="/class/">基礎課程</a></li>
-											<li><a href="/class/">進階課程</a></li>
-											<li><a href="/class/">選修課程</a></li>
-											<li><a href="/class/submit">課程提案</a></li>
+											<li><a href="/class/">課程總覽</a></li>
+											{% if current_user.is_authenticated %}
+						<li><a href="/class/submit">課程提案</a></li>
+						{% else %}
+						<li><a href="#" data-toggle="modal" data-target="#model-login">課程提案</a></li>
+						{% endif %}
 										</ul>
 									</li>
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">多元活動 <span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="/acti/">活動分類</a></li>
-											<li><a href="/acti/submit">活動提案</a></li>
+											<li><a href="/acti/">活動總覽</a></li>
+						{% if current_user.is_authenticated %}
+						<li><a href="/acti/submit">活動提案</a></li>
+						{% else %}
+						<li><a href="#" data-toggle="modal" data-target="#model-login">活動提案</a></li>
+						{% endif %}
 										</ul>
-									</li> <li><a href="proinfo-poto.html">活動花絮</a></li>
+									</li> <li><a href="https://flickr.com/photos/{{infopp}}">活動花絮</a></li>
 									{% if not current_user.is_authenticated %}
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">會員專區 <span class="caret"></span></a>
@@ -223,7 +233,6 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{current_user.name()}}<span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="/users/info">會員資料編輯</a></li>
-											<li><a href="member-collect.html">我的收藏</a></li>
 											<li><a href="member-benefits.html">會員權益</a></li>
 											<li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 登出</a></li>
 						{% if current_user.is_admin %}
@@ -285,17 +294,23 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 						<div class="col-sm-3">
 							<h3>培訓課程</h3>
 							<ul>
-								<li><a href="/class/">基礎課程</a></li>
-								<li><a href="/class/">進階課程</a></li>
-								<li><a href="/class/">選修課程</a></li>
-								<li><a href="/class/submit">課程提案</a></li>
+								<li><a href="/class/">課程總覽</a></li>
+								{% if current_user.is_authenticated %}
+						<li><a href="/class/submit">課程提案</a></li>
+						{% else %}
+						<li><a href="#" data-toggle="modal" data-target="#model-login">課程提案</a></li>
+						{% endif %}
 							</ul>
 						</div>
 						<div class="col-sm-3">
 							<h3>多元活動</h3>
 							<ul>
-								<li><a href="/acti">活動分類</a></li>
-								<li><a href="/acti/submit">活動提案</a></li>
+								<li><a href="/acti">活動總覽</a></li>
+						{% if current_user.is_authenticated %}
+						<li><a href="/acti/submit">活動提案</a></li>
+						{% else %}
+						<li><a href="#" data-toggle="modal" data-target="#model-login">活動提案</a></li>
+						{% endif %}
 							</ul>
 						</div>
 						<div class="col-sm-3">
@@ -303,7 +318,6 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 							<ul>
 								{% if current_user.is_authenticated %}
 								<li><a href="/users/info">會員資料編輯</a></li>
-								<li><a href="member-collect.html">我的收藏</a></li>
 								{% else %}
 								<li><a href="#" data-toggle="modal" data-target="#model-signup">免費加入會員</a></li>
 								<li><a href="#" data-toggle="modal" data-target="#model-forgotpw">忘記密碼？</a></li>
@@ -473,7 +487,6 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 					<div class="modal-body">
 						<ul class="row">
 							<li class="col-xs-6"><a href="/users/info"><img src="/static/images/icon-member-xs-01.png"><span>我的資料</span></a></li>
-							<li class="col-xs-6"><a href="member-collect.html"><img src="/static/images/icon-member-xs-02.png"><span>我的收藏</span></a></li>
 							<li class="col-xs-6"><a href="#"><img src="/static/images/icon-member-xs-03.png"><span>我的履歷</span></a></li>
 							<li class="col-xs-6"><a href="#"><img src="/static/images/icon-member-xs-06.png"><span>登出</span></a></li>
 						</ul>

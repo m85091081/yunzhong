@@ -34,6 +34,8 @@ class Product:
     def getdata(self,url):
         return self.prod.find_one({"url": url})
 
+    def searchmozz(self,title):
+        return self.prod.find({'$and':[{ 'verfiy': True},{'about':{'$regex':str(title)}}]})
     def searchall(self,title):
         return self.prod.find({'$and':[{ 'verfiy': True},{'title':{'$all':title}}]})
 
@@ -43,7 +45,7 @@ class Product:
     def searchacti(self,title):
         return self.prod.find({'$and':[{ 'verfiy': True},{'activity': True},{'title':{'$all':title}}]})
 
-    def init(self,verfiy,url,activity,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
+    def init(self,verfiy,url,activity,title,labout,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
         self.prod.create_index("url", unique=True)
         raw = {
                 "verfiy":bool(verfiy), ##布林
@@ -58,12 +60,13 @@ class Product:
                 "holderlist":holderlist,
                 "about":str(about),
                 "prodata":prodata, ##相關資料
-                "orderdict":orderdict
+                "orderdict":orderdict,
+                "labout": labout
                 }
         self.prod.insert_one(raw)
         return True
 
-    def proupdate(self,url,title,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
+    def proupdate(self,url,title,labout,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
         raw = {
                 "title":str(title),
                 "pic":str(pic),
@@ -74,7 +77,8 @@ class Product:
                 "holderlist":holderlist,
                 "about":str(about),
                 "prodata":prodata, ##相關資料
-                "orderdict":orderdict
+                "orderdict":orderdict,
+                "labout": labout
                 }
         self.prod.update({"url":url},{'$set':raw})
         return True
@@ -253,3 +257,11 @@ class info:
     def getstu():
         benefits = db['info']
         return benefits.find_one({"main":"student"})
+    
+    def addprophoto(url):
+        info = db['info']
+        info.update({"main":"info"},{"$set":{"url": url}},upsert=True)
+
+    def prophoto():
+        info = db['info']
+        return info.find_one({"main":"info"})

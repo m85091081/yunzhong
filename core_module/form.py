@@ -6,9 +6,10 @@ from wtforms.validators import DataRequired as Required
 import wtforms
 class submitclassinfo(FlaskForm):
     cover = StringField('',validators=[Required()])
-    name = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入課程名稱"})
+    name = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入名稱資訊"})
+    labout = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入要顯示在總覽頁面的簡短簡介 < 300字"})
     daterange = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入日期"})
-    address = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入活動地址"})
+    address = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入地址"})
     link = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入相關鏈接"})
     organize = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入主辦單位"})
     content = StringField('', widget=wtforms.widgets.TextArea())

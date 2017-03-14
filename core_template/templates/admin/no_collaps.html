@@ -55,27 +55,36 @@
 	  <h5 class="sidebar-nav-title">提案管理 <a class="action-link" href="#"></a></h5>
 	  <ul class="sidebar-nav">
 		  <li class="{% block nowSubmitClass%}{%endblock%}">
-			  <a href="/admin/prosubmit">
-				  <span class="icon">
-					  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-				  </span>
-				  上架提案管理
-			  </a>
-		  </li>
-		  <li class="{% block stuSubmitClass%}{%endblock%}">
-			  <a href="/admin/stusubmit">
+			  <a href="/admin/class/submit">
 				  <span class="icon">
 					  <i class="fa fa-list" aria-hidden="true"></i>
 				  </span>
-				  學生提案清單
+				  上架課程管理
 			  </a>
 		  </li>
-		  <li class="{% block entSubmitClass%}{%endblock%}">
-			  <a href="/admin/entsubmit">
+		  <li class="{% block nowactiSubmitClass%}{%endblock%}">
+			  <a href="/admin/acti/submit">
+				  <span class="icon">
+					  <i class="fa fa-list" aria-hidden="true"></i>
+				  </span>
+				  上架活動管理
+
+			  </a>
+		  </li>
+		  <li class="{% block unactiSubmitClass%}{%endblock%}">
+			  <a href="/admin/acti/unsubmit">
 				  <span class="icon">
 					  <i class="fa fa-check" aria-hidden="true"></i>
 				  </span>
-				  企業提案審核
+				  活動提案審核
+			  </a>
+		  </li>
+		  <li class="{% block unclassSubmitClass%}{%endblock%}">
+			  <a href="/admin/class/unsubmit">
+				  <span class="icon">
+					  <i class="fa fa-check" aria-hidden="true"></i>
+				  </span>
+				  課程提案審核
 			  </a>
 		  </li>
 
@@ -101,6 +110,14 @@
 	  </ul>
 	  <h5 class="sidebar-nav-title">版面管理 <a class="action-link" href="#"></a></h5>
 	  <ul class="sidebar-nav">
+		  <li class="{% block editsiteClass%}{%endblock%}">
+			  <a href="/admin/siteedit">
+				  <span class="icon">
+					  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+				  </span>
+				  資訊修改
+			  </a>
+		  </li>
 		  <li class="{% block aboutMeClass%}{%endblock%}">
 			  <a href="/admin/about">
 				  <span class="icon">

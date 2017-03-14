@@ -4,30 +4,26 @@
 <div id="in-container" class="proinfo-box"> 
 
     <div class="container">
-        <div style="padding-top:20px; padding-bottom:20px;" class="row space">
-
+        <div class="row space" style="padding-top:20px; padding-bottom:20px;">
             <div class="col-xs-12 in-breadcrumb">
                 <ol class="breadcrumb">
                     <li><a href="/">首頁</a></li>
-                    <li class="active">搜尋結果</li>
+                    <li>培訓課程</li>
+                    <li class="active">課程總覽</li>
                 </ol>
             </div><!--in-breadcrumb-->
-
             <div id="content" class="in-content col-xs-12">
-
                 <div class="row">
-
                     <div class="col-xs-12">
                         <div class="filter-box">
                             <div id="proinfo-nav" class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <form class="form-inline" method="get" action="/search/">
                                         <div class="form-group">
-                                            <input name='title'class="form-control" placeholder="點此搜尋">
+                                            <input name='title'class="form-control" placeholder="點此搜尋想要的課程&活動">
                                             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                         </div>
                                     </form>
-
                                 </div>
                             </div>
                         </div><!--/filter-box-->
@@ -44,23 +40,14 @@
                                 </a>
                             </div>
                             <div class="proinfo-text">
-								{% if pd.get('activity') %}
-                                <h3><a href="/acti/show/{{pd.get('url')}}">{{pd.get('title')}}<a></h3>
-								{%else%}
                                 <h3><a href="/class/show/{{pd.get('url')}}">{{pd.get('title')}}<a></h3>
-								{%endif%}
-								<p class="proinfo-date">{{pd.get('timedict')}}</p>
+								<p class="proinfo-date">{{pd.get('timedict')}} </p>
                                 <p class="proinfo-des">
 								{{pd.get('labout')[0:200]}}
 								</p>
 								</br>
-								<div clakss="proinfo-btn row">
+								<div class="proinfo-btn row">
                                     <div class=" col-sm-6 col-xs-12">
-								{% if pd.get('activity') %}
-								類別：活動
-								{%else%}
-								類別：課程
-								{%endif%}
                                     </div>
                                     <div class=" col-sm-6 col-xs-12">
                                         <button type="submit" class="btn btn-default">熱銷中</button>

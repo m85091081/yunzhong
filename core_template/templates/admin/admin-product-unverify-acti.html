@@ -1,10 +1,10 @@
 {% extends "admin/no_collaps.html" %}
-{% block nowSubmitClass %}active{%endblock%}
+{% block unactiSubmitClass %}active{%endblock%}
 {% block content %}
 <h1 class="page-title">
-	已上架課程管理
+	活動提案審核
 	<small>
-		修改/課程管理
+		未活動提案管理
 	</small>
 </h1>
 <div class="row">
@@ -13,7 +13,7 @@
 			<div style="float:right">
 				<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_confirm">
 					<i class="fa fa-trash-o" aria-hidden="true"></i>
-					下架
+					上架
 				</button>
 			</div>
 		</header>
@@ -30,7 +30,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<form id="manage" method="POST" action="{{ url_for('admbp.admprosubmit')}}">
+					<form id="manage" method="POST" action="{{ url_for('admbp.admentsubmit')}}">
 					{% for pd in pagepd %}
 					<tr>
 						<td>
@@ -39,11 +39,7 @@
 								</label>
 						</td>
 						<td>
-							{% if pd.get('activity') %}
-							<a href="/acti/show/{{pd.get('url')}}">{{ pd.get('title') }}</a>
-							{% else %}
-							<a href="/class/show/{{pd.get('url')}}">{{ pd.get('title') }}</a>
-							{% endif %}
+							{{ pd.get('title') }}
 						</td>
 						<td>
 							{{ pd.get('timedict') }}
@@ -58,10 +54,13 @@
 							<a href="#">{{ pd.get('link') }}</a>
 						</td>
 						<td>
-							<button type="button" class="btn btn-info" value="/admin/preview/{{ pd.get('url')}}"  data-toggle="modal" data-target="#preview">預覽</button>
+							<button type="button" class="btn btn-info" value="/admin/preview/{{pd.get('url')}}" data-toggle="modal" data-target="#preview">預覽</button>
 						</td>
 						<td>
-							<a href="/admin/proedit/{{ pd.get('url')}}" class="btn btn-default"> 修改</a>
+							<a href="/admin/proedit/{{pd.get('url')}}" class="btn btn-default">修改</a>
+						</td>
+						<td>
+							<button type="button" class="btn btn-warning">駁回</button>
 						</td>
 					</tr>
 					{% endfor %}
@@ -101,7 +100,7 @@
 				<div class="modal-title">
 					<h3>
 						<i class="fa fa-info-circle" aria-hidden="true"></i>
-						確定要下架嗎
+						確定要上架嗎
 					</h1>
 				</div>
 			</div>

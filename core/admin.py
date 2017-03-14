@@ -105,7 +105,7 @@ def admcompany():
         return render_template('admin/admin-member-benefits-company.html',**locals())
 
 @login_required
-@admbp.route('/prosubmit', methods=['POST','GET'])
+@admbp.route('/class/submit', methods=['POST','GET'])
 def admprosubmit():
     if request.method == "POST":
        dbprod.proshelve(request.form.getlist('urls[]'))
@@ -142,6 +142,7 @@ def admproedit(url):
         organize = form.organize.data
         daterange = form.daterange.data
         cover = form.cover.data
+        labout = form.labout.data
         print(cover[0:4])
         if cover[0:4] == '/pic':
             pass
@@ -155,7 +156,7 @@ def admproedit(url):
         for x,y,z in zip(ticket[0::3], ticket[1::3],ticket[2::3]):
             dtickettemp = {"id": count,"name":x,"cost":y,"much":z}
             dticket.append(dtickettemp)
-        dbprod.proupdate(url,name,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
+        dbprod.proupdate(url,name,labout,cover,daterange,address,link,"no-classify",organize,content,"noproddata",dticket)
         return redirect(url_for('classrom.showinfo',url=url))
     
     else:
@@ -163,10 +164,34 @@ def admproedit(url):
         """不要送任何可以測資讓認證可過即可直接測試"""
         return render_template('reg_err.html',**locals())
 
+@login_required
+@admbp.route('/siteedit', methods=['POST','GET'])
+def admsiteedit():
+    if request.method == 'GET':
+        return render_template('admin/admin-edit.html',**locals())
+
 
 @login_required
-@admbp.route('/stusubmit', methods=['POST','GET'])
+@admbp.route('/acti/submit', methods=['POST','GET'])
 def admstusubmit():
+    if request.method == "POST":
+       dbprod.proshelve(request.form.getlist('urls[]'))
+    search = False
+    q = request.args.get('q')
+    if q:
+        search = True
+    allpd = dbprod.verifyacti()
+    page = request.args.get('page', type=int, default=1)
+    pagepd = dbprod.verfiyacti().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
+    pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
+    return render_template('admin/admin-product-management-acti.html',**locals())
+
+
+@login_required
+@admbp.route('/acti/unsubmit', methods=['POST','GET'])
+def admentsubmit():
+    if request.method == "POST":
+       dbprod.proconfirm(request.form.getlist('urls[]'))
     search = False
     q = request.args.get('q')
     if q:
@@ -175,11 +200,11 @@ def admstusubmit():
     page = request.args.get('page', type=int, default=1)
     pagepd = dbprod.noverfiyacti().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
-    return render_template('admin/admin-student-product-list.html',**locals())
+    return render_template('admin/admin-product-unverify-acti.html',**locals())
 
 @login_required
-@admbp.route('/entsubmit', methods=['POST','GET'])
-def admentsubmit():
+@admbp.route('/class/unsubmit', methods=['POST','GET'])
+def admunclasssubmit():
     if request.method == "POST":
        dbprod.proconfirm(request.form.getlist('urls[]'))
     search = False
@@ -190,4 +215,4 @@ def admentsubmit():
     page = request.args.get('page', type=int, default=1)
     pagepd = dbprod.noverfiyclass().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
-    return render_template('admin/admin-enterprise-product-verify.html',**locals())
+    return render_template('admin/admin-product-unverify.html',**locals())
