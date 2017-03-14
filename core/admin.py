@@ -180,7 +180,7 @@ def admstusubmit():
     q = request.args.get('q')
     if q:
         search = True
-    allpd = dbprod.verifyacti()
+    allpd = dbprod.verfiyacti()
     page = request.args.get('page', type=int, default=1)
     pagepd = dbprod.verfiyacti().sort('$natural',-1).limit(9).skip((int(page)-1)*9)
     pagin = Pagination(page=page,per_page=9,bs_version=3,total=allpd.count(),search=search,record_name='allpd')
