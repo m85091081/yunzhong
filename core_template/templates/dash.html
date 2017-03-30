@@ -1,0 +1,32 @@
+{% extends "base.html"%}
+{% block body %}
+
+    
+<div id="in-container" class="general-box"> 
+
+<div class="container">
+<div class="row space">
+
+    <div class="col-xs-12 in-breadcrumb">
+        <ol class="breadcrumb">
+          <li><a href="index.html">首頁</a></li>
+          <li class="active">票卷中心</li>
+        </ol>
+    </div><!--in-breadcrumb-->
+    
+    
+    <div id="content" class="in-content col-md-12">
+        
+    	<h2 class= "page-header"><i class="fa fa-info" aria-hidden="true"></i> 您購買的票卷 </h2>
+        {%block info%}
+        {%endblock%}
+    	<h2 class= "page-header"><i class="fa fa-info" aria-hidden="true"></i> 您建立的票卷 </h2>
+        {%block haveinfo%}
+        {%endblock%}
+    </div>
+</div><!--/row space-->
+</div>
+</div>
+
+    
+{% endblock %}

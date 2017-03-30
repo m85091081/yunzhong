@@ -9,7 +9,37 @@ db = client['Yunzhong']
 class Product:
     def __init__(self):
         self.prod = db['Product']
+        self.ticket = db['Ticket']
+    def ticadd(self,tid,turl,tclass,name,phone,mail,much,money):
+        print(turl)
+        raw = {
+                "tid":tid,
+                "turl":turl,
+                "tclass":tclass,
+                "tname":self.prod.find_one({'url':str(turl)})['title'],
+                "name":name,
+                "phone":phone,
+                "mail":mail,
+                "much":much,
+                "money":money
+                }
+        self.ticket.insert_one(raw)
+        return True
+
+    def getticmem(self,url):
+        return self.ticket.find({'turl': str(url)})
+
+    def geturlname(self,url):
+        return self.prod.find_one({'url': str(url)}).get('title')
     
+    def geturlcreator(self,url):
+        return self.prod.find_one({'url': str(url)}).get('creatormail')
+
+    def getcreator(self,email):
+        return self.prod.find({'creatormail': str(email)})
+    def getbuyer(self,email):
+        return self.ticket.find({'mail': str(email)})
+
     def count(self,val):
         return self.prod.find({'url': str(val)}).count()
     
@@ -45,7 +75,7 @@ class Product:
     def searchacti(self,title):
         return self.prod.find({'$and':[{ 'verfiy': True},{'activity': True},{'title':{'$all':title}}]})
 
-    def init(self,verfiy,url,activity,title,labout,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
+    def init(self,verfiy,mail,url,activity,title,labout,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
         self.prod.create_index("url", unique=True)
         raw = {
                 "verfiy":bool(verfiy), ##布林
@@ -61,11 +91,29 @@ class Product:
                 "about":str(about),
                 "prodata":prodata, ##相關資料
                 "orderdict":orderdict,
-                "labout": labout
+                "labout": labout,
+                "creatormail" : mail
                 }
         self.prod.insert_one(raw)
         return True
 
+    def ticupdate(self,url,tid,much):
+        tic_raw = self.prod.find_one({'url':url}).get('orderdict')
+        neworder = []
+        for x in tic_raw:
+            if str(x.get('id')) == str(tid) :
+                if int(x['much']) == 0:
+                    return 'NoTic'
+                else:
+                    x['much'] = int(x.get('much')) - int(much)
+            neworder.append(x)
+        
+        raw = {
+                "orderdict":neworder
+                }
+        return self.prod.update({"url":url},{'$set':raw})
+
+        
     def proupdate(self,url,title,labout,pic,timedict,place,link,classify,holderlist,about,prodata,orderdict):
         raw = {
                 "title":str(title),

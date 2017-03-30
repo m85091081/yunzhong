@@ -1,0 +1,30 @@
+{%extends "mem.html"%}
+
+{% block haveinfo %}
+<h2>活動名稱 : {{title}}</h2>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th width="60" class="text-center" valign="center">NO.</th>
+			<th width="150">姓名</th>
+			<th width="150">票種</th>
+			<th width="150">電子信箱</th>
+			<th width="150">聯絡方式</th>
+			<th width="150">數量</th>
+			<th width="150">總價</th>
+		</tr>
+	</thead>
+	{% for x in ticitem -%}
+	<tr>
+		<td width="60" align="center">{{loop.index}}.</td>
+		<td width="120" valign="middle">{{x.get('name')}}</td>
+		<td width="120" valign="middle">{{x.get('tclass')}}</td>
+		<td width="120" valign="middle">{{x.get('mail')}}</td>
+		<td width="120" valign="middle">{{x.get('phone')}}</td>
+		<td width="120" valign="middle">{{x.get('much')}}</td>
+		<td width="120" valign="middle">{{x.get('money')}}</td>
+	</tr>
+	{%endfor -%}
+	</tbody>
+</table>
+{% endblock %}

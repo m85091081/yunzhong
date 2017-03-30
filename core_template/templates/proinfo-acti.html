@@ -40,7 +40,7 @@
                         {% for pd in pagepd %}
                         <div class="col-md-4 col-sm-6 col-xs-6 procol">
                             <div class="proinfo-img scale-img">
-                                <a href="/class/show/{{pd.get('url')}}">
+                                <a href="/acti/show/{{pd.get('url')}}">
                                     <img src="{{pd.get('pic')}}">
                                 </a>
                             </div>
@@ -55,7 +55,7 @@
                                     <div class=" col-sm-6 col-xs-12">
                                     </div>
                                     <div class=" col-sm-6 col-xs-12">
-                                        <button type="submit" class="btn btn-default">熱銷中</button>
+										<button onclick="javascript:location.href='/acti/show/{{pd.get('url')}}'" type="submit" class="btn btn-default">熱銷中</button>
                                     </div>
                                 </div>
                             </div>

@@ -14,8 +14,6 @@
 
     <div class="col-xs-12 in-breadcrumb">
         <ol class="breadcrumb">
-          <li><a href="/">首頁</a></li>
-          <li><a href="proinfo.html">培訓課程</a></li>
           <li class="active">{{data.title}}</li>
         </ol>
     </div><!--in-breadcrumb-->
@@ -38,16 +36,11 @@
                         <li class="col-lg-6 col-xs-12"><i class="material-icons">place</i> 活動地點：<a href="#" target="_blank">{{data.place}}</a></li>
                         <li class="col-lg-6 col-xs-12"><i class="material-icons">link</i> 相關連結：<a href="#" target="_blank">{{data.link}}</a></li>
                         <li class="col-lg-6 col-xs-12 proinfo-info-class"><i class="material-icons">view_week</i> 活動分類： <a href="#">{{data.classify}}</a></li>
-                        <li class="col-lg-6 col-xs-12"><i class="material-icons">stars</i> 主辦單位：<a href="#" target="_blank">{{data.holderlist[0]}}</a></li>
+                        <li class="col-lg-6 col-xs-12"><i class="material-icons">stars</i> 主辦單位：<a href="#" target="_blank">{{data.holderlist}}</a></li>
                     
                     </ul>
                     
                     <ul id="navbar-fixed" class="row proinfo-info-btn navigation">
-                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#map" class="btn btn-info"><i class="fa fa-map-marker" aria-hidden="true"></i> 檢視地圖</a></li>
-                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#stor-company" class="btn btn-info"><i class="fa fa-phone" aria-hidden="true"></i> 聯絡主辦單位</a></li>
-                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#download-info" class="btn btn-info"><i class="fa fa-cloud-download" aria-hidden="true"></i> 相關資料下載</a></li>
-                        <li class="col-lg-2 col-sm-3 col-xs-12"><a href="#" class="btn btn-info"><i class="fa fa-star" aria-hidden="true"></i> 活動收藏</a></li>                    
-                        <li class="col-lg-2 col-lg-offset-2 col-sm-3 col-xs-12 proinfo-info-btnR"><a href="#proinfo-form" class="btn btn-warning"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 票卷購買</a></li>
                     </ul>   
                                      
                  </div><!--/proinfo-info-->
@@ -73,29 +66,21 @@
                  <h3>主辦單位資訊 :</h3>
                  <dl class="dl-horizontal">
                    <dt>主辦機關單位名稱 :</dt>
-                   <dd>{{data.holderlist[0]}}</dd>
-                   <dt>聯絡電話 :</dt>
-                   <dd><a href="tel:{{data.holderlist[1]}}">{{data.holderlist[1]}}</a></dd>
-                   <dt>活動負責窗口 :</dt>
-                   <dd>{{data.holderlist[2]}}</dd>
+                   <dd>{{data.holderlist}}</dd>
+                   <dt>聯絡信箱:</dt>
+                   <dd><a href="email:{{data.creatormail}}">{{data.creatormail}}</a></dd>
                  </dl>
                  </div>
                  
                  <div class="col-sm-2 col-sm-offset-2 logo-cp">
-                   <img src="/static/images/logo07.gif">
                  </div>
                 </div>
               </section>
               
-              <section id="download-info">
-                 <h3>相關資料下載 :</h3>
-                 <ul class="list-inline">
                      <!--                <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> 活動詳細說明</a></li>
                      <li><a href="#"><i class="fa fa-file-word-o" aria-hidden="true"></i> 活動詳細說明</a></li>
                      <li><a href="#"><i class="fa fa-file-powerpoint-o" aria-hidden="true"></i> 活動詳細說明</a></li>
                      -->
-                     </ul>
-              </section>
               <section id="proinfo-form" class="proinfo-form">                 
                  <h3>票券購買</h3>
                  <form action='/proinfo/addcart' method='POST' class="form-horizontal">

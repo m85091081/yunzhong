@@ -233,11 +233,12 @@ var mySwiper = new Swiper ('.swiper-mainbanner', {
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> {{current_user.name()}}<span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="/users/info">會員資料編輯</a></li>
-											<li><a href="member-benefits.html">會員權益</a></li>
-											<li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 登出</a></li>
+											<li><a href="/member-benefits">會員權益</a></li>
+											<li><a href="/tickets/dashboard">票卷中心</a></li>
 						{% if current_user.is_admin %}
 						<li><a href="/admin">管理人員界面</a></li>
 						{% endif %}
+											<li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> 登出</a></li>
 										</ul>
 									</li>
 									{% else %}

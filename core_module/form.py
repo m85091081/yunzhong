@@ -11,7 +11,7 @@ class submitclassinfo(FlaskForm):
     daterange = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入日期"})
     address = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入地址"})
     link = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入相關鏈接"})
-    organize = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入主辦單位"})
+    organize = StringField('',validators=[Required()],render_kw={"placeholder": "請輸入您活動的類別"})
     content = StringField('', widget=wtforms.widgets.TextArea())
 
 class aboutform(FlaskForm):

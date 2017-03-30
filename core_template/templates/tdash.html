@@ -1,0 +1,45 @@
+{%extends "dash.html"%}
+
+{% block info %}
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th  width="50" class="text-center" valign="center">NO.</th>
+			<th >票劵名稱</th>
+			<th width="50">張數</th>
+			<th width="229">小計</th>
+		</tr>
+	</thead>
+	{% for x in buyertic -%}
+	<tr>
+		<td width="50" align="center">{{loop.index}}.</td>
+		<td width="419" valign="middle">{{x.get('tname')}} - {{x.get('tclass')}}</td>
+		<td valign="middle" class="center">{{x.get('much')}}</td>
+		<td valign="middle" class="center">NT$ {{x.get('money')}}</td>
+	</tr>
+	{%endfor -%}
+	</tbody>
+</table>
+<br>
+{% endblock %}
+{% block haveinfo %}
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th width="60" class="text-center" valign="center">NO.</th>
+			<th >活動名稱</th>
+			<th width="150">剩餘票卷</th>
+			<th width="150">參予名單</th>
+		</tr>
+	</thead>
+	{% for x in creatortic -%}
+	<tr>
+		<td width="64" align="center">{{loop.index}}.</td>
+		<td width="419" valign="middle">{{x.get('title')}}</td>
+		<td valign="middle" class="center">{{x.get('much')}}</td>
+		<td valign="middle" class="center"><a href="/tickets/member/{{url}}">點我查看名單</a></td>
+	</tr>
+	{%endfor -%}
+	</tbody>
+</table>
+{% endblock %}
