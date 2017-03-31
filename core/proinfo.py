@@ -35,7 +35,7 @@ def tickerdash():
         url = x.get('url')
         temp_ticket_count = 0
         for xx in x.get('orderdict'):
-            temp_ticket_count = xx.get('much') + temp_ticket_count
+            temp_ticket_count = int(xx.get('much')) + int(temp_ticket_count)
         crawdict = {"url":url,"title":title,"much":temp_ticket_count}
         creatortic.append(crawdict)
     return render_template('tdash.html',**locals())
